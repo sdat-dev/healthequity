@@ -63,14 +63,14 @@ Primary use:    Common.css file used for styling header and
 }
 
 .content-header {
-    color: #46166C;
+    color: black;
     font-family: 'TradeGothicLTStd-BdCn20', Helvetica, Arial, sans-serif;
     margin-bottom: 20px;
     text-transform: uppercase;
 }
 
 .content a{
-    color:#46166C;
+    color:#009EE0;
 }
 
 .content-header-top-bottom-margin{
@@ -81,7 +81,7 @@ Primary use:    Common.css file used for styling header and
 }
 
 .content-header-no-margin {
-    color: #46166C;
+    color: #004C93;
     font-family: 'TradeGothicLTStd-BdCn20', Helvetica, Arial, sans-serif;
     text-transform: uppercase;
 }
@@ -122,7 +122,7 @@ Primary use:    Common.css file used for styling header and
 }
 
 .no-link-decoration {
-    color: #46166b;
+    color: #004C93;
     text-decoration: none;
 }
 
@@ -139,8 +139,8 @@ Primary use:    Common.css file used for styling header and
 }
 
 #navbar-header {
-    background-color:#004C93b;
-    height: 90px;
+    background-color:#004C93;
+    height: 100px;
     position: sticky;
     top: 0;
     width: 100%;
@@ -253,6 +253,14 @@ Primary use:    Common.css file used for styling header and
     color: #009EE0;
 }
 
+.deepblue-font{
+    color: #000033;
+}
+
+.DEEPBLUE-FONT{
+    color: #000033;
+}
+
 .content-tool-bar{
     position: relative;
 }
@@ -263,7 +271,7 @@ Primary use:    Common.css file used for styling header and
 
 #social-media-button{
     color: white;
-    background-color: #46166C;
+    background-color: #004C93;
     padding: 9px;
     font-size: 22px;
     font-weight: bold;
@@ -287,7 +295,7 @@ Primary use:    Common.css file used for styling header and
     margin-bottom: 0px;
 }
 
-.main-content> #search-box{
+.content> #search-box{
     background-color: #F9F9F9;
     height: 40px;
     border: 1px solid #B9B9B9;
@@ -296,28 +304,70 @@ Primary use:    Common.css file used for styling header and
     padding: 5px 0px 10px 2px;
 }
 
-.main-content>#search-box-results{
+.content>#search-box-results{
     display: block;
 }
 
 #search-button{
     height: 40px;
     width: 40px;
-    background-color: #46166b;
+    background-color: #004C93;
     color: white;
     position: relative;
-    top: 3px;
+    top: 2px;
     left: -1px;
 }
 
 .ualbany-logo-wrapper {
-    height: 90px;
+    height: 100px;
     width: 100%;
 }
 
 .ualbany-logo {
-    margin-left: 20px;
-    vertical-align: middle;
+    margin-left: 5px;
+    margin-top: 30px;
+}
+
+.nysdoh-logo {
+    margin-top: 25px;
+    margin-right: 5px;
+}
+
+.sunny-logo {
+    max-width: 100px;
+    width:100%;
+}
+
+.downstate-logo {
+    margin-top: 20px;
+    margin-right: 5px;
+    max-width: 222px;
+    width:100%;
+}
+
+.upstate-logo {
+    margin-top: 25px;
+    margin-right: 5px;
+    max-width: 170px;
+    width:100%;
+}
+
+.sponsor-title-container{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.sponsor-title{
+    display: block;
+    font-weight: bold;
+}
+
+.sponsor-title>img{
+    height:70px;
+}
+
+.logo{
+    margin-right: 10px;
 }
 
 @media only screen and (max-width: 340px)
@@ -332,7 +382,7 @@ Primary use:    Common.css file used for styling header and
     #landing-page-text-wrapper
     {   
         bottom: 10%;
-        width: 55%;
+        width: 35%;
     }
     #landing-page-text-wrapper>h1
     {
@@ -352,11 +402,11 @@ Primary use:    Common.css file used for styling header and
     .main-content>ul, .main-content>ol {
         margin-left: 20px;
     }
-    .main-content> #search-box{       
+    .content> #search-box{       
         margin-bottom: 5px;
         width: 80%;
     }   
-    .main-content>#search-box-results{
+    .content>#search-box-results{
         margin-bottom: 30px;
     }
 }
@@ -366,7 +416,7 @@ Primary use:    Common.css file used for styling header and
     #landing-page-text-wrapper
     {   
         bottom: 10%;
-        width: 66%;
+        width: 40%;
     }
     #landing-page-text-wrapper>h1
     {
@@ -383,12 +433,12 @@ Primary use:    Common.css file used for styling header and
     .main-content>ul, .main-content>ol {
         margin-left: 20px;
     }
-    .main-content> #search-box{       
+    .content> #search-box{       
         margin-bottom: 5px;
         width: 60%;
     }
     
-    .main-content>#search-box-results{
+    .content>#search-box-results{
         margin-bottom: 30px;
     }
 }
@@ -398,7 +448,7 @@ Primary use:    Common.css file used for styling header and
     #landing-page-text-wrapper
     {
         bottom: 10%;
-        width: 61%;
+        width: 40%;
     }
     #landing-page-text-wrapper>h1
     {
@@ -421,25 +471,25 @@ Primary use:    Common.css file used for styling header and
     .main-content>ul, .main-content>ol {
         margin-left: 90px;
     }
-    .main-content> #search-box{       
-        margin: 0px 0px 5px 50px;
+    .content> #search-box{       
+        margin: 0px 0px 5px 0px;
         width: 255px;
     }
-    .main-content>#search-box-results{
-        margin: 0px 0px 20px 50px;
+    .content>#search-box-results{
+        margin: 0px 0px 20px 0px;
     }
 }
 
 @media only screen and (min-width: 992px) {
 
-    .main-content> #search-box{       
+    .content> #search-box{       
         width: 510px;
     }
     
     #landing-page-text-wrapper
     {
         bottom: 10%;
-        width: 61%;
+        width: 40%;
     }
     #landing-page-text-wrapper>h1
     {
@@ -461,7 +511,7 @@ Primary use:    Common.css file used for styling header and
     #landing-page-text-wrapper
     {
         bottom: 10%;
-        width: 62%;
+        width: 40%;
     }
     #landing-page-text-wrapper>h1
     {
