@@ -1,6 +1,16 @@
+.nav-pills, .nav-item a, .nav-links {
+    color: #004C93;
+    text-transform: uppercase;
+}
+
 .expert-info{
     margin-right: 15%;
     margin-bottom: 40px;
+    min-height: 200px;
+}
+
+.expert-info a{
+    color: #004C93;
 }
 
 .expert-image{

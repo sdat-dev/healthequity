@@ -6,7 +6,7 @@ Primary use:    academic-programs.css file used for styling content
 .accordion-header > .paragraph-question{
     font-family: 'News Cycle', Helvetica, Arial, sans-serif;
     font-weight: bold;
-    color: #46166C;
+    color: #004C93;
     padding: 8px 20px;
 }
 
@@ -35,7 +35,7 @@ Primary use:    academic-programs.css file used for styling content
 }
 
 button.btn-link, button.btn-link > .content-header-no-margin{
-    color: 46166C;
+    color: #004C93;
     background-color: rgba(0,0,0,0);
     margin-bottom: 0px;
 }
@@ -56,7 +56,7 @@ button.btn-link{
 }
 
 .card-header{
-    color: #46166C;
+    color:#004C93;
     padding: 0px;
     background-color: rgba(0,0,0,0);
 }
@@ -65,7 +65,7 @@ button.btn-link{
 .card-header:hover button.btn-link, .card-header:hover, .card-header:hover .fa-chevron-down
 {
     color: white;
-    background-color: #46166C;
+    background-color: #004C93;
     text-decoration: none;
 }
 
@@ -76,7 +76,7 @@ button.btn-link{
 .fa-chevron-down{
     float: right;
     margin-right: 10px;
-    color: #46166C;
+    color: #004C93;
     line-height: 30px;
     font-size: 15px;
 }

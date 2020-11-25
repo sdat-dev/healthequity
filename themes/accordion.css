@@ -5,7 +5,7 @@ Primary use:    Accordion.css file used for styling content
 .accordion-header > .paragraph-question{
     font-family: 'News Cycle', Helvetica, Arial, sans-serif;
     font-weight: bold;
-    color: #46166C;
+    color: #004C93;
     padding: 8px 20px;
 }
 
@@ -35,7 +35,7 @@ Primary use:    Accordion.css file used for styling content
 
 button.btn-link, button.btn-link  .content-header-no-margin{
     color: white;
-    background-color: #46166C;
+    background-color: #004C93;;
     margin-bottom: 0px;
 }
 
@@ -57,14 +57,14 @@ button.btn-link:hover, button.btn-link > .content-header-no-margin:hover{
 }
 
 .card-header{
-    color: #46166C;
+    color: #004C93;;
     padding: 0px;
     border-radius: 1%;
 }
 
 .card-header:hover{
     color: white;
-    background-color: #46166C;
+    background-color: #004C93;;
 }
 
 .fa-chevron-down{

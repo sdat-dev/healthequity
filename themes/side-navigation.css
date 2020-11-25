@@ -8,7 +8,7 @@ Primary use:    side-navigation.css file used for styling components
 -------------------------------------------------------------------*/
 
 #active-page {
-    background-color: #46166b;
+    background-color: #004C93;
 }
 
 #active-page>a {
@@ -16,7 +16,7 @@ Primary use:    side-navigation.css file used for styling components
 }
 
 .hover-highlight:hover {
-    background-color: #46166b;
+    background-color: #004C93;
     color: white;
 }
 
@@ -27,7 +27,7 @@ Primary use:    side-navigation.css file used for styling components
 
 .navigation-items {
     border-bottom: 2px solid #909090;
-    color: #46166B;
+    color: #004C93;
     font-weight: 400;
     list-style-type: none;
     padding: 10px 10px 10px 0px;
@@ -36,7 +36,7 @@ Primary use:    side-navigation.css file used for styling components
 
 #expanded-navigation-item {
     border-bottom: 2px solid #909090;
-    color: #46166B;
+    color: #004C93;
     font-weight: 400;
     list-style-type: none;
     padding: 10px 0px 0px 0px;
@@ -66,20 +66,20 @@ Primary use:    side-navigation.css file used for styling components
 }
 
 .first-sub-navigation-item {
-    color: #46166B;
+    color: #004C93;
     margin-top: 10px;
     padding: 10px 10px 10px 30px;
     border-top: 2px solid #909090;
 }
 
 .last-sub-navigation-item {
-    color: #46166B;
+    color: #004C93;
     padding: 10px 10px 10px 30px;
     border-top: 2px solid #909090;
 }
 
 .sub-navigation-items {
-    color: #46166B;
+    color: #004C93;
     padding: 10px 10px 10px 30px;
     border-top: 2px solid #909090;
 }
