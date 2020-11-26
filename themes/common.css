@@ -151,6 +151,10 @@ Primary use:    Common.css file used for styling header and
     padding-left: 30px;
 }
 
+.none-list {
+    list-style: none;
+}
+
 .num-list{
     list-style:decimal;
 }

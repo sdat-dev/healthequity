@@ -48,7 +48,7 @@ request.onload = function(){
         else if(type == 'ul')
         { 
             if(element.hasOwnProperty('style'))
-                content += '<ul class="sub-list style ="'+element.style+'">';
+                content += '<ul class="sub-list ' + element.content +'" style ="'+element.style+'">';
             else
                 content += '<ul class="sub-list ' + element.content +'">';
         }
