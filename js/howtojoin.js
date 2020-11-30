@@ -24,22 +24,14 @@ request.onload = function(){
         {
             let header = document.getElementsByClassName("content-header")[0];
             header.innerHTML = element.content.toUpperCase();
-            if(element.hasOwnProperty('style'))
-                header.setAttribute('style', element.style);
         }
         else if(type == 'p')
         {
-            if(element.hasOwnProperty('style'))
-                content += '<p style ="'+element.style+'">' + element.content + '</p>';
-            else
-                content += '<p>' + element.content + '</p>';
+            content += '<p>' + element.content + '</p>';
         }
         else if(type == 'img')
         {
-            if(element.hasOwnProperty('style'))
-                content += '<img src="assets/images/'+ element.content + '" alt="" style="'+ element.style +'">';
-            else
-                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
+            content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
         }
         else if(type == 'iframe')
         {
@@ -47,10 +39,7 @@ request.onload = function(){
         }
         else if(type == 'ul')
         { 
-            if(element.hasOwnProperty('style'))
-                content += '<ul class="sub-list ' + element.content +'" style ="'+element.style+'">';
-            else
-                content += '<ul class="sub-list ' + element.content +'">';
+            content += '<ul class="sub-list ' + element.content +'">';
         }
         else if(type == 'li')
         {
