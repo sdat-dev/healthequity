@@ -106,7 +106,6 @@ let addheader =  function (headers){
         }
         content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
                     '<div id = "landing-page-text-wrapper">'+
-                    console.log(header1);
                         '<h1>'+ header1 +'</h1>' + 
                         '<p>' + header2 + '</p>' +      
                     '</div>'+
