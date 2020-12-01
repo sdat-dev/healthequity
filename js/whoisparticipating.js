@@ -115,18 +115,12 @@ let addheader =  function (headers){
         {
             content += '<div class="carousel-item">';
         }
-        if(header1==''){
-            content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
-        '</div>';
-        }
-        else{
-            content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
-            '<div id = "landing-page-text-wrapper">'+
-                '<h1>'+ header1 +'</h1>' + 
-                '<p>' + header2 + '</p>' +      
-            '</div>'+
-        '</div>';
-        }
+        content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
+                    '<div id = "landing-page-text-wrapper">'+
+                        '<h1>'+ header1 +'</h1>' + 
+                        '<p>' + header2 + '</p>' +      
+                    '</div>'+
+                '</div>';
     }
     content +=  '</div></div>';
     header.innerHTML = content;
