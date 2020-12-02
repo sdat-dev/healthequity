@@ -171,46 +171,41 @@ addfooter = function(){
     let footer = document.getElementById("footer");
     let content = "";
     content +='<div id="footer-content" class = "display-flex">'+
-                    '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">'+
+                    '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">'+
                         '<div class="footer-logo-wrapper">'+
-                            '<a href="https://www.albany.edu/">'+
-                                '<img class="footer-logo" src="assets/images/logo.png" />'+
+                                '<img class="footer-logo" src="assets/images/footer-logo.JPG" />'+
                             '</a>'+
                         '</div>'+
-                        '<address>'+
-                            '<a href="https://www.google.com/maps/place/1400+Washington+Ave,+Albany,+NY+12222/@42.6859115,-73.8287166,17z/data=!3m1!4b1!4m5!3m4!1s0x89de0b3ce5c93e45:0x4cdbe8d7b52fa412!8m2!3d42.6859115!4d-73.8265279"'+
-                            'target="_blank">'+
-                            '1400 Washington Avenue <br>'+
-                            'Albany, NY 12222'+
-                            '</a>'+
-                            '<br>Undergraduate Admissions: <a href="tel:5184425435">(518) 442-5435</a>'+
-                            '<br>Graduate Admissions: <a href="tel:5184423980">(518) 442-3980</a>'+
-                            '<br>Main: <a href="tel:5184423300">(518) 442-3300</a>'+
-                        '</address>'+
                     '</div>'+
-                    '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">'+
-                        '<p class="footer-navigation-header">RESOURCES</p>'+
+                    '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-5">'+
                         '<ul class="footer-navigation">'+
-                            '<li><a href="https://wiki.albany.edu/display/middlestates2020/Middle+States+2020+Home" target="_self" rel="">Accreditation</a></li>'+
-                            '<li><a href="http://police.albany.edu/ASR.shtml">Campus Safety Report</a></li>'+
-                            '<li><a href="http://www.albany.edu/contact-ualbany">Contact Us</a></li>'+
-                            '<li><a href="http://www.albany.edu/main/employment.shtml">Jobs</a></li>'+
-                            '<li><a href="http://www.albany.edu/emergency/index.php">UAlbany Alert</a></li>'+
+                            '<li><a href="https://www.suny.edu/contact/">Contact Us</a></li>'+
+                            '<li><a href="https://www.suny.edu/careers/">Careers at SUNY</a></li>'+
+                            '<li><a href="https://www.suny.edu/attend/">Attend SUNY</a></li>'+
+                            '<li><a href="https://www.suny.edu/about/">What is SUNY?</a></li>'+
+                            '<li><a href="https://www.suny.edu/impact/">Why does SUNY Matter?</a></li>'+
                         '</ul>'+
                     '</div>'+
-                    '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">'+
-                        '<p class="footer-navigation-header">TOPICS</p>'+
+                    '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-5">'+
                         '<ul class="footer-navigation">'+
-                            '<li><a href="http://www.albany.edu/diversityandinclusion/">Diversity and Inclusion</a></li>'+
-                            '<li><a href="http://www.albany.edu/strategicplan/">Strategic Planning &amp; Initiatives</a></li>'+
-                            '<li><a href="http://www.albany.edu/gogreen/">Sustainability</a></li>'+
-                            '<li><a href="http://www.albany.edu/equity-compliance/">Title IX</a></li>'+
-                            '<li><a href="http://www.albany.edu/accessible-web/">Web Accessibility</a></li>'+   
+                            '<li><a href="https://www.suny.edu/news/">News</a></li>'+
+                            '<li><a href="https://www.suny.edu/privacy-policy/">Privacy Policies</a></li>'+
+                            '<li><a href="https://www.suny.edu/accessibility/eit/">Web Accessibility</a></li>'+
+                            '<li><a href="https://www.suny.edu/about/leadership/board-of-trustees/">Board of Trustees</a></li>'+
+                            '<li><a href="https://www.suny.edu/covid19-tracker/">Health Alert</a></li>'+   
+                        '</ul>'+
+                    '</div>'+
+                    '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-5">'+
+                        '<ul class="footer-navigation">'+
+                        '<li><a href="https://idm.suny.edu/security/login/loginForm.do?redirectUrl=https://www2.sysadm.suny.edu/employeeservices%2Fmain%2Femployeeportal%2Ecfm%3F">SUNY Portal</a></li>'+
+                        '<li><a href="https://idm.suny.edu/security/login/loginForm.do?redirectUrl=https%3A%2F%2Fidm.suny.edu%3A443%2FSSSO%2Fcustomauthn.jsp%3Frefid%3Did-khkcIOVKeZ4ZOuw4uvLpgcAuwXM-">SUNY Blue Login</a></li>'+
+                        '<li><a href="https://sts.sysadm.suny.edu/adfs/ls/?client-request-id=4db6db32-4103-49b0-b03d-13feee01bac4&username=&wa=wsignin1.0&wtrealm=urn%3afederation%3aMicrosoftOnline&wctx=estsredirect%3d2%26estsrequest%3drQIIAY2Rv28SUQDH73FwAmok1cHFpGmMg-bgvcf9TjocHFYwnFRFShdy3L1XLsI9uB-t9C9wcOjk0NGRqXEwhsnBqS7MbdLZOBjjopMR4uLY7_DNd_om38_3Po-KyLgL_wmLKxchpUh0ySr9p3AtX8DnH5q8eVI_2bz55zuYfz4G2SgJpkXiJTOwMYjjcWSUSiyJh4y9LDJKfZeUFbnoslGJHTiljwAsAJilVKWsSlDTZLwslhFSZFR0dKyoiqSKLpYVUdJlKjqy1hdJGRMi9SFWMT1L3XhiJvEAr4yF_iH5mcpRFo56YxbFx_zQcqNXNWbuWWalAu1JUK9ubVcaklWdtDtW0pIIakVeh9hNJ3aGZseudZVn9S2vaj42t0fNBqmqjYNa4O5F7eThYJK0R2L0lEDNbj-qdOlzr7evt3taL8Q0kuiMvxS397ywnD9iwSkvsDEJfG-RBt_S1yBvZLP5AnebW-d-p8G7zJLvxZ23O-NMxn5z79eXcrTGnWZKktUZPNgJYR0dyn4iOy8sZ9-bUj0YmkpN9xu1QX9Xn4aMdLubyEBHAjgShLmQy_IFboOvttBXAfwQwOsr3Dx3iYfO8rcwxFBESETldaQaWDEkuLu4Cj5d5_4C0#">SUNY Email Login</a></li>'+
+                        '<li><a href="https://www.suny.edu/sunytogether/">#SUNYTogether</a></li>'+
                         '</ul>'+
                     '</div>'+
                 '</div>'+
                 '<section id="copyright-content">'+
-                    '<p>© 2019&nbsp;University at Albany</p>'+
+                '<p>© 2020 SUNY. All Rights Reserved.</p>'+
                 '</section>';
     footer.innerHTML = content;
 }
