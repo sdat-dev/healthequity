@@ -1,6 +1,7 @@
 let requestURL = "data/background.json";
 let requestURL = "data/background.json";
 let requestURL = "data/background.json";
+let requestURL = "data/background.json";
 let request = new XMLHttpRequest();
 //getting content Element to append grants information
 let maincontentContainer = document.getElementsByClassName('main-content')[0];
