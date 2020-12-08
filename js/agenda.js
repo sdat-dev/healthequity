@@ -24,14 +24,22 @@ request.onload = function(){
         {
             let header = document.getElementsByClassName("content-header")[0];
             header.innerHTML = element.content.toUpperCase();
+            if(element.hasOwnProperty('style'))
+                header.setAttribute('style', element.style);
         }
         else if(type == 'p')
         {
-            content += '<p>' + element.content + '</p>';
+            if(element.hasOwnProperty('style'))
+                content += '<p style ="'+element.style+'">' + element.content + '</p>';
+            else
+                content += '<p>' + element.content + '</p>';
         }
         else if(type == 'img')
         {
-            content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
+            if(element.hasOwnProperty('style'))
+                content += '<img src="assets/images/'+ element.content + '" alt="" style="'+ element.style +'">';
+            else
+                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
         }
         else if(type == 'iframe')
         {
@@ -39,7 +47,10 @@ request.onload = function(){
         }
         else if(type == 'ul')
         { 
-            content += '<ul class="sub-list ' + element.content +'">';
+            if(element.hasOwnProperty('style'))
+                content += '<ul class="sub-list ' + element.content +'" style ="'+element.style+'">';
+            else
+                content += '<ul class="sub-list ' + element.content +'">';
         }
         else if(type == 'li')
         {
@@ -104,18 +115,12 @@ let addheader =  function (headers){
         {
             content += '<div class="carousel-item">';
         }
-        if(header1==''){
-            content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
-        '</div>';
-        }
-        else{
-            content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
-            '<div id = "landing-page-text-wrapper">'+
-                '<h1>'+ header1 +'</h1>' + 
-                '<p>' + header2 + '</p>' +      
-            '</div>'+
-        '</div>';
-        }
+        content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
+                    '<div id = "landing-page-text-wrapper">'+
+                        '<h1>'+ header1 +'</h1>' + 
+                        '<p>' + header2 + '</p>' +      
+                    '</div>'+
+                '</div>';
     }
     content +=  '</div></div>';
     header.innerHTML = content;
