@@ -273,7 +273,7 @@ Primary use:    Common.css file used for styling header and
     font-style: italic;
 }
 
-#social-media-button{
+#button-properties{
     color: white;
     background-color: #004C93;
     padding: 9px;
@@ -285,14 +285,36 @@ Primary use:    Common.css file used for styling header and
     border-radius: 1%;
 }
 
-#social-media-button > a{
+#button-properties > a{
     color: inherit;
     text-decoration: none;
 }
 
-#social-media-button > a img{
+#button-properties > a img{
     height: 30px;
 }
+
+#register-button{
+    color: white;
+    background-color: #004C93;
+    padding: 9px;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'News Cycle', Helvetica, Arial, sans-serif;
+    margin-top: 20px;
+    margin-left: 32px;
+    border-radius: 1%;
+}
+
+#register-button > a{
+    color: inherit;
+    text-decoration: none;
+}
+
+#register-button > a img{
+    height: 30px;
+}
+
 
 .list-preceding-paragraph, 
 .zero-bottom-margin-paragraph{
