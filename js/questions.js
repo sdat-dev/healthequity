@@ -60,11 +60,11 @@ request.onload = function(){
         {
             content += '</ul>';
         }
-        else if(type == 'a' && !element.hasOwnProperty("logo"))
+        else if(type == 'a' && !element.hasOwnProperty("logo") && !element.hasOwnProperty("style"))
         {
             content +='<a href = "'+ element.source +'">'+ element.content + '</a>';
         }
-        else if(type == 'a' && element.logo != '')
+        else if(type == 'a' && !element.hasOwnProperty("style") && element.logo != '')
         {
             if(logostart == true)
             {
@@ -82,6 +82,13 @@ request.onload = function(){
             if(i+1 ==  webelements.length){
                 content += '</div>';
             }
+        }
+        else if(type == 'a' && element.hasOwnProperty("style") && element.logo != '')
+        {
+            content +=  '<a target = "_blank" href = "'+ element.source +'">'+
+                            '<img  img-fluid style="'+ element.style +'" src = "assets/images/' + element.logo+ '">'+
+                            '<p>'+ element.content+'</p>' +
+                        '</a>';
         }
     }
     addheader(pageheaders);
