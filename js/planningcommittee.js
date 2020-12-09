@@ -75,9 +75,6 @@ request.onload = function(){
             }
         }
     }
-    content += '<input id = "search-box" placeholder = "Search Experts...">'+
-                    '<button id = "search-button" type = "submit"><i class="fa fa-search"></i></button>'+
-                '<br><span id = "search-box-results"></span>';
     content +=buildMembersContent(members);
     addheader(pageheaders);
     let contentElement = document.createElement('div');
@@ -85,10 +82,6 @@ request.onload = function(){
     contentElement.innerHTML = content.trim();
     maincontentContainer.appendChild(contentElement);
     addfooter();
-    let searchbox = document.getElementById('search-box');
-    let searchbutton = document.getElementById('search-button');
-    searchbox.onkeyup = searchfunction;
-    searchbutton.onclick = searchfunction;
 }
 
 let addheader =  function (headers){
