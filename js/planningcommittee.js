@@ -138,12 +138,12 @@ let buildMembersContent = function(members){
 let buildMemberElement = function(member){
     let content = '';
     content +=  '<div class= "col-lg-4 col-md-4 col-sm-6 search-container" id="'+ (member.firstName.replace(/ /g, '')) +'">'+
-    '   <img class="img-fluid member-img " src="assets/images/Planning_Committee/' + member.photo + '" alt="member photo">'  +
+    '   <img class="img-fluid mx-auto d-block member-img img-thumbnail" src="assets/images/Planning_Committee/' + member.photo + '" alt="member photo">'  +
     '   <p class="member-info">' + buildNameElement(member) +
     '   <br><span class="jobtitle">' + member.title +
     '   <br><span class="organization">' + member.organization +
-    '   <br><strong>Email: </strong> <a href = mailto:' + member.email + '>'+ member.email+ '</a>'+
-    '   <br>'+ (member.phone != ""? '<strong>Phone: </strong>'+ member.phone : "" )+ 
+    '   <br><a href = mailto:' + member.email + ' class ="dont-break-out email">'+ member.email+ '</a>'+
+    '   <br>'+ (member.phone != ""? member.phone : "" )+ 
     '   </p>' + 
     '</div>';   
     return content;
