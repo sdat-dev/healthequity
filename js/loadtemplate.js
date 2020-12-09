@@ -89,6 +89,13 @@ request.onload = function(){
                             '<p>'+ element.content+'</p>' +
                         '</a>';
         }
+        else if(type == 'div')
+        {
+            if(element.hasOwnProperty('style'))
+                content += '<div style ="'+element.style+'">' + element.content + '</div>';
+            else
+                content += '<div>' + element.content + '</div>';
+        }
     }
     addheader(pageheaders);
     let contentElement = document.createElement('div');
