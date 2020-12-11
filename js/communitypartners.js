@@ -158,7 +158,7 @@ let getInstitution = function(partner){
 
 let getResearchInterests = function(partner){
     let interests = "";
-    interests += (partner["Q51_1"] == ''?"": partner["Q51_1"]+";") + (partner["Q51_14"] == ''?"": partner["Q51_14"]+";")+ (partner["Q51_15"] == ''?"": partner["Q51_15"]+";")+ (partner["Q51_16"] == ''?"": partner["Q51_16"]+";") + partner["Q51_17"]; 
+    interests += (partner["Q51_1"] == ''?"": partner["Q51_1"]+"; ") + (partner["Q51_14"] == ''?"": partner["Q51_14"]+"; ")+ (partner["Q51_15"] == ''?"": partner["Q51_15"]+"; ")+ (partner["Q51_16"] == ''?"": partner["Q51_16"]+"; ") + partner["Q51_17"]; 
     return interests;
 }
 
