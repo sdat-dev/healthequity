@@ -24,14 +24,22 @@ request.onload = function(){
         {
             let header = document.getElementsByClassName("content-header")[0];
             header.innerHTML = element.content.toUpperCase();
+            if(element.hasOwnProperty('style'))
+                header.setAttribute('style', element.style);
         }
         else if(type == 'p')
         {
-            content += '<p>' + element.content + '</p>';
+            if(element.hasOwnProperty('style'))
+                content += '<p style ="'+element.style+'">' + element.content + '</p>';
+            else
+                content += '<p>' + element.content + '</p>';
         }
         else if(type == 'img')
         {
-            content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
+            if(element.hasOwnProperty('style'))
+                content += '<img src="assets/images/'+ element.content + '" alt="" style="'+ element.style +'">';
+            else
+                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
         }
         else if(type == 'iframe')
         {
@@ -39,7 +47,10 @@ request.onload = function(){
         }
         else if(type == 'ul')
         { 
-            content += '<ul class="sub-list ' + element.content +'">';
+            if(element.hasOwnProperty('style'))
+                content += '<ul class="sub-list ' + element.content +'" style ="'+element.style+'">';
+            else
+                content += '<ul class="sub-list ' + element.content +'">';
         }
         else if(type == 'li')
         {
@@ -49,11 +60,11 @@ request.onload = function(){
         {
             content += '</ul>';
         }
-        else if(type == 'a' && !element.hasOwnProperty("logo"))
+        else if(type == 'a' && !element.hasOwnProperty("logo") && !element.hasOwnProperty("style"))
         {
             content +='<a href = "'+ element.source +'">'+ element.content + '</a>';
         }
-        else if(type == 'a' && element.logo != '')
+        else if(type == 'a' && !element.hasOwnProperty("style") && element.logo != '')
         {
             if(logostart == true)
             {
@@ -71,6 +82,20 @@ request.onload = function(){
             if(i+1 ==  webelements.length){
                 content += '</div>';
             }
+        }
+        else if(type == 'a' && element.hasOwnProperty("style") && element.logo != '')
+        {
+            content +=  '<a target = "_blank" href = "'+ element.source +'">'+
+                            '<img  img-fluid style="'+ element.style +'" src = "assets/images/' + element.logo+ '">'+
+                            '<p>'+ element.content+'</p>' +
+                        '</a>';
+        }
+        else if(type == 'div')
+        {
+            if(element.hasOwnProperty('style'))
+                content += '<div style ="'+element.style+'">' + element.content + '</div>';
+            else
+                content += '<div>' + element.content + '</div>';
         }
     }
     addheader(pageheaders);
