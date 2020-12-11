@@ -146,6 +146,10 @@ let getInstitution = function(expert){
     if(expert.Q16 == "University"){
         institution = expert.Q17;
     }
+    else if(expert.Q16 == "Community Partner")
+    {
+        institution = expert.Q110;
+    }
     else
     {
         institution = expert["Q17_4_TEXT"];
