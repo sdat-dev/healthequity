@@ -1,16 +1,16 @@
 $(window).on("load", function () {
-    let requestURL = "data/facultyexperts.json"; 
+    let requestURL = "data/communitypartners.json"; 
     let datarequestURL = "data/facultydata.json"; 
     let request =  axios.get(requestURL);
     let datarequest =  axios.get(datarequestURL);
     let maincontentContainer = document.getElementsByClassName('main-content')[0];
     axios.all([request, datarequest]).then(axios.spread((...responses) => {
-        let expertspage =  responses[0].data;
+        let partnerspage =  responses[0].data;
         let data = responses[1].data;
-        let experts = data.filter(function(item){
-            return item["Q31_1"] == "Yes, I'd like to have my research profile/expertise included.";
+        let partners = data.filter(function(item){
+            return item["Q31_1"] == "Yes, I'd like to have my community organization included.";
         });
-        let webelements = expertspage.content;
+        let webelements = partnerspage.content;
         let content = '';
         let logostart = true;
         let pageheaders = [];
@@ -78,7 +78,7 @@ $(window).on("load", function () {
         content += '<input id = "search-box" placeholder = "Search Experts...">'+
                     '<button id = "search-button" type = "submit"><i class="fa fa-search"></i></button>'+
                 '<br><span id = "search-box-results"></span>';
-        content +='<div id="experts-content">'+buildExpertContent(experts)+'</div>';
+        content +='<div id="experts-content">'+buildPartnersContent(partners)+'</div>';
         addheader(pageheaders);
         let contentElement = document.createElement('div');
         contentElement.classList.add('content');
@@ -89,7 +89,6 @@ $(window).on("load", function () {
         let searchbutton = document.getElementById('search-button');
         searchbox.onkeyup = searchfunction;
         searchbutton.onclick = searchfunction;
-
     })).catch(errors => {
         console.log(errors);
     })
@@ -129,50 +128,33 @@ let addheader =  function (headers){
     header.innerHTML = content;
 }
 
-let buildExpertContent = function(experts){
+let buildPartnersContent = function(partners){
     let content = '';
-    for(var i=0; i< experts.length; i++){
-        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts' + (experts[i]["Q44_Name"] != ''? 'experts/'+ experts[i]["Q44_Id"]+'_'+experts[i]["Q44_Name"]  : 'placeholder.jpg') +'"/> <h2 class = "content-header-no-margin">' +
-        '<a class = "no-link-decoration" href = ' + experts[i]["Q4.3_4"] + '>' + experts[i].Q21 + ' '+ experts[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (experts[i].Q15 != ''? experts[i].Q15 + ',<br>':'') +
-        getInstitution(experts[i]) + '</h5>'+ generateLogoContent(experts[i]) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + experts[i].Q13 + 
-        '>'+ experts[i].Q13+ '</a><br>'+ (experts[i].Q14 != ""? '<strong>Phone: </strong>'+ experts[i].Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(experts[i]) + '</p><p>' + 
-        experts[i].Q42 +'</p></div>';
+    for(var i=0; i< partners.length; i++){
+        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts' + (partners[i]["Q44_Name"] != ''? 'experts/'+ partners[i]["Q44_Id"]+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/> <h2 class = "content-header-no-margin">' +
+        '<a class = "no-link-decoration" href = ' + partners["Q4.3_4"] + '>' + partners[i].Q21 + ' '+ partners[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (partners[i].Q15 != ''? partners[i].Q15 + ',<br>':'') +
+        getInstitution(partners[i]) + '</h5>'+'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + partners[i].Q13 + 
+        '>'+ partners[i].Q13+ '</a><br>'+ (partners[i].Q14 != ""? '<strong>Phone: </strong>'+ partners[i].Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(partners[i]) + '</p><p>' + 
+        partners[i].Q61 +'</p></div>';
     }
     return content;
 }
 
-let getInstitution = function(expert){
+let getInstitution = function(partner){
     let institution = "";
-    if(expert.Q16 == "University"){
-        institution = expert.Q17;
+    if(partner.Q16 == "University"){
+        institution = partner.Q17;
     }
     else
     {
-        institution = expert["Q17_4_TEXT"];
+        institution = partner["Q17_4_TEXT"];
     }
     return institution;
 }
 
-let generateLogoContent = function(expert){
-    let onlineCVContent = (expert["43_4"] == '')?'':
-    '<a href = "'+ expert["43_4"] +'"><img src = "assets/images/cv.png"></a>'; 
-    let researchGateContent = (expert["43_9"]== '')?'':
-    '<a href = "'+ expert["43_9"] +'"><img src = "assets/images/research-gate-logo.png"></a>'; 
-    let googleScholarContent = (expert["43_10"] == '')?'':
-    '<a href = "'+ expert["43_10"] +'"><img src = "assets/images/google-scholar-logo.png"></a>'; 
-    let otherContent = (expert["43_11"] == '')?'':
-    '<a href = "'+ expert["43_11"] +'"><img src = "assets/images/link.png"></a>'; 
-    let otherContent1 = (expert["43_12"] == '')?'':
-    '<a href = "'+ expert["43_12"] +'"><img src = "assets/images/link.png"></a>'; 
-    let linkContainer = '<div class = "display-flex icon-container">'+
-    onlineCVContent + researchGateContent + googleScholarContent + otherContent + otherContent1 + '</div>';
-    return linkContainer;
-}
-
-let getResearchInterests = function(expert){
+let getResearchInterests = function(partner){
     let interests = "";
-    interests += expert["41_1"] +";" + expert["41_8"] +";" + expert["41_9"] +";" + expert["41_10"] +";" + expert["41_11"] 
-    +";" + expert["41_12"]+";" + expert["41_13"] ; 
+    interests += partner["51_1"] +";" + partner["51_14"] +";" + partner["51_15"] +";" + partner["51_16"] +";" + partner["51_17"]; 
     return interests;
 }
 
