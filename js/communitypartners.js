@@ -8,7 +8,7 @@ $(window).on("load", function () {
         let partnerspage =  responses[0].data;
         let data = responses[1].data;
         let partners = data.filter(function(item){
-            return item["Q31_1"] == "Yes, I'd like to have my community organization included.";
+            return item["Q31_2"] == "Yes, I'd like to have my community organization included.";
         });
         let webelements = partnerspage.content;
         let content = '';
@@ -145,9 +145,9 @@ let getInstitution = function(partner){
     if(partner.Q16 == "University"){
         institution = partner.Q17;
     }
-    else if(expert.Q16 == "Community Partner")
+    else if(partner.Q16 == "Community Partner")
     {
-        institution = expert.Q110;
+        institution = partner.Q110;
     }
     else
     {
