@@ -132,8 +132,8 @@ let addheader =  function (headers){
 let buildExpertContent = function(experts){
     let content = '';
     for(var i=0; i< experts.length; i++){
-        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts' + (experts[i]["Q44_Name"] != ''? 'experts/'+ experts[i]["Q44_Id"]+'_'+experts[i]["Q44_Name"]  : 'placeholder.jpg') +'"/> <h2 class = "content-header-no-margin">' +
-        '<a class = "no-link-decoration" href = ' + experts[i]["Q4.3_4"] + '>' + experts[i].Q21 + ' '+ experts[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (experts[i].Q15 != ''? experts[i].Q15 + ',<br>':'') +
+        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts/' + (experts[i]["Q44_Name"] != ''? experts[i].ResponseId+'_'+experts[i]["Q44_Name"]  : 'placeholder.jpg') +'"/> <h2 class = "content-header-no-margin">' +
+        '<a class = "no-link-decoration" href = ' + experts[i]["Q4.3_4"] + '>' + experts[i].Q12 + ' '+ experts[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (experts[i].Q15 != ''? experts[i].Q15 + ',<br>':'') +
         getInstitution(experts[i]) + '</h5>'+ generateLogoContent(experts[i]) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + experts[i].Q13 + 
         '>'+ experts[i].Q13+ '</a><br>'+ (experts[i].Q14 != ""? '<strong>Phone: </strong>'+ experts[i].Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(experts[i]) + '</p><p>' + 
         experts[i].Q42 +'</p></div>';
