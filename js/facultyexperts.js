@@ -132,8 +132,8 @@ let addheader =  function (headers){
 let buildExpertContent = function(experts){
     let content = '';
     for(var i=0; i< experts.length; i++){
-        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts' + (experts[i]["Q44_Name"] != ''? 'experts/'+ experts[i]["Q44_Id"]+'_'+experts[i]["Q44_Name"]  : 'placeholder.jpg') +'"/> <h2 class = "content-header-no-margin">' +
-        '<a class = "no-link-decoration" href = ' + experts[i]["Q4.3_4"] + '>' + experts[i].Q21 + ' '+ experts[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (experts[i].Q15 != ''? experts[i].Q15 + ',<br>':'') +
+        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts/' + (experts[i]["Q44_Name"] != ''? experts[i].ResponseId+'_'+experts[i]["Q44_Name"]  : 'placeholder.jpg') +'"/> <h2 class = "content-header-no-margin">' +
+        '<a class = "no-link-decoration" href = ' + experts[i]["Q4.3_4"] + '>' + experts[i].Q12 + ' '+ experts[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (experts[i].Q15 != ''? experts[i].Q15 + ',<br>':'') +
         getInstitution(experts[i]) + '</h5>'+ generateLogoContent(experts[i]) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + experts[i].Q13 + 
         '>'+ experts[i].Q13+ '</a><br>'+ (experts[i].Q14 != ""? '<strong>Phone: </strong>'+ experts[i].Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(experts[i]) + '</p><p>' + 
         experts[i].Q42 +'</p></div>';
@@ -146,6 +146,10 @@ let getInstitution = function(expert){
     if(expert.Q16 == "University"){
         institution = expert.Q17;
     }
+    else if(expert.Q16 == "Community Partner")
+    {
+        institution = expert.Q110;
+    }
     else
     {
         institution = expert["Q17_4_TEXT"];
@@ -154,16 +158,16 @@ let getInstitution = function(expert){
 }
 
 let generateLogoContent = function(expert){
-    let onlineCVContent = (expert["43_4"] == '')?'':
-    '<a href = "'+ expert["43_4"] +'"><img src = "assets/images/cv.png"></a>'; 
-    let researchGateContent = (expert["43_9"]== '')?'':
-    '<a href = "'+ expert["43_9"] +'"><img src = "assets/images/research-gate-logo.png"></a>'; 
-    let googleScholarContent = (expert["43_10"] == '')?'':
-    '<a href = "'+ expert["43_10"] +'"><img src = "assets/images/google-scholar-logo.png"></a>'; 
-    let otherContent = (expert["43_11"] == '')?'':
-    '<a href = "'+ expert["43_11"] +'"><img src = "assets/images/link.png"></a>'; 
-    let otherContent1 = (expert["43_12"] == '')?'':
-    '<a href = "'+ expert["43_12"] +'"><img src = "assets/images/link.png"></a>'; 
+    let onlineCVContent = (expert["Q43_4"] == '')?'':
+    '<a href = "'+ expert["Q43_4"] +'"><img src = "assets/images/cv.png"></a>'; 
+    let researchGateContent = (expert["Q43_9"]== '')?'':
+    '<a href = "'+ expert["Q43_9"] +'"><img src = "assets/images/research-gate-logo.png"></a>'; 
+    let googleScholarContent = (expert["Q43_10"] == '')?'':
+    '<a href = "'+ expert["Q43_10"] +'"><img src = "assets/images/google-scholar-logo.png"></a>'; 
+    let otherContent = (expert["Q43_11"] == '')?'':
+    '<a href = "'+ expert["Q43_11"] +'"><img src = "assets/images/link.png"></a>'; 
+    let otherContent1 = (expert["Q43_12"] == '')?'':
+    '<a href = "'+ expert["Q43_12"] +'"><img src = "assets/images/link.png"></a>'; 
     let linkContainer = '<div class = "display-flex icon-container">'+
     onlineCVContent + researchGateContent + googleScholarContent + otherContent + otherContent1 + '</div>';
     return linkContainer;
@@ -171,8 +175,8 @@ let generateLogoContent = function(expert){
 
 let getResearchInterests = function(expert){
     let interests = "";
-    interests += expert["41_1"] +";" + expert["41_8"] +";" + expert["41_9"] +";" + expert["41_10"] +";" + expert["41_11"] 
-    +";" + expert["41_12"]+";" + expert["41_13"] ; 
+    interests += (expert["Q41_1"] == ''?  "" : expert["Q41_1"] +"; " )+ (expert["Q41_8"] == ''?  "":expert["Q41_8"] +"; ") + (expert["Q41_9"] == ''?  "": expert["Q41_9"]+"; ") + (expert["Q41_10"]== ''?  "":expert["Q41_10"] +"; " )+
+    (expert["Q41_11"] == ''?  "":expert["Q41_11"] +"; ") + (expert["Q41_12"]== ''?"":expert["Q41_12"]+"; ") + expert["Q41_13"] ; 
     return interests;
 }
 

@@ -131,8 +131,8 @@ let addheader =  function (headers){
 let buildPartnersContent = function(partners){
     let content = '';
     for(var i=0; i< partners.length; i++){
-        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts' + (partners[i]["Q44_Name"] != ''? 'experts/'+ partners[i]["Q44_Id"]+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/> <h2 class = "content-header-no-margin">' +
-        '<a class = "no-link-decoration" href = ' + partners["Q4.3_4"] + '>' + partners[i].Q21 + ' '+ partners[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (partners[i].Q15 != ''? partners[i].Q15 + ',<br>':'') +
+        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts/' + (partners[i]["Q44_Name"] != ''? partners[i].ResponseId+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/> <h2 class = "content-header-no-margin">' +
+        '<a class = "no-link-decoration" href = ' + partners["Q4.3_4"] + '>' + partners[i].Q12 + ' '+ partners[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (partners[i].Q15 != ''? partners[i].Q15 + ',<br>':'') +
         getInstitution(partners[i]) + '</h5>'+'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + partners[i].Q13 + 
         '>'+ partners[i].Q13+ '</a><br>'+ (partners[i].Q14 != ""? '<strong>Phone: </strong>'+ partners[i].Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(partners[i]) + '</p><p>' + 
         partners[i].Q61 +'</p></div>';
@@ -145,6 +145,10 @@ let getInstitution = function(partner){
     if(partner.Q16 == "University"){
         institution = partner.Q17;
     }
+    else if(expert.Q16 == "Community Partner")
+    {
+        institution = expert.Q110;
+    }
     else
     {
         institution = partner["Q17_4_TEXT"];
@@ -154,7 +158,7 @@ let getInstitution = function(partner){
 
 let getResearchInterests = function(partner){
     let interests = "";
-    interests += partner["51_1"] +";" + partner["51_14"] +";" + partner["51_15"] +";" + partner["51_16"] +";" + partner["51_17"]; 
+    interests += (partner["Q51_1"] == ''?"": partner["Q51_1"]+"; ") + (partner["Q51_14"] == ''?"": partner["Q51_14"]+"; ")+ (partner["Q51_15"] == ''?"": partner["Q51_15"]+"; ")+ (partner["Q51_16"] == ''?"": partner["Q51_16"]+"; ") + partner["Q51_17"]; 
     return interests;
 }
 
