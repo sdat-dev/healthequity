@@ -131,6 +131,8 @@ let addheader =  function (headers){
 let buildPartnersContent = function(partners){
     let content = '';
     for(var i=0; i< partners.length; i++){
+        if(partners[i].Q12 == "")
+            continue;
         content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts/' + (partners[i]["Q44_Name"] != ''? partners[i].ResponseId+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/> <h2 class = "content-header-no-margin">' +
         '<a class = "no-link-decoration" href = ' + partners["Q4.3_4"] + '>' + partners[i].Q12 + ' '+ partners[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (partners[i].Q15 != ''? partners[i].Q15 + ',<br>':'') +
         getInstitution(partners[i]) + '</h5>'+'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + partners[i].Q13 + 
