@@ -175,8 +175,8 @@ let generateLogoContent = function(expert){
 
 let getResearchInterests = function(expert){
     let interests = "";
-    interests += expert["Q41_1"] +";" + expert["Q41_8"] +";" + expert["Q41_9"] +";" + expert["Q41_10"] +";" + expert["Q41_11"] 
-    +";" + expert["Q41_12"]+";" + expert["Q41_13"] ; 
+    interests += (expert["Q41_1"] == ''?  "" : expert["Q41_1"] +";" )+ (expert["Q41_8"] == ''?  "":expert["Q41_8"] +";") + (expert["Q41_9"] == ''?  "": expert["Q41_9"]+";") + (expert["Q41_10"]== ''?  "":expert["Q41_10"] +";" )+
+    (expert["Q41_11"] == ''?  "":expert["Q41_11"] +";") + (expert["Q41_12"]== ''?"":expert["Q41_12"]+";") + expert["Q41_13"] ; 
     return interests;
 }
 
