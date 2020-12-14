@@ -137,7 +137,7 @@ let buildPartnersContent = function(partners){
         '<a class = "no-link-decoration" href = ' + partners["Q4.3_4"] + '>' + partners[i].Q12 + ' '+ partners[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (partners[i].Q15 != ''? partners[i].Q15 + ',<br>':'') +
         getInstitution(partners[i]) + '</h5>'+'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + partners[i].Q13 + 
         '>'+ partners[i].Q13+ '</a><br>'+ (partners[i].Q14 != ""? '<strong>Phone: </strong>'+ partners[i].Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(partners[i]) + '</p><p>' + 
-        partners[i].Q61 +'</p></div>';
+        partners[i].Q61 +'</p><br>' + (partners[i].Q61 !="" ? '<strong>Mission and Vision: </strong>' + partners[i].Q61 +'<br>') +'</div>';
     }
     return content;
 }
