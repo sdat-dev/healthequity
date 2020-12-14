@@ -23,14 +23,6 @@ request.onload = function(){
         else if(type == 'ch')
         {
             let header = document.getElementsByClassName("content-header")[0];
-            if(element.hasOwnProperty('<a>')){
-                header.innerHTML = element.content.toLowerCase();
-                console.log(element);
-            }
-                
-            else{
-                header.innerHTML = element.content.toUpperCase();
-            }
             header.innerHTML = element.content.toUpperCase();
             if(element.hasOwnProperty('style'))
                 header.setAttribute('style', element.style);
