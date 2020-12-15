@@ -1,6 +1,6 @@
 $(window).on("load", function () {
     let requestURL = "data/communitypartners.json"; 
-    let datarequestURL = "data/facultydata.json"; 
+    let datarequestURL = "data/researchersdata.json"; 
     let request =  axios.get(requestURL);
     let datarequest =  axios.get(datarequestURL);
     let maincontentContainer = document.getElementsByClassName('main-content')[0];
@@ -133,11 +133,11 @@ let buildPartnersContent = function(partners){
     for(var i=0; i< partners.length; i++){
         if(partners[i].Q12 == "")
             continue;
-        content +='<div class = "search-container expert-info">'+//<img class = "expert-image" src = "assets/images/experts/' + (partners[i]["Q44_Name"] != ''? partners[i].ResponseId+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
+        content +='<div class = "search-container partner-info">'+//<img class = "expert-image" src = "assets/images/experts/' + (partners[i]["Q44_Name"] != ''? partners[i].ResponseId+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
         '<h2 class = "content-header-no-margin">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
-        '<p class = "address"><b>Address: </b>'+ getAddress(partners[i]) + '</p>'+
-        '<p class = "address"><b>Point Of Contact: </b>'+ getPointOfContact(partners[i]) + '</p>'+
-        '<p><b>Mission and Vision: </b></br>' + formatText(partners[i].Q64) +'</p></div>';
+        '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 pl-0 mb-2 poc"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
+        '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2 address"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
+        '<div class = "mav"><span>Mission and Vision: </span></br>' + formatText(partners[i].Q64) +'</div></div>';
     }
     return content;
 }
@@ -149,15 +149,15 @@ let getAddress = function(partner){
     }
     if(partner.Q66 != "")
     {
-        address = address == ""? partner.Q66 : (address + ", " +  partner.Q66);
+        address = address == ""? partner.Q66 : (address + ",<br> " +  partner.Q66);
     }
     if(partner.Q67 != "")
     {
-        address = address == ""? partner.Q67 : (address + ", " +  partner.Q67);
+        address = address == ""? partner.Q67 : (address + ",<br> " +  partner.Q67);
     }
     if(partner.Q68 != "")
     {
-        address = address == ""? partner.Q68 : (address + ", " +  partner.Q68);
+        address = address == ""? partner.Q68 : (address + ",<br> " +  partner.Q68);
     }
     if(partner.Q69 != "")
     {
@@ -168,8 +168,8 @@ let getAddress = function(partner){
 
 let getPointOfContact = function(partner){
     let pointofcontact = "";
-    pointofcontact += partner.Q72 + " " + partner.Q71+ ", "+ partner.Q75 + ' (<a class = "email-link" href = mailto:' + partner.Q73 + 
-    '>'+ partner.Q73+ '</a>'+ (partner.Q74 == ""? '' : ', '+ partner.Q74) +')'; 
+    pointofcontact += partner.Q72 + " " + partner.Q71+ ",<br> "+ partner.Q75 + '<br> <a class = "email-link" href = mailto:' + partner.Q73 + 
+    '>'+ partner.Q73+ '</a>'+ (partner.Q74 == ""? '' : ',<br>'+ partner.Q74); 
     return pointofcontact;
 }
 
