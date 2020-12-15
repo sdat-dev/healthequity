@@ -133,11 +133,11 @@ let buildPartnersContent = function(partners){
     for(var i=0; i< partners.length; i++){
         if(partners[i].Q12 == "")
             continue;
-        content +='<div class = "search-container expert-info">'+//<img class = "expert-image" src = "assets/images/experts/' + (partners[i]["Q44_Name"] != ''? partners[i].ResponseId+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
+        content +='<div class = "search-container partner-info">'+//<img class = "expert-image" src = "assets/images/experts/' + (partners[i]["Q44_Name"] != ''? partners[i].ResponseId+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
         '<h2 class = "content-header-no-margin">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
-        '<p class = "address"><b>Address: </b>'+ getAddress(partners[i]) + '</p>'+
-        '<p class = "address"><b>Point Of Contact: </b>'+ getPointOfContact(partners[i]) + '</p>'+
-        '<p><b>Mission and Vision: </b></br>' + formatText(partners[i].Q64) +'</p></div>';
+        '<p class = "address"><span>Address: </span>'+ getAddress(partners[i]) + '</p>'+
+        '<p class = "poc"><span>Point Of Contact: </span>'+ getPointOfContact(partners[i]) + '</p>'+
+        '<p class = "mav"><span>Mission and Vision: </span></br>' + formatText(partners[i].Q64) +'</p></div>';
     }
     return content;
 }
