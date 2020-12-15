@@ -23,7 +23,7 @@ request.onload = function(){
         else if(type == 'ch')
         {
             let header = document.getElementsByClassName("content-header")[0];
-            header.innerHTML = element.content.toUpperCase();
+            header.innerHTML = element.content;
             if(element.hasOwnProperty('style'))
                 header.setAttribute('style', element.style);
         }

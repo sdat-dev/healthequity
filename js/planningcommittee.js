@@ -139,6 +139,7 @@ let buildMemberElement = function(member){
     '   <br>'+ (member.phone != ""? member.phone : "" )+ 
     '   </p>' + 
     '</div>';   
+    console.log("content:"+content);
     return content;
 }
 
@@ -146,11 +147,11 @@ let buildNameElement = function(member){
   let content = '';
   if(member.profilepage != '')
   {
-      content += '<a href = "'+ member.profilepage +'"><span class="name"><strong>' + member.lastName + ' ' + member.firstName + '</strong></a>';
+      content += '<a href = "'+ member.profilepage +'"><span class="name"><strong>' + member.firstName + ' ' + member.lastName + '</strong></a>';
   }
   else
   {
-    content += '<span class="name"><strong>' + member.lastName + ' ' + member.firstName + '</strong>';
+    content += '<span class="name"><strong>' + member.firstName + ' ' + member.lastName + '</strong>';
   }
   return content
 }
