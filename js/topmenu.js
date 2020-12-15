@@ -7,17 +7,8 @@ let addTopMenu = function(){
                                         '<img class="img-fluid ualbany-logo" alt="Responsive image" src="assets/images/logo.png" />'+
                                     '</a>'+
                                 '</div>'+ 
-                                '<div class = "col-xl-2 col-lg-2 col-md-2 d-flex justify-content-center">' +
-                                    '<a href="https://health.ny.gov/">'+
-                                        '<img class="img-fluid nysdoh-logo" alt="Responsive image" src="assets/images/NYSDoH.png" />'+
-                                    '</a>'+
-                                '</div>'+ 
-                                '<div class = "col-xl-2 col-lg-2 col-md-2 d-flex justify-content-center">' +
-                                    '<a href="https://www.suny.edu/">'+
-                                        '<img class="img-fluid sunny-logo" alt="Responsive image" src="assets/images/SUNY-Logo.png" />'+
-                                    '</a>'+
-                                '</div>'+  
-                                '<div class = "col-xl-2 col-lg-2 col-md-2 d-flex justify-content-center">' +
+                                
+                                '<div class = "col-xl-6 col-lg-2 col-md-2 d-flex justify-content-center">' +
                                     '<a href="https://www.downstate.edu/">'+
                                         '<img class="img-fluid downstate-logo" alt="Responsive image" src="assets/images/SUNY-Downstate-Logo.png" />'+
                                     '</a>'+
