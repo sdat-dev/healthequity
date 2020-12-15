@@ -139,6 +139,7 @@ let buildMemberElement = function(member){
     '   <br>'+ (member.phone != ""? member.phone : "" )+ 
     '   </p>' + 
     '</div>';   
+    console.log("content:"+content);
     return content;
 }
 
