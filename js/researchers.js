@@ -1,6 +1,6 @@
 $(window).on("load", function () {
-    let requestURL = "data/facultyexperts.json"; 
-    let datarequestURL = "data/facultydata.json"; 
+    let requestURL = "data/researchers.json"; 
+    let datarequestURL = "data/researchersdata.json"; 
     let request =  axios.get(requestURL);
     let datarequest =  axios.get(datarequestURL);
     let maincontentContainer = document.getElementsByClassName('main-content')[0];
