@@ -221,7 +221,7 @@ let buildUniversityExpertElements = function(experts){
             continue;
         let expert = experts[i];
         content +='<div class = "search-container expert-info">'+
-        '<img class = "expert-image" src = "assets/images/experts/' + (expert["Q44_Name"] != ''? expert.ResponseId+'_'+expert["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<img class = "expert-image" src = "assets/images/researchers/' + (expert["Q44_Name"] != ''? expert.ResponseId+'_'+expert["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
         '<h2 class = "content-header-no-margin">'+ (expert["Q43_9"] == ""? expert.Q12 + ' '+ expert.Q11 : '<a class = "no-link-decoration" href = ' + expert["Q43_9"] + '>' + expert.Q12 + ' '+ expert.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title">'+ (expert.Q15 != ''? expert.Q15 + ',<br>':'') + (expert.Q18 != ''? expert.Q18 + ', ':'') + expert.Q17 + '</h5>' +
         generateLogoContent(expert) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + expert.Q13 + 
@@ -280,7 +280,7 @@ let buildNonUniversityExpertElements = function(experts){
         if(experts[i].Q12 == "") //skip of there is no first name
             continue;
         let expert = experts[i];
-        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts/' + (expert["Q44_Name"] != ''? expert.ResponseId+'_'+expert["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
+        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/researchers/' + (expert["Q44_Name"] != ''? expert.ResponseId+'_'+expert["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
         '<h2 class = "content-header-no-margin">'+ (expert["Q43_9"] == ""? expert.Q12 + ' '+ expert.Q11 : '<a class = "no-link-decoration" href = ' + expert["Q43_9"] + '>' + expert.Q12 + ' '+ expert.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title">'+ (expert.Q15 != ''? expert.Q15 + ',<br>':'') +
         (expert.Q111 == ''? '' : expert.Q111 + ', ') + expert.Q110 + '</h5>'+ generateLogoContent(expert) +
