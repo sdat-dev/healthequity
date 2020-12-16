@@ -20,22 +20,36 @@ let addTopMenu = function(){
                                 '<button type="button" style="padding-left:25px;padding-right:15px;" class="btn1" id="times-button">'+
                                 '<span class="fa fa-times"></i>'+
                                 '</button>'+ */
-                            '</div>'+
-                            '<div class="searchTop"  style="display:inline">' +
-                               ' <form class="searchbox"  > '+
-                                    '<button type="button" style="padding-left:25px;padding-right:15px;" class="btn1" id="search-toggle">'+
-                                        '<span class="fa fa-search" style="line-height: 50px; font-size: 20px;"></i>'+
-                                    '</button>'+
+                                '</div>'+
+                                
 
-                                    '<button type="button" style="padding-left:25px;padding-right:15px;" class="btn1 hidden11 " id="times-button">'+
-                                        '<span class="fa fa-times" style="line-height: 50px; font-size: 20px;"></i>'+
-                                    '</button>'+
-                                    '<input type="search" style=" width:0px; height:0px; margin-left:20px;" class="searchbox-input" id="textInput" >'+
-                                    '<input class="submitButton"  style=" width:0px; height:0px; margin-bottom:5px;" value="Search" type="submit" onclick="getValue()">'+
-                                 '</form>' +
+
+                                '<div class="searchTop"  style="display:inline">' +
+                               ' <form class="searchbox"  > '+
+                               '<button type="button" style="padding-left:25px;padding-right:15px;" class="btn1" id="search-toggle">'+
+                               '<span class="fa fa-search" style="line-height: 50px; font-size: 20px;"></i>'+
+                               '</button>'+
+
+                               '<button type="button" style="padding-left:25px;padding-right:15px;" class="btn1 hidden11 " id="times-button">'+
+                               '<span class="fa fa-times" style="line-height: 50px; font-size: 20px;"></i>'+
+                               '</button>'+
+                                '<input  type="search" style=" width:0px; height:0px; margin-left:20px;" class="searchbox-input" id="textInput" >'+
+                               '<input class="submitButton"  style=" width:0px; height:0px; margin-bottom:5px;" value="Search" type="submit" onclick="getValue()">'+
+
+
+                               
+                            '</form>' +
                             '</div>'+
-                         
-                           '</div>';
+                                    
+
+                               
+
+
+
+                              
+
+                            
+                        '</div>';
     navheader.innerHTML = headerContent;
 
     let megamenu = document.getElementById('mega-menu');
@@ -273,4 +287,3 @@ function getValue() {
     window.open("https://www.albany.edu/search/search_results.php?cx=009452333206896616693%3Aabbjmkl5yry&cof=FORID%3A11&ie=UTF-8&sa.x=0&sa.y=0&sa=Search&siteurl=www.albany.edu%2F&ref=www.google.com%2F&ss=233j24671j6&q="+text_input);
   }
   }
-  
