@@ -6,7 +6,7 @@ let addTopMenu = function(){
                             '<a href="https://www.albany.edu/">'+
                                 '<img class="ualbany-logo" src="assets/images/logo.png" />'+
                             '</a>'+
-                            '<div class="topnav-right" style="margin-left:850px; display:inline; float: right;"">' +
+                            '<div class="topnav-right" style="margin-left:1000px; display:inline; float: right;"">' +
                                 '<a href="https://www.albany.edu/myualbany">MYUALBANY</a>'+
                                 '<a href="https://www.albany.edu/apply-now">APPLY</a>'+
                                 '<a href="https://www.alumni.albany.edu/s/1642/18-giving/landing.aspx?sid=1642&gid=2&pgid=2040&appealcode=uahome">'+
