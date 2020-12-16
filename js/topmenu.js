@@ -214,7 +214,7 @@ $(document).ready(function () {
 
           searchBox.removeClass('searchbox-open');
 
-          $(".topnav-right").animate({ "margin-left":  "730px" },"fast");    
+          $(".topnav-right").animate({ "margin-left":  "1000px" },"fast");    
 
   
           
