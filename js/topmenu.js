@@ -21,7 +21,7 @@ let addTopMenu = function(){
                                         '<span class="fa fa-times" style="line-height: 50px; font-size: 20px;"></i>'+
                                     '</button>'+
                                     '<input type="search" style=" width:0px; height:0px; margin-left:20px; " class="searchbox-input" id="textInput" >'+ 
-                                    '<input class="submitButton"  style=" width:0px; height:0px; margin-bottom:5px; padding-left:2px;" value="Search" type="submit" onclick="getValue()">'+
+                                    '<input class="submitButton"  style=" width:0px; height:0px; margin-bottom:5px; margin-left:5px; margin-right:5px;" value="Search" type="submit" onclick="getValue()">'+
                                 '</form>'+
                             '</div>'+  
                         '</div>';
