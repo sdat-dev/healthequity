@@ -195,11 +195,11 @@
         font-family: 'TradeGothicLTStd-BdCn20', Helvetica, Arial, sans-serif !important;
         padding-top: 26px;
         display: inline-block;
-        align-items: center;
         flex-wrap: wrap;
         justify-content: flex-start;
-    
-        margin-left: 650px;
+        position: fixed;
+        top: 0px;
+        margin-left: 600px;
     }
     
     .topnav-right a {
@@ -443,6 +443,7 @@
         height:50px;
         float:right;
         overflow:hidden;
+        position: fixed;
         
         -webkit-transition: width 0.3s;
         -moz-transition: width 0.3s;
@@ -492,12 +493,12 @@
     
     #searchTop{
     
-        /* box-sizing: border-box;
+        box-sizing: border-box;
         padding-top: 15px;
         padding-left: 15px;
         padding-right: 15px;
         padding-bottom: 15px;
         width: 320px;
-        position: relative; */
+        position: relative; 
         width:0%;
     }
