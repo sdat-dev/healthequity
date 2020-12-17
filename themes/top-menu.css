@@ -194,11 +194,11 @@
         
         font-family: 'TradeGothicLTStd-BdCn20', Helvetica, Arial, sans-serif !important;
         padding-top: 26px;
-        display: inline-block;
         flex-wrap: wrap;
         justify-content: flex-start;
         position: fixed;
         top: 0px;
+        float: right;
         margin-left: 600px;
     }
     
@@ -283,7 +283,7 @@
     }
     
     .test>button {
-        background-image: url("/assets/images/menu-arrow.png");
+        background-image: url("../assets/images/menu-arrow.png");
         color: #eeb211;
         width: 160px;
         height: 47px;
