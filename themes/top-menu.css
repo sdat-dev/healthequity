@@ -194,12 +194,18 @@
         
         font-family: 'TradeGothicLTStd-BdCn20', Helvetica, Arial, sans-serif !important;
         padding-top: 26px;
+        position:relative;
+        min-width: 0px;
+        display: contents;
+        height:50px;
         flex-wrap: wrap;
+        overflow:hidden;
         justify-content: flex-start;
         position: fixed;
         top: 0px;
         float: right;
         margin-left: 600px;
+        
     }
     
     .topnav-right a {
