@@ -6,10 +6,7 @@ $(window).on("load", function () {
     let maincontentContainer = document.getElementsByClassName('main-content')[0];
     axios.all([request, datarequest]).then(axios.spread((...responses) => {
         let expertspage =  responses[0].data;
-        let data = responses[1].data;
-        let experts = data.filter(function(item){
-            return item["Q31_1"] == "Yes, I'd like to have my research profile/expertise included.";
-        });
+        let experts = responses[1].data;
         let webelements = expertspage.content;
         let content = '';
         let logostart = true;
