@@ -1,6 +1,6 @@
 $(window).on("load", function () {
     let requestURL = "data/communitypartners.json"; 
-    let datarequestURL = "data/facultydata.json"; 
+    let datarequestURL = "data/researchersdata.json"; 
     let request =  axios.get(requestURL);
     let datarequest =  axios.get(datarequestURL);
     let maincontentContainer = document.getElementsByClassName('main-content')[0];
@@ -76,8 +76,8 @@ $(window).on("load", function () {
             }
         }
         content += '<input id = "search-box" placeholder = "Search Experts...">'+
-                    '<button id = "search-button" type = "submit"><i class="fa fa-search"></i></button>'+
-                '<br><span id = "search-box-results"></span>';
+                   '<button id = "search-button" type = "submit"><i class="fa fa-search"></i></button>'+
+                   '<br><span id = "search-box-results"></span>';
         content +='<div id="experts-content">'+buildPartnersContent(partners)+'</div>';
         addheader(pageheaders);
         let contentElement = document.createElement('div');
@@ -133,35 +133,75 @@ let buildPartnersContent = function(partners){
     for(var i=0; i< partners.length; i++){
         if(partners[i].Q12 == "")
             continue;
-        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/experts/' + (partners[i]["Q44_Name"] != ''? partners[i].ResponseId+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/> <h2 class = "content-header-no-margin">' +
-        '<a class = "no-link-decoration" href = ' + partners["Q4.3_4"] + '>' + partners[i].Q12 + ' '+ partners[i].Q11 + '</a></h2><h5 class = "content-header-no-margin faculty-title">'+ (partners[i].Q15 != ''? partners[i].Q15 + ',<br>':'') +
-        getInstitution(partners[i]) + '</h5>'+'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + partners[i].Q13 + 
-        '>'+ partners[i].Q13+ '</a><br>'+ (partners[i].Q14 != ""? '<strong>Phone: </strong>'+ partners[i].Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(partners[i]) + '</p><p>' + 
-        partners[i].Q61 +'</p></div>';
+        content +='<div class = "search-container partner-info">'+//<img class = "expert-image" src = "assets/images/experts/' + (partners[i]["Q44_Name"] != ''? partners[i].ResponseId+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<h2 class = "content-header-no-margin">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
+        '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 pl-0 mb-2 poc"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
+        '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2 address"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
+        '<div class = "mav"><span>Mission and Vision: </span></br>' + formatText(partners[i].Q64) +'</div></div>';
     }
     return content;
 }
 
-let getInstitution = function(partner){
-    let institution = "";
-    if(partner.Q16 == "University"){
-        institution = partner.Q17;
+let getAddress = function(partner){
+    let address = "";
+    if(partner.Q65 != ""){
+        address += partner.Q65;
     }
-    else if(partner.Q16 == "Community Partner")
+    if(partner.Q66 != "")
     {
-        institution = partner.Q110;
+        address = address == ""? partner.Q66 : (address + ",<br> " +  partner.Q66);
     }
-    else
+    if(partner.Q67 != "")
     {
-        institution = partner["Q17_4_TEXT"];
+        address = address == ""? partner.Q67 : (address + ",<br> " +  partner.Q67);
     }
-    return institution;
+    if(partner.Q68 != "")
+    {
+        address = address == ""? partner.Q68 : (address + ",<br> " +  partner.Q68);
+    }
+    if(partner.Q69 != "")
+    {
+        address = address == ""? partner.Q69 : (address + ", " +  partner.Q69);
+    }
+    return address;
 }
 
-let getResearchInterests = function(partner){
-    let interests = "";
-    interests += (partner["Q51_1"] == ''?"": partner["Q51_1"]+"; ") + (partner["Q51_14"] == ''?"": partner["Q51_14"]+"; ")+ (partner["Q51_15"] == ''?"": partner["Q51_15"]+"; ")+ (partner["Q51_16"] == ''?"": partner["Q51_16"]+"; ") + partner["Q51_17"]; 
-    return interests;
+let getPointOfContact = function(partner){
+    let pointofcontact = "";
+    pointofcontact += partner.Q72 + " " + partner.Q71+ ",<br> "+ partner.Q75 + '<br> <a class = "email-link" href = mailto:' + partner.Q73 + 
+    '>'+ partner.Q73+ '</a>'+ (partner.Q74 == ""? '' : ',<br>'+ partner.Q74); 
+    return pointofcontact;
+}
+
+let formatText = function(text){
+    let result = '';
+    let paras = text.split("\n\n");
+    for(var i=0; i< paras.length; i++){
+        let para = paras[i];
+        if(para.includes("\n") == false && para.search(/d.\t/) == -1)
+        {
+            result += para;
+        }
+        else
+        {
+            let lines = para.split(/\n/);
+            if(lines.length == 1)
+            {
+                result += lines[0]; 
+            }
+            else
+            {
+                for(var j =0; j< lines.length; j++)
+                {
+                    if(lines[j] == '') continue;
+                    result += '<p>'+lines[j]+'</p>'; 
+                }
+            }
+        }        
+    }
+
+
+    return result;
 }
 
 $('.carousel').carousel({pause: false});
