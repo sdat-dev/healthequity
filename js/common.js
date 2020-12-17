@@ -9,7 +9,7 @@ let addsidemenu = function(page){
         let item = sidemenuItems[i];
         var addsubmenu = false;
         if(item.hasOwnProperty('subItems')){
-            if(item == page)
+            if(item.item == page)
             {
                 addsubmenu = true;
             }
@@ -38,7 +38,7 @@ let addsidemenu = function(page){
                 link = item.link;
             }
 
-            let menuItem = document.createElement("li");
+            let menuItem = document.createElement("div");
             let menuItemContent = '<a href="' + link + '">'+ item.item +'</a>'; 
             menuItem.innerHTML = menuItemContent;
             menuItem.classList.add('navigation-items');
@@ -51,59 +51,60 @@ let addsidemenu = function(page){
         }
         else
         {
-            if(item == page && item.link != '#')
-            {
-                let menuItem = document.createElement("li");
-                let menuItemContent = '<a href="' + link + '">'+ item.item +'</a>'; 
-                menuItem.innerHTML = menuItemContent;
-                menuItem.classList.add('navigation-items');
-                menuItem.classList.add('hover-highlight');
-                if(page == item.item)
-                {
-                    menuItem.setAttribute("id", "active-page");
-                }
-                sidemenu.appendChild(menuItem);
-            }
-
-            let subitems = item.subItems;
-            let submenu = '<ul id="sub-navigation-bar">';
-            for(var j = 0; j< subitems.length; j++)
-            {
-                if(j == 0)
-                {
-                    submenu +='<li class="first-sub-navigation-item hover-highlight"';
-                    if(page == subitems[j].item)
-                    {
-                        submenu += ' id = "active-page"';
-                    }
-                    submenu += '><a href="'+ subitems[j].link +'">'+ subitems[j].item +'</a></li>';
-                }
-                else if(j == subitems.length-1)
-                {
-                    submenu +='<li class="last-sub-navigation-item hover-highlight"';
-                    if(page == subitems[j].item)
-                    {
-                        submenu += ' id = "active-page"';
-                    }
-                    submenu += '><a href="'+ subitems[j].link +'">'+ subitems[j].item +'</a></li>';
-                }
-                else
-                {
-                    submenu +='<li class="sub-navigation-items hover-highlight"';
-                    if(page == subitems[j].item)
-                    {
-                        submenu += ' id = "active-page"';
-                    }
-                    submenu += '><a href="'+ subitems[j].link +'">'+ subitems[j].item +'</a></li>';
-                }
-            }
-            let menuItem = document.createElement("li");
-            let menuItemContent = '<a href="' + subitems[0].link + '">'+ item.item +'</a>' + submenu; 
+            let menuItem = document.createElement("div");
+            let menuItemContent = '<a href="' + (item.link != '#'? item.link :subitems[0].link) + '">'+ item.item +'</a>'; 
             menuItem.innerHTML = menuItemContent;
-            menuItem.setAttribute("id", "expanded-navigation-item");
+            menuItem.classList.add('navigation-items');
+            menuItem.classList.add('hover-highlight');
+            if(page == item.item)
+            {
+                menuItem.setAttribute("id", "active-page");
+            }
+            sidemenu.appendChild(menuItem);
+            menuItem = document.createElement("div");
+            menuItem.classList.add('expanded-navigation-item');
+            let submenu = buildsubmenu(item.subItems, page);
+            menuItemContent = submenu;
+            menuItem.innerHTML = menuItemContent;
             sidemenu.appendChild(menuItem);
         }
     }
+}
+
+let buildsubmenu = function(subitems, page){
+    let submenu = '<div id="sub-navigation-bar">';
+    for(var j = 0; j< subitems.length; j++)
+    {
+        if(j == 0)
+        {
+            submenu +='<div class="first-sub-navigation-item hover-highlight"';
+            if(page == subitems[j].item)
+            {
+                submenu += ' id = "active-page"';
+            }
+            submenu += '><a href="'+ subitems[j].link +'">'+ subitems[j].item +'</a></div>';
+        }
+        else if(j == subitems.length-1)
+        {
+            submenu +='<div class="last-sub-navigation-item hover-highlight"';
+            if(page == subitems[j].item)
+            {
+                submenu += ' id = "active-page"';
+            }
+            submenu += '><a href="'+ subitems[j].link +'">'+ subitems[j].item +'</a></div>';
+        }
+        else
+        {
+            submenu +='<div class="sub-navigation-items hover-highlight"';
+            if(page == subitems[j].item)
+            {
+                submenu += ' id = "active-page"';
+            }
+            submenu += '><a href="'+ subitems[j].link +'">'+ subitems[j].item +'</a></div>';
+        }
+    }
+
+    return submenu;
 }
 
 let generateAccordionElem = function(level, collapseId, headerId, parentId, childId, header, accordionContent){
