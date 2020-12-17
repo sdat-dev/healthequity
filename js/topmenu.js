@@ -25,7 +25,7 @@ let addTopMenu = function(){
                                 '</form>'+
                             '</div>'+  
                         '</div>';
-    navheader.innerHTML = headerContent;
+   // navheader.innerHTML = headerContent;
 
     let megamenu = document.getElementById('mega-menu');
     let megemenuContent = '<div class="hh collapse" id="navbarSupportedContent">' +
@@ -130,7 +130,7 @@ let addTopMenu = function(){
                                     'MENU<br><i class="fa fa-bars"></i>'+
                                 '</button>'+
                             '</div>';
-    megamenu.innerHTML = megemenuContent;
+   megamenu.innerHTML = megemenuContent;
 }
 
 addTopMenu();
@@ -142,11 +142,9 @@ $('#buttonatag').click(function (e) {
     if($(e.target).hasClass("fa") ){ 
         flag_fa=true;
         $("#buttonatag").trigger('click'); 
-       
+       console.log("TEST");
     }
     else{
-
-       
             let innerHTML = this.innerHTML;
             if (innerHTML.includes('MENU') == true) {
                 this.innerHTML = 'CLOSE<br><i  class="fa fa-times"></i>';
@@ -262,3 +260,4 @@ function getValue() {
     window.open("https://www.albany.edu/search/search_results.php?cx=009452333206896616693%3Aabbjmkl5yry&cof=FORID%3A11&ie=UTF-8&sa.x=0&sa.y=0&sa=Search&siteurl=www.albany.edu%2F&ref=www.google.com%2F&ss=233j24671j6&q="+text_input);
   }
   }
+
