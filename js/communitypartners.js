@@ -137,7 +137,7 @@ let buildPartnersContent = function(partners){
         '<h2 class = "content-header-no-margin">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
         '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 pl-0 mb-2 poc"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
         '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2 address"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
-        '<div class = "mav"><span>Mission and Vision: </span></br>' + formatText(partners[i].Q64) +'</div></div>';
+        buildmissionandvision(partners[i])+'</div>';
     }
     return content;
 }
@@ -171,6 +171,19 @@ let getPointOfContact = function(partner){
     pointofcontact += partner.Q72 + " " + partner.Q71+ ",<br> "+ partner.Q75 + '<br> <a class = "email-link" href = mailto:' + partner.Q73 + 
     '>'+ partner.Q73+ '</a>'+ (partner.Q74 == ""? '' : ',<br>'+ partner.Q74); 
     return pointofcontact;
+}
+
+let buildmissionandvision = function(partner){
+    let missionandvision = "";
+    missionandvision = '<p>'+
+                        '<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#missionandvision" aria-expanded="false" aria-controls="missionandvision">Mission and Vision</button>'+
+                        '</p>'+
+                        '<div class="collapse" id="missionandvision">'+
+                            '<div class="card card-body">'+
+                            formatText(partner.Q64) +
+                            '</div>'+
+                        '</div>';
+    return missionandvision;
 }
 
 let formatText = function(text){
