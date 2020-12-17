@@ -133,7 +133,7 @@ let buildPartnersContent = function(partners){
     for(var i=0; i< partners.length; i++){
         if(partners[i].Q12 == "")
             continue;
-        content +='<div class = "search-container partner-info">'+//<img class = "expert-image" src = "assets/images/experts/' + (partners[i]["Q44_Name"] != ''? partners[i].ResponseId+'_'+partners[i]["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
+        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "assets/images/community-partners/placeholder.jpg"/>'+
         '<h2 class = "content-header-no-margin">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
         '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 pl-0 mb-2 poc"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
         '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2 address"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
@@ -175,8 +175,9 @@ let getPointOfContact = function(partner){
 
 let buildmissionandvision = function(partner){
     let missionandvision = "";
-    missionandvision = '<p>'+
-                        '<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#missionandvision" aria-expanded="false" aria-controls="missionandvision">Mission and Vision</button>'+
+    missionandvision = '<p class="mav-header">'+
+                        '<button class="btn btn-mav collapsed" type="button" data-toggle="collapse" data-target="#missionandvision" aria-expanded="false" aria-controls="missionandvision">Mission and Vision '+
+                        '<i class="fas fa-chevron-up"></i></button>'+
                         '</p>'+
                         '<div class="collapse" id="missionandvision">'+
                             '<div class="card card-body">'+

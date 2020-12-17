@@ -13,7 +13,7 @@
     color: #004C93;
 }
 
-.partner-image{
+.partner-logo{
     width: 200px;
     float: right;
     margin-left: 20px;
@@ -21,6 +21,31 @@
     border-radius: 50%;
     clear: both;
 }
+
+.btn-mav{
+    background-color: #004C93;
+    color: white;
+}
+
+.btn:focus{
+ box-shadow: 0 0 0 0;
+}
+
+.btn:hover {
+    border:2px solid #004C93;
+    background-color: white;
+    color: #004C93;
+    text-decoration: none;
+}
+.btn-mav > i{
+ margin-left: 10px;
+}
+
+.mav-header > .collapsed> i {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	transform: rotate(180deg);
+} 
 
 .address span{
     color: #004C93;
@@ -32,10 +57,6 @@
     text-transform: uppercase;
 }
 
-.mav span{
-    color: #004C93;
-    text-transform: uppercase;
-}
 .icon-container  img{
     width: 30px;
     margin: 5px 10px 10px 0px;
@@ -50,7 +71,7 @@
 
 @media screen and (max-width: 991px)
 {
-    .partner-image{
+    .partner-logo{
         float: left;
         margin-right: 200px;
         margin-left: 0px;
@@ -63,7 +84,7 @@
 
 @media screen and (max-width: 767px)
 {
-    .partner-image{
+    .partner-logo{
         float: right;
         margin-left: 20px;
         margin-right: 0px;
@@ -73,7 +94,7 @@
 
 @media screen and (max-width: 600px)
 {
-    .partner-image{
+    .partner-logo{
         float: left;
         margin-left: 0px;
         margin-right: 60%;
