@@ -584,8 +584,8 @@
         transition: .3s ease letter-spacing;
     }
     #header .nav-list ul li:hover a::after {
-        transform: translate(-50%, -50%) scale(1);
-        letter-spacing: initial;
+        display: inline-block;
+
     }
     #header .nav-list ul li:hover a {
         color: #edba32;
@@ -657,6 +657,7 @@
         #header .nav-list ul {
             position: initial;
             display: block;
+            float: right;
             height: auto;
             width: 100%; 
         }
