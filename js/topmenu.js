@@ -130,6 +130,7 @@ let addTopMenu = function(){
                                     'MENU<br><i class="fa fa-bars"></i>'+
                                 '</button>'+
                             '</div>';
+
    megamenu.innerHTML = megemenuContent;
 }
 
@@ -142,14 +143,18 @@ $('#buttonatag').click(function (e) {
     if($(e.target).hasClass("fa") ){ 
         flag_fa=true;
         $("#buttonatag").trigger('click'); 
-       console.log("TEST");
+        console.log("TEST");
     }
     else{
+
             let innerHTML = this.innerHTML;
+            console.log(innerHTML);
             if (innerHTML.includes('MENU') == true) {
                 this.innerHTML = 'CLOSE<br><i  class="fa fa-times"></i>';
+                console.log("IF");
             }
             else {
+                console.log("ELSE");
                 this.innerHTML = 'MENU<br><i  class="fa fa-bars"></i>';
             }
         
@@ -167,10 +172,6 @@ $(document).ready(function () {
             $("#buttonatag").click();
         }
     });
-
-
-   
-
 
     var submitIcon = $('#search-toggle');
     var inputBox = $('.searchbox-input');
@@ -212,16 +213,8 @@ $(document).ready(function () {
 
           searchBox.removeClass('searchbox-open');
 
-          $(".topnav-right").animate({ "margin-left":  "730px" },"fast");    
-
-  
-          
-  
+          $(".topnav-right").animate({ "margin-left":  "730px" },"fast");      
         });
-
-     
-
-
 });
 
 
@@ -237,11 +230,6 @@ function buttonUp(){
     }
 }
 
-
-
-
-
-
 $('#navbarSupportedContent').collapse('hide');
 
 
@@ -249,8 +237,6 @@ $('#navbarSupportedContent').collapse('hide');
 function getValue() {
     var text_input = document.getElementById('textInput').value;
     console.log(text_input);
-  
-  
   
   
   if(text_input === ""){
