@@ -174,7 +174,7 @@ let counter = 1;
 let buildmissionandvision = function(partner){
     let missionandvision = "";
     missionandvision = '<p class="mav-header">'+
-                        '<button class="btn btn-mav collapsed" type="button" data-toggle="collapse" data-target="#missionandvision'+ counter +'" aria-expanded="false" aria-controls="missionandvision'+ counter +'">Mission and Vision '+
+                        '<button class="btn btn-mav collapsed" style="font-size:20px;" type="button" data-toggle="collapse" data-target="#missionandvision'+ counter +'" aria-expanded="false" aria-controls="missionandvision'+ counter +'">Mission and Vision '+
                         '<i class="fas fa-chevron-up"></i></button>'+
                         '</p>'+
                         '<div class="collapse" id="missionandvision'+ counter +'">'+
