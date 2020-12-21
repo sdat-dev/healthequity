@@ -131,7 +131,7 @@ let buildPartnersContent = function(partners){
         if(partners[i].Q12 == "")
             continue;
         content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "assets/images/community-partners/'+ (partners[i]["Q63_Name"] != ''? partners[i].ResponseId+'_'+ partners[i]["Q63_Name"] :'placeholder.jpg') + '"/>'+
-        '<h2 class = "content-header-no-margin">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
+        '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
         '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 pl-0 mb-2 poc"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
         '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2 address"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
         buildmissionandvision(partners[i])+'</div>';
