@@ -124,6 +124,7 @@ Primary use:    Common.css file used for styling header and
 .no-link-decoration {
     color: #004C93;
     text-decoration: none;
+    font-size: 28px;
 }
 
 .no-link-decoration:hover{

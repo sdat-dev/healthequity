@@ -220,7 +220,7 @@ let buildUniversityExpertElements = function(experts){
         content +='<div class = "search-container expert-info">'+
         '<img class = "expert-image" src = "assets/images/researchers/' + (expert["Q44_Name"] != ''? expert.ResponseId+'_'+expert["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
         '<h2 class = "content-header-no-margin">'+ (expert["Q43_9"] == ""? expert.Q12 + ' '+ expert.Q11 : '<a class = "no-link-decoration" href = ' + expert["Q43_9"] + '>' + expert.Q12 + ' '+ expert.Q11 + '</a>') + '</h2>'+
-        '<h5 class = "content-header-no-margin faculty-title">'+ (expert.Q15 != ''? expert.Q15 + ',<br>':'') + (expert.Q19 != ''? expert.Q19 :'') + '</h5>' +
+        '<h5 class = "content-header-no-margin faculty-title" style="font-size:23px">'+ (expert.Q15 != ''? expert.Q15 + ',<br>':'') + (expert.Q19 != ''? expert.Q19 :'') + '</h5>' +
         generateLogoContent(expert) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + expert.Q13 + 
         '>'+ expert.Q13+ '</a><br>'+ (expert.Q14 != ""? '<strong>Phone: </strong>'+ expert.Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ 
         getResearchInterests(expert) + '</p><p>' + expert.Q42 +'</p>'+ generateProjectsContent([expert["Q51_1"],expert["Q51_14"],expert["Q51_15"],expert["Q51_16"],expert["Q51_17"]])+'</div>';
