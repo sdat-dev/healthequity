@@ -25,6 +25,11 @@ Primary use:    side-navigation.css file used for styling components
     color: inherit;
 }
 
+.hover-highlight:hover>#sub-navigation-bar {
+    background-color: white;
+    color: #004C93;
+}
+
 .navigation-items {
     border-bottom: 2px solid #909090;
     color: #004C93;
@@ -34,12 +39,11 @@ Primary use:    side-navigation.css file used for styling components
     text-transform: uppercase;
 }
 
-#expanded-navigation-item {
+.expanded-navigation-item {
     border-bottom: 2px solid #909090;
     color: #004C93;
     font-weight: 400;
     list-style-type: none;
-    padding: 10px 0px 0px 0px;
     text-transform: uppercase;
 }
 
@@ -67,9 +71,7 @@ Primary use:    side-navigation.css file used for styling components
 
 .first-sub-navigation-item {
     color: #004C93;
-    margin-top: 10px;
     padding: 10px 10px 10px 30px;
-    border-top: 2px solid #909090;
 }
 
 .last-sub-navigation-item {

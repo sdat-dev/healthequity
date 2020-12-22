@@ -5,12 +5,9 @@ $(window).on("load", function () {
     let datarequest =  axios.get(datarequestURL);
     let maincontentContainer = document.getElementsByClassName('main-content')[0];
     axios.all([request, datarequest]).then(axios.spread((...responses) => {
-        let expertspage =  responses[0].data;
-        let data = responses[1].data;
-        let experts = data.filter(function(item){
-            return item["Q31_1"] == "Yes, I'd like to have my research profile/expertise included.";
-        });
-        let webelements = expertspage.content;
+        let researcherspage =  responses[0].data;
+        let researchers = responses[1].data;
+        let webelements = researcherspage.content;
         let content = '';
         let logostart = true;
         let pageheaders = [];
@@ -78,7 +75,7 @@ $(window).on("load", function () {
         content += '<input id = "search-box" placeholder = "Search Experts...">'+
                     '<button id = "search-button" type = "submit"><i class="fa fa-search"></i></button>'+
                 '<br><span id = "search-box-results"></span>';
-        content +='<div id="experts-content">'+buildExpertContent(experts)+'</div>';
+        content +='<div id="experts-content">'+buildResearchersContent(researchers)+'</div>';
         addheader(pageheaders);
         let contentElement = document.createElement('div');
         contentElement.classList.add('content');
@@ -129,33 +126,33 @@ let addheader =  function (headers){
     header.innerHTML = content;
 }
 
-let buildExpertContent = function(experts){
+let buildResearchersContent = function(experts){
     let content = '';
-    let universityExperts = experts.filter(function(expert){
-        return expert["Q16"] == "University";
+    let universityResearchers = experts.filter(function(expert){
+        return (expert["Q16"] == "University") && (expert.Q17 != "Other (Please specify)");
     });
-    let nonuniversityExperts = experts.filter(function(expert){
-        return expert["Q16"] != "University";
+    let otherResearchers = experts.filter(function(expert){
+        return (expert["Q16"] != "University") ||((expert["Q16"] == "University") && (expert.Q17 == "Other (Please specify)"));
     });
     let tabattribute = "Q17"
-    let distincttabs = getDistinctUniversities(universityExperts);
+    let distincttabs = getDistinctAttributes(universityResearchers, 'Q17'); 
     distincttabs.push("Other Organizations");
     content = createTabNavigation(distincttabs, tabattribute);
     let tabContent = [];
     for(let i = 0; i< distincttabs.length; i++){
-        let tabexperts = universityExperts.filter(function(expert){
+        let tabexperts = universityResearchers.filter(function(expert){
             return (expert.Q17 == distincttabs[i]) || (expert["Q17_4_TEXT"] == distincttabs[i]);
         });
         let tabId = "";
         if(distincttabs[i] != "Other Organizations")
         {
             tabId = tabattribute + i.toString();
-            tabContent.push(buildUniversityExperts(tabId, tabexperts));
+            tabContent.push(buildUniversityResearchers(tabId, tabexperts));
         }
         else
         {
             tabId = tabattribute + i.toString();
-            tabContent.push(buildNonUniversityExperts(tabId, nonuniversityExperts));
+            tabContent.push(buildOtherResearchers(tabId, otherResearchers));
         }
         
     }
@@ -164,19 +161,9 @@ let buildExpertContent = function(experts){
     return content;
 }
 
-let getDistinctUniversities = function(experts){
-    let mappedAttributes = experts.map(function(expert){
-        return expert.Q17 != "Other" ? expert.Q17 : expert["Q17_4_TEXT"];
-    });
-    let distinctAttributes = mappedAttributes.filter(function(v, i, a){
-        return a.indexOf(v) === i;
-     });
-
-    return distinctAttributes;
-}
 //Start with level1 accordion and build one by one the levels going down.
 //this is nestted accordion that can go upto 4 levels
-let buildUniversityExperts = function(tabId, tabexperts){
+let buildUniversityResearchers = function(tabId, tabexperts){
     let counter = 1; 
     let contactElem = '';
     contactElem += '<div id = "' + tabId + '">';
@@ -204,7 +191,7 @@ let buildUniversityExperts = function(tabId, tabexperts){
                 });
                 level3s.sort((a,b) => b.firstName - a.firstName)
                 //for level2s build simple list
-                level2Elem+= buildUniversityExpertElements(level3s);
+                level2Elem+= buildUniversityResearcherElements(level3s);
             });
         }  
         contactElem+= generateAccordionElem(1, collapseId1, headerId1, tabId, childId1, level1, level2Elem);
@@ -214,28 +201,29 @@ let buildUniversityExperts = function(tabId, tabexperts){
     return contactElem;
 }
 
-let buildUniversityExpertElements = function(experts){
+let buildUniversityResearcherElements = function(researchers){
     let content = '';
-    for(var i=0; i< experts.length; i++){
-        if(experts[i].Q12 == "") //skip of there is no first name
+    for(var i=0; i< researchers.length; i++){
+        if(researchers[i].Q12 == "") //skip of there is no first name
             continue;
-        let expert = experts[i];
+        let researcher = researchers[i];
         content +='<div class = "search-container expert-info">'+
-        '<img class = "expert-image" src = "assets/images/researchers/' + (expert["Q44_Name"] != ''? expert.ResponseId+'_'+expert["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
-        '<h2 class = "content-header-no-margin">'+ (expert["Q43_9"] == ""? expert.Q12 + ' '+ expert.Q11 : '<a class = "no-link-decoration" href = ' + expert["Q43_9"] + '>' + expert.Q12 + ' '+ expert.Q11 + '</a>') + '</h2>'+
-        '<h5 class = "content-header-no-margin faculty-title">'+ (expert.Q15 != ''? expert.Q15 + ',<br>':'') + (expert.Q18 != ''? expert.Q18 + ', ':'') + expert.Q17 + '</h5>' +
-        generateLogoContent(expert) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + expert.Q13 + 
-        '>'+ expert.Q13+ '</a><br>'+ (expert.Q14 != ""? '<strong>Phone: </strong>'+ expert.Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ 
-        getResearchInterests(expert) + '</p><p>' + expert.Q42 +'</p>'+ generateProjectsContent([expert["Q51_1"],expert["Q51_14"],expert["Q51_15"],expert["Q51_16"],expert["Q51_17"]])+'</div>';
+        '<img class = "expert-image" src = "assets/images/researchers/' + (researcher["Q44_Name"] != ''? researcher.ResponseId+'_'+researcher["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<h2 class = "content-header-no-margin">'+ (researcher["Q43_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q43_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
+        '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
+        generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
+        '>'+ researcher.Q13+ '</a><br>'+ (researcher.Q14 != ""? '<strong>Phone: </strong>'+ researcher.Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ 
+        getResearchInterests(researcher) + '</p><p>' + researcher.Q42 +'</p>'+ generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
+        generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) + '</div>';
     }
     return content;
 }
 
-let buildNonUniversityExperts = function(tabId, tabexperts){
+let buildOtherResearchers = function(tabId, tabresearchers){
     let counter = 1; 
     let contactElem = '';
     contactElem += '<div id = "' + tabId + '">';
-    let distinctLevel1s = getDistinctAttributes(tabexperts, 'Q110');
+    let distinctLevel1s = getDistinctOrganizations(tabresearchers);
     distinctLevel1s.sort();
     distinctLevel1s.forEach(function(level1) {
         let collapseId1 = "collapse" + counter;
@@ -244,21 +232,21 @@ let buildNonUniversityExperts = function(tabId, tabexperts){
         counter++;
         let level2Elem = '';
         //filter level2s
-        let level2s = tabexperts.filter(function(expert){
-            return expert.Q110 == level1;
+        let level2s = tabresearchers.filter(function(researcher){
+            return (researcher["Q16"] == "University") ? researcher["Q17_4_TEXT"] == level1 : (researcher["Q16"] == "Other (Please specify)")? researcher["Q16_6_TEXT"] == level1 : researcher.Q110 == level1;
         }); 
         if(level2s.length > 0)
         {
-            let distinctLevel2s = getDistinctAttributes(level2s, 'Q111');
+            let distinctLevel2s = getDistinctDivisions(level2s);
             distinctLevel2s.sort();
             distinctLevel2s.forEach(function(level2){
                 //filter level3 
-                let level3s = level2s.filter(function(expert){
-                    return expert.Q111 == level2;
+                let level3s = level2s.filter(function(researcher){
+                    return (researcher["Q16"] == "University") ? researcher.Q19 == level2 : researcher.Q111 == level2;
                 });
                 level3s.sort((a,b) => b.firstName - a.firstName)
                 //for level2s build simple list
-                level2Elem+= buildNonUniversityExpertElements(level3s);
+                level2Elem+= buildOtherResearcherElements(level3s);
             });
         } 
 
@@ -274,21 +262,55 @@ let buildNonUniversityExperts = function(tabId, tabexperts){
     return contactElem;
 }
 
-let buildNonUniversityExpertElements = function(experts){
+let getDistinctOrganizations = function(researchers){
+    let mappedAttributes = researchers.map(function(researcher){
+        return  (researcher["Q16"] == "University") ? researcher["Q17_4_TEXT"] : (researcher["Q16"] == "Other (Please specify)")? researcher["Q16_6_TEXT"] : researcher.Q110;
+    });
+    let distinctOrganizations = mappedAttributes.filter(function(v, i, a){
+        return a.indexOf(v) === i;
+     });
+
+    return distinctOrganizations;
+}
+
+let getDistinctDivisions = function(researchers){
+    let mappedAttributes = researchers.map(function(researcher){
+        return  (researcher["Q16"] == "University") ? researcher.Q19 : researcher.Q111;
+    });
+    let distinctDivisions = mappedAttributes.filter(function(v, i, a){
+        return a.indexOf(v) === i;
+     });
+
+    return distinctDivisions;
+}
+
+let buildOtherResearcherElements = function(researchers){
     let content = '';
-    for(var i=0; i< experts.length; i++){
-        if(experts[i].Q12 == "") //skip of there is no first name
+    for(var i=0; i< researchers.length; i++){
+        if(researchers[i].Q12 == "") //skip of there is no first name
             continue;
-        let expert = experts[i];
-        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/researchers/' + (expert["Q44_Name"] != ''? expert.ResponseId+'_'+expert["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
-        '<h2 class = "content-header-no-margin">'+ (expert["Q43_9"] == ""? expert.Q12 + ' '+ expert.Q11 : '<a class = "no-link-decoration" href = ' + expert["Q43_9"] + '>' + expert.Q12 + ' '+ expert.Q11 + '</a>') + '</h2>'+
-        '<h5 class = "content-header-no-margin faculty-title">'+ (expert.Q15 != ''? expert.Q15 + ',<br>':'') +
-        (expert.Q111 == ''? '' : expert.Q111 + ', ') + expert.Q110 + '</h5>'+ generateLogoContent(expert) +
-        '<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + expert.Q13 + '>'+ expert.Q13+ '</a><br>'+ 
-        (expert.Q14 != ""? '<strong>Phone: </strong>'+ expert.Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(expert) + '</p>'+
-        '<p>' + experts[i].Q42 +'</p>'+generateProjectsContent([expert["Q51_1"],expert["Q51_14"],expert["Q51_15"],expert["Q51_16"],expert["Q51_17"]])+'</div>';
+        let researcher = researchers[i];
+        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/researchers/' + (researcher["Q44_Name"] != ''? researcher.ResponseId+'_'+researcher["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<h2 class = "content-header-no-margin">'+ (researcher["Q43_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q43_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
+        generateOtherResearcherTitle(researcher) + generateLogoContent(researcher) +
+        '<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + '>'+ researcher.Q13+ '</a><br>'+ 
+        (researcher.Q14 != ""? '<strong>Phone: </strong>'+ researcher.Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(researcher) + '</p>'+
+        '<p>' + researchers[i].Q42 +'</p>'+generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
+        (researcher["Q16"] == "University" ? generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) : '') +
+        '</div>';
     }
     return content;
+}
+
+let generateOtherResearcherTitle = function(researcher){
+
+    let title = '<h5 class = "content-header-no-margin faculty-title">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'');
+    if(researcher["Q16"] == "University")
+        title += (researcher.Q19 != ''? researcher.Q19 + ', ' :'') + (researcher.Q18 != ''? researcher.Q18 :'')  
+    else
+        title +=  (researcher.Q111 == ''? '' : researcher.Q111);
+    title += '</h5>';
+    return title;
 }
 
 let generateLogoContent = function(expert){
@@ -327,6 +349,23 @@ let generateProjectsContent = function(projects){
     '<b class = "purple-font">Ongoing Research/Scholarship Related Projects</b><ul class = "sub-list">'
     + linkContent + '</ul>': '';
     return linkContent;
+}
+
+let generateRelevantCourses = function(courses){
+    let courseContent = '';
+    let count = 0;
+    for(let i = 0; i < courses.length; i++)
+    {
+      if('' != courses[i])
+      {
+        courseContent = courseContent + '<li>'+ courses[i] + '</li>';
+        count++;
+      }
+    }
+    courseContent = (count > 0)?
+    '<b class = "purple-font">RELEVANT COURSES</b><ul class = "sub-list">'
+    + courseContent + '</ul>': '';
+    return courseContent;
 }
 
 $('.carousel').carousel({pause: false});

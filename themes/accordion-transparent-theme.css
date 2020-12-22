@@ -38,6 +38,7 @@ button.btn-link, button.btn-link > .content-header-no-margin{
     color: #004C93;
     background-color: rgba(0,0,0,0);
     margin-bottom: 0px;
+    font-size: 28px;
 }
 
 button.btn-link{

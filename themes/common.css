@@ -84,6 +84,7 @@ Primary use:    Common.css file used for styling header and
     color: #004C93;
     font-family: 'TradeGothicLTStd-BdCn20', Helvetica, Arial, sans-serif;
     text-transform: uppercase;
+    font-size: 32px;
 }
 
 .content-wrapper {
@@ -124,6 +125,7 @@ Primary use:    Common.css file used for styling header and
 .no-link-decoration {
     color: #004C93;
     text-decoration: none;
+    font-size: 28px;
 }
 
 .no-link-decoration:hover{

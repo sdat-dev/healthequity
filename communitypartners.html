@@ -10,21 +10,51 @@
     <link rel="stylesheet" href="themes/bootstrap/css/bootstrap-grid.min.css" />
     <link rel="stylesheet" href="themes/bootstrap/css/bootstrap-reboot.min.css" />
     <link rel="stylesheet" href="themes/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="themes/custom-fonts.css" />
     <link rel="stylesheet" href="themes/common.css" />
     <link rel="stylesheet" href="themes/top-menu.css"/>
     <link rel="stylesheet" href="themes/side-navigation.css" />
-    <link rel="stylesheet" href="themes/custom-fonts.css" />
     <link rel="stylesheet" href="themes/footer.css" />
     <link rel="stylesheet" href="themes/home.css" />
     <link rel="stylesheet" href="themes/communitypartner.css" />
-    <link rel="stylesheet" href="themes/accordion-transparent-theme.css" />
-
     <title>
     </title>
 </head>
 <body>
-    <header id="navbar-header">
-    </header>
+    <section id="header">
+        <div class="header" style="width: 100%;">
+          <div class="nav-bar">
+            <div>
+                <a target="_blank" href="https://www.albany.edu/"><img class="ualbany-logo" src="assets/images/logo.png" /></a>
+            </div>
+            <div class="nav-list">
+              <div class="hamburger"><div class="bar"></div></div>
+              <ul>
+                <li><a href="https://www.albany.edu/myualbany">MYUALBANY</a></li>
+                <li><a href="https://www.albany.edu/apply-now">APPLY</a></li>
+                <li><a href="https://www.alumni.albany.edu/s/1642/18-giving/landing.aspx?sid=1642&gid=2&pgid=2040&appealcode=uahome">GIVE</a></li>
+                    <li><form class="searchbox"></li>
+                      <li><button type="button" style="padding-left: 20px; padding-right: 0px;" class="btn1" id="search-toggle">
+                            <span class="fa fa-search" style="line-height: 50px; font-size: 20px;"></i>
+                        </button> </li>
+                        <li><button type="button" class="btn1 hidden11 " id="times-button">
+                            <span class="fa fa-times" style="line-height: 50px; font-size: 20px;"></i>
+                        </button></li>
+                        <input type="search" style=" width:0px; height:0px; margin-left:20px; " class="searchbox-input" id="textInput" >
+                        <input class="submitButton"  style=" width:0px; height:0px; margin-bottom:5px; margin-left:5px; margin-right:5px;" value="Search" type="submit" onclick="getValue()">
+                    </form>
+                 
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <div class="test" style="padding-top: 25px;">
+        <button id="buttonatag" data-toggle="collapse" data-target=".hh" aria-expanded="false" aria-controls=".hh" aria-label="Toggle navigation" class="collapsed">MENU<br><i class="fa fa-bars"></i>
+        </button>
+    </div>
+
     <div id="mega-menu">
     </div>
     <div id = "page-header">
@@ -43,8 +73,8 @@
         </div>
         <div class="display-flex">
             <div class="col-sm-12 col-md-5 col-lg-4 col-xl-3">
-                <ul id="navigation-bar">
-                </ul>
+                <div id="navigation-bar">
+                </div>
             </div>
             <div class="main-content col-sm-12 col-md-7 col-lg-8 col-xl-9">
                 <h1 class="content-header">
