@@ -462,7 +462,6 @@
         width:200px;
         height:25px;
         margin:0;
-        padding:0px 55px 0px 20px;
         font-size:20px;
        
     }
@@ -547,7 +546,6 @@
         list-style: none;
         position: absolute;
         background-color: #004C93;
-        width: 100vw;
         height: 100vh;
         left: 100%;
         top: 0;
@@ -660,7 +658,6 @@
             display: block;
             float: right;
             height: auto;
-            width: 100%; 
         }
         #header .nav-list ul li {
             display: inline-block;
