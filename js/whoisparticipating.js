@@ -23,11 +23,7 @@ request.onload = function(){
         else if(type == 'ch')
         {
             let header = document.getElementsByClassName("content-header")[0];
-<<<<<<< HEAD
             header.innerHTML = element.content.toUpperCase();
-=======
-            header.innerHTML = element.content;
->>>>>>> 7707cfc1c9d45d6ab0d70cfc965b30faaa8cffab
             if(element.hasOwnProperty('style'))
                 header.setAttribute('style', element.style);
         }
@@ -64,11 +60,11 @@ request.onload = function(){
         {
             content += '</ul>';
         }
-        else if(type == 'a' && !element.hasOwnProperty("logo") && !element.hasOwnProperty("style"))
+        else if(type == 'a' && !element.hasOwnProperty("logo"))
         {
             content +='<a href = "'+ element.source +'">'+ element.content + '</a>';
         }
-        else if(type == 'a' && !element.hasOwnProperty("style") && element.logo != '')
+        else if(type == 'a' && element.logo != '')
         {
             if(logostart == true)
             {
@@ -86,20 +82,6 @@ request.onload = function(){
             if(i+1 ==  webelements.length){
                 content += '</div>';
             }
-        }
-        else if(type == 'a' && element.hasOwnProperty("style") && element.logo != '')
-        {
-            content +=  '<a target = "_blank" href = "'+ element.source +'">'+
-                            '<img  img-fluid style="'+ element.style +'" src = "assets/images/' + element.logo+ '">'+
-                            '<p>'+ element.content+'</p>' +
-                        '</a>';
-        }
-        else if(type == 'div')
-        {
-            if(element.hasOwnProperty('style'))
-                content += '<div style ="'+element.style+'">' + element.content + '</div>';
-            else
-                content += '<div>' + element.content + '</div>';
         }
     }
     addheader(pageheaders);
