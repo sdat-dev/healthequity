@@ -223,7 +223,7 @@ let buildOtherResearchers = function(tabId, tabresearchers){
     let counter = 1; 
     let contactElem = '';
     contactElem += '<div id = "' + tabId + '">';
-    let distinctLevel1s = getDistinctAttributes(tabresearchers, 'Q110');
+    let distinctLevel1s = getDistinctOrganizations(tabresearchers);
     distinctLevel1s.sort();
     distinctLevel1s.forEach(function(level1) {
         let collapseId1 = "collapse" + counter;
@@ -232,8 +232,8 @@ let buildOtherResearchers = function(tabId, tabresearchers){
         counter++;
         let level2Elem = '';
         //filter level2s
-        let level2s = tabresearchers.filter(function(expert){
-            return (researcher["Q16"] == "University") ? researcher["Q17_4_TEXT"] == level1 : expert.Q110 == level1;
+        let level2s = tabresearchers.filter(function(researcher){
+            return (researcher["Q16"] == "University") ? researcher["Q17_4_TEXT"] == level1 : (researcher["Q16"] == "Other (Please specify)")? researcher["Q16_6_TEXT"] == level1 : researcher.Q110 == level1;
         }); 
         if(level2s.length > 0)
         {
@@ -241,8 +241,8 @@ let buildOtherResearchers = function(tabId, tabresearchers){
             distinctLevel2s.sort();
             distinctLevel2s.forEach(function(level2){
                 //filter level3 
-                let level3s = level2s.filter(function(expert){
-                    return (researcher["Q16"] == "University") ? researcher.Q19 == level2 : expert.Q111 == level2;
+                let level3s = level2s.filter(function(researcher){
+                    return (researcher["Q16"] == "University") ? researcher.Q19 == level2 : researcher.Q111 == level2;
                 });
                 level3s.sort((a,b) => b.firstName - a.firstName)
                 //for level2s build simple list
@@ -264,7 +264,7 @@ let buildOtherResearchers = function(tabId, tabresearchers){
 
 let getDistinctOrganizations = function(researchers){
     let mappedAttributes = researchers.map(function(researcher){
-        return  (researcher["Q16"] == "University") ? researcher["Q17_4_TEXT"] : researcher.Q110;
+        return  (researcher["Q16"] == "University") ? researcher["Q17_4_TEXT"] : (researcher["Q16"] == "Other (Please specify)")? researcher["Q16_6_TEXT"] : researcher.Q110;
     });
     let distinctOrganizations = mappedAttributes.filter(function(v, i, a){
         return a.indexOf(v) === i;
@@ -296,7 +296,7 @@ let buildOtherResearcherElements = function(researchers){
         '<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + '>'+ researcher.Q13+ '</a><br>'+ 
         (researcher.Q14 != ""? '<strong>Phone: </strong>'+ researcher.Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(researcher) + '</p>'+
         '<p>' + researchers[i].Q42 +'</p>'+generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
-        (researcher["Q16"] == "University")? generateRelevantCourses(researcher) : '' +
+        (researcher["Q16"] == "University" ? generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) : '') +
         '</div>';
     }
     return content;
@@ -304,11 +304,11 @@ let buildOtherResearcherElements = function(researchers){
 
 let generateOtherResearcherTitle = function(researcher){
 
-    let title = '<h5 class = "content-header-no-margin faculty-title">'+ (expert.Q15 != ''? expert.Q15 + ',<br>':'');
+    let title = '<h5 class = "content-header-no-margin faculty-title">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'');
     if(researcher["Q16"] == "University")
-        title += (expert.Q19 != ''? expert.Q19 + ', ' :'') + (expert.Q18 != ''? expert.Q18 :'')  
+        title += (researcher.Q19 != ''? researcher.Q19 + ', ' :'') + (researcher.Q18 != ''? researcher.Q18 :'')  
     else
-        title +=  (expert.Q111 == ''? '' : expert.Q111);
+        title +=  (researcher.Q111 == ''? '' : researcher.Q111);
     title += '</h5>';
     return title;
 }
