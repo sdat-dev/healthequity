@@ -1,24 +1,21 @@
-let sidemenuItems = [{"item":"Home","link":"home.html"},{"item":"Background","link":"background.html"},{"item":"Agenda","link":"agenda.html","subItems":[{"item":"Speakers","link":"speakers.html"},{"item":"Zoom Links","link":"zoomlinks.html"},{"item":"Workshop Assets","link":"workshopassets.html"}]},{"item":"Who is Participating","link":"whoisparticipating.html"},{"item":"How to Join","link":"howtojoin.html"},{"item":"Researchers","link":"researchers.html"},{"item":"Community Partners","link":"communitypartners.html"},{"item":"Planning Committee","link":"planningcommittee.html"},{"item":"Questions","link":"questions.html"}]
+let sidemenuItems = [{ "item": "Home", "link": "home.html" }, { "item": "Background", "link": "background.html" }, { "item": "Agenda", "link": "agenda.html", "subItems": [{ "item": "Speakers", "link": "speakers.html" }, { "item": "Zoom Links", "link": "zoomlinks.html" }, { "item": "Workshop Assets", "link": "workshopassets.html" }] }, { "item": "Who is Participating", "link": "whoisparticipating.html" }, { "item": "How to Join", "link": "howtojoin.html" }, { "item": "Researchers", "link": "researchers.html" }, { "item": "Community Partners", "link": "communitypartners.html" }, { "item": "Planning Committee", "link": "planningcommittee.html" }, { "item": "Questions", "link": "questions.html" }]
 //SideMenu Start
 //What evet written  before '//SideMenu Start' will be relace with sidemenuItems in automation scripts
 
-let addsidemenu = function(page){
+let addsidemenu = function (page) {
     let sidemenu = document.getElementById('navigation-bar');
 
-    for(let i = 0; i < sidemenuItems.length; i++){
+    for (let i = 0; i < sidemenuItems.length; i++) {
         let item = sidemenuItems[i];
         var addsubmenu = false;
-        if(item.hasOwnProperty('subItems')){
-            if(item.item == page)
-            {
+        if (item.hasOwnProperty('subItems')) {
+            if (item.item == page) {
                 addsubmenu = true;
             }
-            else
-            {
+            else {
                 let subitems = item.subItems;
                 subitems.forEach(element => {
-                    if(element.item == page)
-                    {
+                    if (element.item == page) {
                         addsubmenu = true;
                         return;
                     }
@@ -26,38 +23,32 @@ let addsidemenu = function(page){
             }
         }
 
-        if( addsubmenu == false)
-        {
+        if (addsubmenu == false) {
             let link = '';
-            if(item.hasOwnProperty('subItems') && item.link == '#')
-            {
+            if (item.hasOwnProperty('subItems') && item.link == '#') {
                 link = item.subItems[0].link;
-            } 
-            else
-            {
+            }
+            else {
                 link = item.link;
             }
 
             let menuItem = document.createElement("div");
-            let menuItemContent = '<a href="' + link + '">'+ item.item +'</a>'; 
+            let menuItemContent = '<a href="' + link + '">' + item.item + '</a>';
             menuItem.innerHTML = menuItemContent;
             menuItem.classList.add('navigation-items');
             menuItem.classList.add('hover-highlight');
-            if(page == item.item)
-            {
+            if (page == item.item) {
                 menuItem.setAttribute("id", "active-page");
             }
             sidemenu.appendChild(menuItem);
         }
-        else
-        {
+        else {
             let menuItem = document.createElement("div");
-            let menuItemContent = '<a href="' + (item.link != '#'? item.link :subitems[0].link) + '">'+ item.item +'</a>'; 
+            let menuItemContent = '<a href="' + (item.link != '#' ? item.link : subitems[0].link) + '">' + item.item + '</a>';
             menuItem.innerHTML = menuItemContent;
             menuItem.classList.add('navigation-items');
             menuItem.classList.add('hover-highlight');
-            if(page == item.item)
-            {
+            if (page == item.item) {
                 menuItem.setAttribute("id", "active-page");
             }
             sidemenu.appendChild(menuItem);
@@ -71,68 +62,57 @@ let addsidemenu = function(page){
     }
 }
 
-let buildsubmenu = function(subitems, page){
+let buildsubmenu = function (subitems, page) {
     let submenu = '<div id="sub-navigation-bar">';
-    for(var j = 0; j< subitems.length; j++)
-    {
-        if(j == 0)
-        {
-            submenu +='<div class="first-sub-navigation-item hover-highlight"';
-            if(page == subitems[j].item)
-            {
+    for (var j = 0; j < subitems.length; j++) {
+        if (j == 0) {
+            submenu += '<div class="first-sub-navigation-item hover-highlight"';
+            if (page == subitems[j].item) {
                 submenu += ' id = "active-page"';
             }
-            submenu += '><a href="'+ subitems[j].link +'">'+ subitems[j].item +'</a></div>';
+            submenu += '><a href="' + subitems[j].link + '">' + subitems[j].item + '</a></div>';
         }
-        else if(j == subitems.length-1)
-        {
-            submenu +='<div class="last-sub-navigation-item hover-highlight"';
-            if(page == subitems[j].item)
-            {
+        else if (j == subitems.length - 1) {
+            submenu += '<div class="last-sub-navigation-item hover-highlight"';
+            if (page == subitems[j].item) {
                 submenu += ' id = "active-page"';
             }
-            submenu += '><a href="'+ subitems[j].link +'">'+ subitems[j].item +'</a></div>';
+            submenu += '><a href="' + subitems[j].link + '">' + subitems[j].item + '</a></div>';
         }
-        else
-        {
-            submenu +='<div class="sub-navigation-items hover-highlight"';
-            if(page == subitems[j].item)
-            {
+        else {
+            submenu += '<div class="sub-navigation-items hover-highlight"';
+            if (page == subitems[j].item) {
                 submenu += ' id = "active-page"';
             }
-            submenu += '><a href="'+ subitems[j].link +'">'+ subitems[j].item +'</a></div>';
+            submenu += '><a href="' + subitems[j].link + '">' + subitems[j].item + '</a></div>';
         }
     }
 
     return submenu;
 }
 
-let generateAccordionElem = function(level, collapseId, headerId, parentId, childId, header, accordionContent){
+let generateAccordionElem = function (level, collapseId, headerId, parentId, childId, header, accordionContent) {
     var headerno = level + 2;
-    let accordionElem =  '<div class = "card"><div class="card-header level'+ level +'" id="'+ headerId + '">' +
-                            '<button class="btn btn-link" data-toggle="collapse" data-target="#'+ collapseId + '" aria-expanded="false" aria-controls="' + collapseId + '">'+
-                            '<h'+ headerno +' class = "content-header-no-margin">' + header + '<i class="fas fa-chevron-down" style="padding-left:10px;"  ></i></h'+ headerno +'></button></div>'
-                        + '<div id="'+ collapseId + '" class = "collapse" aria-labelledby= "'+ headerId + '" data-parent="#'+ parentId +'"> <div class = "card-body" id="'+ childId +'">'
-                        + accordionContent +'</div></div></div>';  
+    let accordionElem = '<div class = "card"><div class="card-header level' + level + '" id="' + headerId + '">' +
+        '<button class="btn btn-link" data-toggle="collapse" data-target="#' + collapseId + '" aria-expanded="false" aria-controls="' + collapseId + '">' +
+        '<h' + headerno + ' class = "content-header-no-margin">' + header + '<i class="fas fa-chevron-down" style="padding-left:10px;"  ></i></h' + headerno + '></button></div>'
+        + '<div id="' + collapseId + '" class = "collapse" aria-labelledby= "' + headerId + '" data-parent="#' + parentId + '"> <div class = "card-body" id="' + childId + '">'
+        + accordionContent + '</div></div></div>';
     return accordionElem;
 }
 
-let createTabNavigation = function(distincttabs, tabname)
-{
+let createTabNavigation = function (distincttabs, tabname) {
     let navigationContent = '<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">';
-    for(let i = 0; i< distincttabs.length; i++)
-    {
+    for (let i = 0; i < distincttabs.length; i++) {
         let buttonContent = '';
         let tabId = tabname + i.toString();
-        if(i == 0)
-        {
-            buttonContent = '<a class="nav-link active" id="pills-'+ tabId +'-tab" data-toggle="pill" href="#pills-'+ tabId +'" role="tab" aria-controls="pills-'+ tabId +'" aria-selected="true">'+ distincttabs[i] +'</a>';
+        if (i == 0) {
+            buttonContent = '<a class="nav-link active" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a>';
         }
-        else
-        {
-            buttonContent = '<a class="nav-link" id="pills-'+ tabId +'-tab" data-toggle="pill" href="#pills-'+ tabId +'" role="tab" aria-controls="pills-'+ tabId +'" aria-selected="true">'+ distincttabs[i] +'</a>';
+        else {
+            buttonContent = '<a class="nav-link" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a>';
         }
-        
+
         let linkElement = '<li class="nav-item">' + buttonContent + '</li>';
         navigationContent = navigationContent + linkElement;
     }
@@ -140,19 +120,16 @@ let createTabNavigation = function(distincttabs, tabname)
     return navigationContent;
 }
 
-let buildTabContent = function(distincttabs, tabname, tabContent){
+let buildTabContent = function (distincttabs, tabname, tabContent) {
     let content = '<div class="tab-content" id="pills-tabContent">';
-    
-    for(let i = 0; i< distincttabs.length; i++)
-    {
+
+    for (let i = 0; i < distincttabs.length; i++) {
         let tabId = tabname + i.toString();
-        if(i == 0)
-        {
-            content +='<div class="tab-pane fade show active" id="pills-'+ tabId +'" role="tabpanel" aria-labelledby="pills-'+ tabId +'-tab">';
+        if (i == 0) {
+            content += '<div class="tab-pane fade show active" id="pills-' + tabId + '" role="tabpanel" aria-labelledby="pills-' + tabId + '-tab">';
         }
-        else
-        {
-            content +='<div class="tab-pane fade" id="pills-'+ tabId +'" role="tabpanel" aria-labelledby="pills-'+ tabId +'-tab">';
+        else {
+            content += '<div class="tab-pane fade" id="pills-' + tabId + '" role="tabpanel" aria-labelledby="pills-' + tabId + '-tab">';
         }
         content += tabContent[i];
         content += '</div>';
@@ -161,73 +138,82 @@ let buildTabContent = function(distincttabs, tabname, tabContent){
     return content;
 }
 
-function getDate(serial){
-    let utc_days  = Math.floor(serial - 25569);
-    let utc_value = utc_days * 86400;                                        
+function getDate(serial) {
+    let utc_days = Math.floor(serial - 25569);
+    let utc_value = utc_days * 86400;
     let date_info = new Date(utc_value * 1000);
-    return (parseInt(date_info.getMonth(),10) + 1) + '/' + (parseInt(date_info.getDate(),10) + 1) + '/' + date_info.getFullYear();//, 0, minutes, seconds);
+    return (parseInt(date_info.getMonth(), 10) + 1) + '/' + (parseInt(date_info.getDate(), 10) + 1) + '/' + date_info.getFullYear();//, 0, minutes, seconds);
 }
 
-addfooter = function(){
+addfooter = function () {
     let footer = document.getElementById("footer");
     let content = "";
-    content +='<div id="footer-content" class = "display-flex">'+
-                    '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">'+
-                        '<div class="footer-logo-wrapper">'+
-                            '<a href="https://www.albany.edu/">'+
-                                '<img class="footer-logo" src="assets/images/logo.png" />'+
-                            '</a>'+
+    content += 
+            '<footer class="footer container-fluid">'+
+                '<div class="region region-footer" >'+
+                    '<section id="block-footer2020-2" data-block-plugin-id="block_content:58324575-ecf1-412b-b839-09d0cf593aef"'+
+                        'class="block block-block-content block-block-content58324575-ecf1-412b-b839-09d0cf593aef clearfix">'+
+
+                        '<div class="field field--name-body field--type-text-with-summary field--label-hidden field--item">'+
+                            '<div class="footer-new">'+
+                                '<div class="col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-4 col-lg-offs et-4">'+
+                                    '<a href="https://www.albany.edu/">'+
+                                        '<img alt="University at Albany Logo" class=" img-responsive footer-logo" height="39"'+
+                                        'src="../assets/images/UAlbany-logo.png" typeof="Image" />'+
+                                    '</a>'+
+                                    '<p>'+
+                                        '<a href="/main/facebook.shtml"><span class="fab fa-facebook-f footer-icon" role="img"'+
+                                                'aria-label="Facebook Icon"></span><span class="sr-only">facebook</span></a>'+
+                                            '<a href="/main/twitter.shtml"><span class="fab fa-twitter footer-icon" role="img"'+
+                                                'aria-label="Twitter Icon"></span><span class="sr-only">twitter</span></a>'+
+                                            '<a href="/main/instagram.shtml"><span class="fab fa-instagram footer-icon" role="img"'+
+                                                'aria-label= "Instagram Icon"></span><span class="sr-only">instagram</span></a>'+
+                                            '<a href="https://www.snapchat.com/add/ualbany"><span class="fab fa-snapchat-ghost footer-icon" role="img"'+
+                                                'aria-label="Snapchat Icon"></span><span class="sr-only">snapchat</span></a>'+
+                                            '<a href="/main/youtube.shtml"><span class="fab fa-youtube footer-icon" role="img"'+
+                                                'aria-label="YouTube Icon"></span><span class="sr-only">youtube</span></a>'+
+                                            '<a href="/main/linkedin.shtml"><span class="fab fa-linkedin-in footer-icon" role="img"'+
+                                                'aria-label="LinkedIn Icon"></span><span class="sr-only">linkedin</span></a>'+
+                                    '</p>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="footer-end">'+
+                                '<div class="col-sm-12 address-phone" style="width:50%;">'+
+                                    '<a href="https://www.google.com/maps/place/1400+Washington+Ave,+Albany,+NY+12222/@42.6859115,-73.8287166,17z/data=!3m1!4b1!4m5!3m4!1s0x89de0b3ce5c93e45:0x4cdbe8d7b52fa412!8m2!3d42.6859115!4d-73.8265279"'+
+                                        'target="_blank">1400 Washington Avenue, Albany, NY 12222</a> | Phone: <a'+
+                                        'href="tel:5184423300">518-442-3300</a>'+
+                                '</div>'+
+                                '<div class="col-sm-12 copyright" style="width:50%;">'+
+                                    '©2020 University at Albany |'+
+                                    '<a href="/web-services/web-accessibility"> Accessibility</a> |'+
+                                    '<a href="https://wiki.albany.edu/display/public/askit/Internet+Privacy+Policy"> Privacy Policy</a> |'+
+                                    '<a href="http://www.albany.edu/equity-compliance/"> Title IX</a>'+
+                                '</div> '+
+                            '</div>'+
                         '</div>'+
-                        '<address>'+
-                            '<a href="https://www.google.com/maps/place/1400+Washington+Ave,+Albany,+NY+12222/@42.6859115,-73.8287166,17z/data=!3m1!4b1!4m5!3m4!1s0x89de0b3ce5c93e45:0x4cdbe8d7b52fa412!8m2!3d42.6859115!4d-73.8265279"'+
-                            'target="_blank">'+
-                            '1400 Washington Avenue <br>'+
-                            'Albany, NY 12222'+
-                            '</a>'+
-                            '<br>Undergraduate Admissions: <a href="tel:5184425435">(518) 442-5435</a>'+
-                            '<br>Graduate Admissions: <a href="tel:5184423980">(518) 442-3980</a>'+
-                            '<br>Main: <a href="tel:5184423300">(518) 442-3300</a>'+
-                        '</address>'+
-                    '</div>'+
-                    '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">'+
-                        '<p class="footer-navigation-header">RESOURCES</p>'+
-                        '<ul class="footer-navigation">'+
-                            '<li><a href="https://wiki.albany.edu/display/middlestates2020/Middle+States+2020+Home" target="_self" rel="">Accreditation</a></li>'+
-                            '<li><a href="http://police.albany.edu/ASR.shtml">Campus Safety Report</a></li>'+
-                            '<li><a href="http://www.albany.edu/contact-ualbany">Contact Us</a></li>'+
-                            '<li><a href="http://www.albany.edu/main/employment.shtml">Jobs</a></li>'+
-                            '<li><a href="http://www.albany.edu/emergency/index.php">UAlbany Alert</a></li>'+
-                        '</ul>'+
-                    '</div>'+
-                    '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">'+
-                        '<p class="footer-navigation-header">TOPICS</p>'+
-                        '<ul class="footer-navigation">'+
-                            '<li><a href="http://www.albany.edu/diversityandinclusion/">Diversity and Inclusion</a></li>'+
-                            '<li><a href="http://www.albany.edu/strategicplan/">Strategic Planning &amp; Initiatives</a></li>'+
-                            '<li><a href="http://www.albany.edu/gogreen/">Sustainability</a></li>'+
-                            '<li><a href="http://www.albany.edu/equity-compliance/">Title IX</a></li>'+
-                            '<li><a href="http://www.albany.edu/accessible-web/">Web Accessibility</a></li>'+   
-                        '</ul>'+
-                    '</div>'+
+                    '</section>'+
                 '</div>'+
-                '<section id="copyright-content">'+
-                    '<p>© 2019&nbsp;University at Albany</p>'+
-                '</section>';
-    footer.innerHTML = content;
+            '</footer >';
+
+
+        // '<section id="copyright-content">'+
+        //     '<p>© 2020&nbsp;University at Albany</p>'+
+        // '</section>';
+        footer.innerHTML = content;
 }
 
-let getDistinctAttributes = function(objects, attribute){
-    let mappedAttributes = objects.map(function(object){
+let getDistinctAttributes = function (objects, attribute) {
+    let mappedAttributes = objects.map(function (object) {
         return object[attribute];
     });
-    let distinctAttributes = mappedAttributes.filter(function(v, i, a){
+    let distinctAttributes = mappedAttributes.filter(function (v, i, a) {
         return a.indexOf(v) === i;
-     });
+    });
 
     return distinctAttributes;
 }
 
-let appendMainContent = function(maincontentContainer, content){
+let appendMainContent = function (maincontentContainer, content) {
     let mainContentElement = document.createElement('div');
     mainContentElement.classList.add('accordion');
     mainContentElement.id = 'accordionExample';
@@ -235,22 +221,22 @@ let appendMainContent = function(maincontentContainer, content){
     maincontentContainer.appendChild(mainContentElement);
 }
 
-  //////////////////////
-  const hamburger = document.querySelector('.header .nav-bar .nav-list .hamburger');
+//////////////////////
+const hamburger = document.querySelector('.header .nav-bar .nav-list .hamburger');
 const mobile_menu = document.querySelector('.header .nav-bar .nav-list ul');
 const menu_item = document.querySelectorAll('.header .nav-bar .nav-list ul li a');
 const header = document.querySelector('.header.container');
 
 hamburger.addEventListener('click', () => {
-	hamburger.classList.toggle('active');
-	mobile_menu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+    mobile_menu.classList.toggle('active');
 });
 
 //  
 
 menu_item.forEach((item) => {
-	item.addEventListener('click', () => {
-		hamburger.classList.toggle('active');
-		mobile_menu.classList.toggle('active');
-	});
+    item.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobile_menu.classList.toggle('active');
+    });
 });
