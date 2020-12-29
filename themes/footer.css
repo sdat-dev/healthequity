@@ -176,10 +176,12 @@ footer.footer .footer-end {
 
 footer.footer .footer-end .address-phone {
     padding: 2em 0 0;
+    font-size: 14.4px;
 }
 
 footer.footer .footer-end .copyright {
     padding: 0.5em 0 2em;
+    font-size: 14.4px;
 }
 
 footer.footer .footer-end a {
