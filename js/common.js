@@ -162,17 +162,17 @@ addfooter = function () {
                                         'src="./assets/images/UAlbany-logo.png" typeof="Image" />'+
                                     '</a>'+
                                     '<p>'+
-                                        '<a href="/main/facebook.shtml"><span class="fab fa-facebook-f footer-icon" role="img"'+
+                                        '<a href="https://www.facebook.com/universityatalbany"><span class="fab fa-facebook-f footer-icon" role="img"'+
                                                 'aria-label="Facebook Icon"></span><span class="sr-only">facebook</span></a>'+
-                                            '<a href="/main/twitter.shtml"><span class="fab fa-twitter footer-icon" role="img"'+
+                                            '<a href="https://twitter.com/ualbany/"><span class="fab fa-twitter footer-icon" role="img"'+
                                                 'aria-label="Twitter Icon"></span><span class="sr-only">twitter</span></a>'+
-                                            '<a href="/main/instagram.shtml"><span class="fab fa-instagram footer-icon" role="img"'+
+                                            '<a href="https://www.instagram.com/ualbany/"><span class="fab fa-instagram footer-icon" role="img"'+
                                                 'aria-label= "Instagram Icon"></span><span class="sr-only">instagram</span></a>'+
                                             '<a href="https://www.snapchat.com/add/ualbany"><span class="fab fa-snapchat-ghost footer-icon" role="img"'+
                                                 'aria-label="Snapchat Icon"></span><span class="sr-only">snapchat</span></a>'+
-                                            '<a href="/main/youtube.shtml"><span class="fab fa-youtube footer-icon" role="img"'+
+                                            '<a href="https://www.youtube.com/c/ualbany"><span class="fab fa-youtube footer-icon" role="img"'+
                                                 'aria-label="YouTube Icon"></span><span class="sr-only">youtube</span></a>'+
-                                            '<a href="/main/linkedin.shtml"><span class="fab fa-linkedin-in footer-icon" role="img"'+
+                                            '<a href="https://www.linkedin.com/school/university-at-albany/"><span class="fab fa-linkedin-in footer-icon" role="img"'+
                                                 'aria-label="LinkedIn Icon"></span><span class="sr-only">linkedin</span></a>'+
                                     '</p>'+
                                 '</div>'+
