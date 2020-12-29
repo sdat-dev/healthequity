@@ -159,7 +159,7 @@ addfooter = function () {
                                 '<div class="col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-4 col-lg-offs et-4">'+
                                     '<a href="https://www.albany.edu/">'+
                                         '<img alt="University at Albany Logo" class=" img-responsive footer-logo" height="39"'+
-                                        'src="../assets/images/UAlbany-logo.png" typeof="Image" />'+
+                                        'src="./assets/images/UAlbany-logo.png" typeof="Image" />'+
                                     '</a>'+
                                     '<p>'+
                                         '<a href="/main/facebook.shtml"><span class="fab fa-facebook-f footer-icon" role="img"'+
