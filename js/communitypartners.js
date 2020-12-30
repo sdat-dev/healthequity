@@ -217,4 +217,4 @@ let formatText = function(text){
     return result;
 }
 
-$('.carousel').carousel({pause: false});
+let carousel = document.getElementsByClassName('carousel')[0]
