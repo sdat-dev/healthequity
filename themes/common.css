@@ -110,6 +110,7 @@ Primary use:    Common.css file used for styling header and
 #page-header{
     width: 100%;
     position: relative;
+    padding-top: 134px;
 }
 
 .learn-more-text {
@@ -395,6 +396,14 @@ Primary use:    Common.css file used for styling header and
 
 .logo{
     margin-right: 10px;
+}
+
+.w-100 {
+    width: 100%!important;
+}
+
+.none-list li::marker{
+    content: "";
 }
 
 @media only screen and (max-width: 340px)

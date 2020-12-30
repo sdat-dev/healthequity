@@ -43,8 +43,17 @@ button.btn-link, button.btn-link > .content-header-no-margin{
 
 button.btn-link{
     width: 100%;
-    padding: 10px;
+    padding: 10px !important;
     text-align: left;
+}
+
+button.btn-link h3{
+    margin-top: 0;
+}
+
+button.btn-link:focus{
+    border: none;
+    outline: none;
 }
 
 .card{

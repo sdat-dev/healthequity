@@ -1,4 +1,4 @@
-$(window).on("load", function () {
+window.onload = function () {
     let requestURL = "data/communitypartners.json"; 
     let datarequestURL = "data/communitypartnersdata.json"; 
     let request =  axios.get(requestURL);
@@ -89,7 +89,7 @@ $(window).on("load", function () {
     })).catch(errors => {
         console.log(errors);
     })
-});
+}
 
 let addheader =  function (headers){
     let header = document.getElementById("page-header");

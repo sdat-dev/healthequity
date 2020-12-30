@@ -1,9 +1,9 @@
-let sidemenuItems = [{ "item": "Home", "link": "home.html" }, { "item": "Background", "link": "background.html" }, { "item": "Agenda", "link": "agenda.html", "subItems": [{ "item": "Speakers", "link": "speakers.html" }, { "item": "Zoom Links", "link": "zoomlinks.html" }, { "item": "Workshop Assets", "link": "workshopassets.html" }] }, { "item": "Who is Participating", "link": "whoisparticipating.html" }, { "item": "How to Join", "link": "howtojoin.html" }, { "item": "Researchers", "link": "researchers.html" }, { "item": "Community Partners", "link": "communitypartners.html" }, { "item": "Planning Committee", "link": "planningcommittee.html" }, { "item": "Questions", "link": "questions.html" }]
+let sidemenuItems = [{"item":"Home","link":"home.html"},{"item":"Background","link":"background.html"},{"item":"Agenda","link":"agenda.html","subItems":[{"item":"Speakers","link":"speakers.html"},{"item":"Zoom Links","link":"zoomlinks.html"},{"item":"Workshop Assets","link":"workshopassets.html"}]},{"item":"Who is Participating","link":"whoisparticipating.html"},{"item":"How to Join","link":"howtojoin.html"},{"item":"Researchers","link":"researchers.html"},{"item":"Community Partners","link":"communitypartners.html"},{"item":"Planning Committee","link":"planningcommittee.html"},{"item":"Questions","link":"questions.html"}]
 //SideMenu Start
 //What evet written  before '//SideMenu Start' will be relace with sidemenuItems in automation scripts
 
 let addsidemenu = function (page) {
-    let sidemenu = document.getElementById('navigation-bar');
+    let sidemenu = document.getElementById('side-menu');
 
     for (let i = 0; i < sidemenuItems.length; i++) {
         let item = sidemenuItems[i];
@@ -104,16 +104,14 @@ let generateAccordionElem = function (level, collapseId, headerId, parentId, chi
 let createTabNavigation = function (distincttabs, tabname) {
     let navigationContent = '<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">';
     for (let i = 0; i < distincttabs.length; i++) {
-        let buttonContent = '';
+        let linkElement = '';
         let tabId = tabname + i.toString();
         if (i == 0) {
-            buttonContent = '<a class="nav-link active" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a>';
+            linkElement = '<li class="nav-item active"><a class="nav-link active" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a></li>';
         }
         else {
-            buttonContent = '<a class="nav-link" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a>';
+            linkElement = '<li class="nav-item"><a class="nav-link" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="false">' + distincttabs[i] + '</a></li>';
         }
-
-        let linkElement = '<li class="nav-item">' + buttonContent + '</li>';
         navigationContent = navigationContent + linkElement;
     }
     navigationContent += '</ul>';
@@ -126,7 +124,7 @@ let buildTabContent = function (distincttabs, tabname, tabContent) {
     for (let i = 0; i < distincttabs.length; i++) {
         let tabId = tabname + i.toString();
         if (i == 0) {
-            content += '<div class="tab-pane fade show active" id="pills-' + tabId + '" role="tabpanel" aria-labelledby="pills-' + tabId + '-tab">';
+            content += '<div class="tab-pane fade show active in" id="pills-' + tabId + '" role="tabpanel" aria-labelledby="pills-' + tabId + '-tab">';
         }
         else {
             content += '<div class="tab-pane fade" id="pills-' + tabId + '" role="tabpanel" aria-labelledby="pills-' + tabId + '-tab">';
