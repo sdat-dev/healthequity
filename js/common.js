@@ -154,7 +154,7 @@ addfooter = function () {
 
                         '<div class="field field--name-body field--type-text-with-summary field--label-hidden field--item">'+
                             '<div class="footer-new">'+
-                                '<div class="col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-4 col-lg-offs et-4">'+
+                                '<div class="col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">'+
                                     '<a target="_blank" href="https://www.albany.edu/">'+
                                         '<img alt="University at Albany Logo" class=" img-responsive footer-logo" height="39"'+
                                         'src="./assets/images/UAlbany-logo.png" typeof="Image" />'+
@@ -176,17 +176,18 @@ addfooter = function () {
                                 '</div>'+
                             '</div>'+
                             '<div class="footer-end">'+
-                                '<div class="col-sm-12 address-phone" style="width:50%; float:left;">'+
-                                    '<a target="_blank" href="https://www.google.com/maps/place/1400+Washington+Ave,+Albany,+NY+12222/@42.6859115,-73.8287166,17z/data=!3m1!4b1!4m5!3m4!1s0x89de0b3ce5c93e45:0x4cdbe8d7b52fa412!8m2!3d42.6859115!4d-73.8265279"'+
+                            '<div class="col-sm-12 col-md-6 address-phone">'+
+                            '<a target="_blank" href="https://www.google.com/maps/place/1400+Washington+Ave,+Albany,+NY+12222/@42.6859115,-73.8287166,17z/data=!3m1!4b1!4m5!3m4!1s0x89de0b3ce5c93e45:0x4cdbe8d7b52fa412!8m2!3d42.6859115!4d-73.8265279"'+
                                         'target="_blank">1400 Washington Avenue, Albany, NY 12222</a> | Phone: <a'+
                                         'target="_blank" href="tel:5184423300">518-442-3300</a>'+
                                 '</div>'+
-                                '<div class="col-sm-12 copyright" style="width:50%; float:left;">'+
-                                    '©2021 University at Albany |'+
-                                    '<a target="_blank" href="https://www.albany.edu/web-services"> Accessibility</a> |'+
-                                    '<a target="_blank" href="https://wiki.albany.edu/display/public/askit/Internet+Privacy+Policy"> Privacy Policy</a> |'+
-                                    '<a target="_blank" href="http://www.albany.edu/equity-compliance/"> Title IX</a>'+
-                                '</div> '+
+                                '<div class="col-sm-12 col-md-6 copyright" style="align:center;">'+
+                                '©2021 University at Albany |'+
+                                '<a target="_blank" href="https://www.albany.edu/web-services"> Accessibility</a> |'+
+                                '<a target="_blank" href="https://wiki.albany.edu/display/public/askit/Internet+Privacy+Policy"> Privacy Policy</a> |'+
+                                '<a target="_blank" href="http://www.albany.edu/equity-compliance/"> Title IX</a>'+
+                            '</div> '+
+
                             '</div>'+
                         '</div>'+
                     '</section>'+
