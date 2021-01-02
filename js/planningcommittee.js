@@ -131,7 +131,7 @@ let buildMembersContent = function(members){
 let buildMemberElement = function(member){
     let content = '';
     content +=  '<div class= "col-lg-4 col-md-4 col-sm-6 search-container" id="'+ (member.firstName.replace(/ /g, '')) +'">'+
-    '   <a target="_blank" href="' + member.profilepage + '"><img class="img-fluid mx-auto d-block member-img img-thumbnail" src="assets/images/Planning_Committee/' + member.photo + '" alt="member photo"></a>'  +
+    '   <p class="text-center"><a target="_blank" href="' + member.profilepage + '"><img class="img-fluid mx-auto d-block member-img img-thumbnail" src="assets/images/Planning_Committee/' + member.photo + '" alt="member photo"></a></p>'  +
     '   <p class="member-info">' + buildNameElement(member) +
     '   <br><span class="jobtitle">' + member.title +
     '   <br><span class="organization">' + member.organization +
