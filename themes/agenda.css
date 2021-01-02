@@ -1,0 +1,15 @@
+.panelist-img{
+
+    max-width: 175px;
+    height: auto;
+    border-radius: 50%;
+
+}
+
+.panelist-info{
+    text-align: center;
+}
+
+.panelist-info > .name{
+    font-weight: bold;
+}

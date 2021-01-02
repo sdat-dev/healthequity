@@ -24,7 +24,15 @@ function getTime(decimaltime) {
     if(min < 10){
         min = '0' + min;
     }
-    return hrs+':'+min; 
+    let time  = "";
+    if(hrs < 12 )
+        time = hrs+':'+min + ' ' + 'AM';
+    else if (hrs > 12)
+        time = (hrs -12) +':'+min + ' ' + 'PM';
+    else
+        time = hrs+':'+min + ' ' + 'PM';
+
+    return time; 
 }
 
 let buildSessionContent =  function (sessions){
@@ -46,19 +54,19 @@ let buildSessionContent =  function (sessions){
         conent +=   '<section class="session">'+
                         '<h3 class="content-header">'+ session[0].SessionTitle +'</h3>'+ 
                         '<h4>Time: '+ getTime(session[0].StartTime) +' - '+ getTime(session[0].EndTime) +', January 8</h4>'+
-                        '<h4>Location: '+ session[0].ZoomLink + '</h4>' +
+                        '<h4>Zoon Link: <a href="'+ session[0].ZoomLink + '">'+session[0].ZoomLink+'</a></h4>' +
                         '<p>'+ session[0].PanelDescription +'</p>'+
                         '<div class = "display-flex">'+
                         '<div class= "col-xs-12"><h3 class="content-header">Panelists</h3></div>';
         for(var j = 0; j < panelists.length; j++){
             let member = panelists[j];
-            conent += '<div class= "col-lg-4 col-md-4 col-sm-6" id="'+ (member.FirstName.replace(/ /g, '')) +'">'+
+            conent += '<div class= "col-lg-3 col-md-3 col-sm-3" id="'+ (member.FirstName.replace(/ /g, '')) +'">'+
             '   <p class="text-center"><a target="_blank" href="' + member.FirstName.toLowerCase() + member.LastName.toLowerCase()+ '.html">'+
-            '   <img class="img-fluid mx-auto d-block member-img img-thumbnail" src="assets/images/Panelists/' + member.Photo + '" alt="member photo"></a></p>'  +
-            '   <p class="member-info dont-break-out">' +  member.FirstName + ' ' + member.LastName + (member.DegreeCredential == ''? "": ', ' + member.DegreeCredential) +
-            '   <br><span class="jobtitle dont-break-out">' + member.JobTitle +
-            (member.Department == ""? "": '<br><span class="department dont-break-out">' + member.Department) +  
-            '   <br><span class="organization dont-break-out">' + member.Organization +
+            '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="assets/images/Panelists/' + member.Photo + '" alt="panelist photo"></a></p>'  +
+            '   <p class="panelist-info dont-break-out"><class="name">' +  member.FirstName + ' ' + member.LastName + (member.DegreeCredential == ''? ",": ', ' + member.DegreeCredential+ ',') + '</name>'+
+            '   <br><span class="jobtitle">' + member.JobTitle + ',' +
+            (member.Department == ""? "": '<br><span class="department">' + member.Department + ',') +  
+            '   <br><span class="organization">' + member.Organization +
             '   </p>' + 
             '</div>';   
         }
@@ -68,9 +76,9 @@ let buildSessionContent =  function (sessions){
                         '<div class= "col-xs-12"><h3 class="content-header">Moderator</h3></div>';
             for(var j = 0; j < moderators.length; j++){
                 let member = moderators[j];
-                conent += '<div class= "col-lg-4 col-md-4 col-sm-6" id="'+ (member.FirstName.replace(/ /g, '')) +'">'+
-                '   <a target="_blank" href="' + member.FirstName.toLowerCase() + member.LastName.toLowerCase()+ '.html">'+
-                '   <img class="img-fluid mx-auto d-block member-img img-thumbnail" src="assets/images/Panelists/' + member.Photo + '" alt="member photo"></a>'  +
+                conent += '<div class= "col-lg-3 col-md-3 col-sm-3" id="'+ (member.FirstName.replace(/ /g, '')) +'">'+
+                '   <p class="text-center"><a target="_blank" href="' + member.FirstName.toLowerCase() + member.LastName.toLowerCase()+ '.html">'+
+                '   <img class="img-fluid mx-auto d-block member-img img-thumbnail" src="assets/images/Panelists/' + member.Photo + '" alt="member photo"></a></p>'  +
                 '   <p class="member-info dont-break-out">' +  member.FirstName + ' ' + member.LastName + (member.DegreeCredential == ''? "": ', ' + member.DegreeCredential) +
                 '   <br><span class="jobtitle dont-break-out">' + member.JobTitle +
                 (member.Department == ""? "": '<br><span class="department dont-break-out">' + member.Department) +  
