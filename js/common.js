@@ -182,7 +182,7 @@ addfooter = function () {
                                         'target="_blank" href="tel:5184423300">518-442-3300</a>'+
                                 '</div>'+
                                 '<div class="col-sm-12 copyright" style="width:50%; float:left;">'+
-                                    '©2020 University at Albany |'+
+                                    '©2021 University at Albany |'+
                                     '<a target="_blank" href="https://www.albany.edu/web-services"> Accessibility</a> |'+
                                     '<a target="_blank" href="https://wiki.albany.edu/display/public/askit/Internet+Privacy+Policy"> Privacy Policy</a> |'+
                                     '<a target="_blank" href="http://www.albany.edu/equity-compliance/"> Title IX</a>'+
