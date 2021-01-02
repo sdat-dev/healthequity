@@ -442,7 +442,6 @@ a:visited.button{
 html input[type="button"],input[type="reset"],
 input[type="submit"],button,.button,a.button{
     text-transform:none;
-    line-height:.8em;
 }
 
 a.button:hover{
