@@ -72,7 +72,7 @@ window.onload = function () {
                 }
             }
         }
-        content += '<input id = "search-box" placeholder = "Search Experts...">'+
+        content += '<input id = "search-box" placeholder = "Search Researchers...">'+
                     '<button id = "search-button" type = "submit"><i class="fa fa-search"></i></button>'+
                 '<br><span id = "search-box-results"></span>';
         content +='<div id="experts-content">'+buildResearchersContent(researchers)+'</div>';
