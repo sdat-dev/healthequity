@@ -1,5 +1,5 @@
 .nav-pills, .nav-item a, .nav-links {
-    color: #004C93;
+    color: #46166b;
     text-transform: uppercase;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .partner-info a{
-    color: #004C93;
+    color: #46166b;
 }
 
 .partner-logo{
@@ -22,7 +22,7 @@
 }
 
 .btn-mav{
-    background-color: #004C93;
+    background-color: #46166b;
     color: white;
 }
 
@@ -31,9 +31,9 @@
 }
 
 .btn:hover {
-    border:2px solid #004C93;
+    border:2px solid #46166b;
     background-color: white;
-    color: #004C93;
+    color: #46166b;
     text-decoration: none;
 }
 
@@ -48,12 +48,12 @@
 } 
 
 .address span{
-    color: #004C93;
+    color: #46166b;
     text-transform: uppercase;
 }
 
 .poc span{
-    color: #004C93;
+    color: #46166b;
     text-transform: uppercase;
 }
 

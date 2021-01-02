@@ -107,7 +107,7 @@ let createTabNavigation = function (distincttabs, tabname) {
         let linkElement = '';
         let tabId = tabname + i.toString();
         if (i == 0) {
-            linkElement = '<li class="nav-item active"><a class="nav-link active" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a></li>';
+            linkElement = '<li class="nav-item active"><a class="nav-link active" style="background-color:46166b;" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a></li>';
         }
         else {
             linkElement = '<li class="nav-item"><a class="nav-link" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="false">' + distincttabs[i] + '</a></li>';
