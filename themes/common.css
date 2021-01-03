@@ -69,9 +69,23 @@ Primary use:    Common.css file used for styling header and
     text-transform: uppercase;
 }
 
-.content a{
-    color:#009EE0;
+.content a {
+    color: black !important;
+    background-repeat: no-repeat;
+    background-size: 100% 0.2em;
+    background-position: 0 106%;
+    transition: background-size 0.15s ease-in;
+    color: #444;
+    text-decoration: underline !important;
+    text-decoration-color: #edba32 !important;
 }
+
+.content a:hover{
+    background-image: linear-gradient(120deg, #edba32 0%, #edba32 100%);
+    background-size: 105% 105%;
+    cursor: pointer;
+    text-decoration: none !important;
+} 
 
 .content-header-top-bottom-margin{
     color: #46166C;
@@ -92,7 +106,6 @@ Primary use:    Common.css file used for styling header and
 }
 
 .email-link {
-    text-decoration: underline;
     color: black !important;
     background-repeat: no-repeat;
     background-size: 100% 0.2em;
@@ -100,6 +113,7 @@ Primary use:    Common.css file used for styling header and
     transition: background-size 0.15s ease-in;
     color: #444;
     text-decoration: underline !important;
+    text-decoration-color: #edba32 !important;
 }
 
 .email-link:hover{
