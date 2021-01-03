@@ -349,8 +349,8 @@ h1.center-page-title{
 
 p{
     font-size:1.1em;
-    color:#46166b !important;
-    text-align: center;
+    font-weight:300;
+    color:#333;
 }
 
 .academics{
