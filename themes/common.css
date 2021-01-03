@@ -75,8 +75,8 @@ Primary use:    Common.css file used for styling header and
     background-position: 0 106%;
     transition: background-size 0.15s ease-in;
     color: #46166B !important;
-    text-decoration: underline !important;
-    text-decoration-color: #edba32 !important;
+    /* text-decoration: underline !important;
+    text-decoration-color: #edba32 !important; */
 }
 
 .content a:hover{
@@ -156,7 +156,7 @@ Primary use:    Common.css file used for styling header and
 
 .no-link-decoration {
     color: #46166b;
-    text-decoration: none;
+    text-decoration: none !important;
     font-size: 28px;
 }
 
