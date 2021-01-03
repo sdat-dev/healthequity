@@ -2,7 +2,7 @@ let sidemenuItems = [{"item":"Home","link":"home.html"},{"item":"Background","li
 //SideMenu Start
 //What evet written  before '//SideMenu Start' will be relace with sidemenuItems in automation scripts
 
-let addsidemenu = function (page, extraindirection = false) {
+let addsidemenu = function (page, markactive = true, extraindirection = false) {
     let sidemenu = document.getElementById('side-menu');
 
     for (let i = 0; i < sidemenuItems.length; i++) {
@@ -58,7 +58,7 @@ let addsidemenu = function (page, extraindirection = false) {
             sidemenu.appendChild(menuItem);
             menuItem = document.createElement("div");
             menuItem.classList.add('expanded-navigation-item');
-            let submenu = buildsubmenu(item.subItems, page, extraindirection);
+            let submenu = buildsubmenu(item.subItems, page, markactive, extraindirection);
             menuItemContent = submenu;
             menuItem.innerHTML = menuItemContent;
             sidemenu.appendChild(menuItem);
@@ -66,7 +66,7 @@ let addsidemenu = function (page, extraindirection = false) {
     }
 }
 
-let buildsubmenu = function (subitems, page, extraindirection) {
+let buildsubmenu = function (subitems, page, markactive, extraindirection) {
     let submenu = '<div id="sub-navigation-bar">';
     for (var j = 0; j < subitems.length; j++) {
         let link =subitems[j].link;
@@ -74,21 +74,21 @@ let buildsubmenu = function (subitems, page, extraindirection) {
                 link = '../'+ link;
         if (j == 0) {
             submenu += '<div class="first-sub-navigation-item hover-highlight"';
-            if (page == subitems[j].item) {
+            if (page == subitems[j].item && markactive) {
                 submenu += ' id = "active-page"';
             }
             submenu += '><a href="' + link + '">' + subitems[j].item + '</a></div>';
         }
         else if (j == subitems.length - 1) {
             submenu += '<div class="last-sub-navigation-item hover-highlight"';
-            if (page == subitems[j].item) {
+            if (page == subitems[j].item && markactive) {
                 submenu += ' id = "active-page"';
             }
             submenu += '><a href="' + link + '">' + subitems[j].item + '</a></div>';
         }
         else {
             submenu += '<div class="sub-navigation-items hover-highlight"';
-            if (page == subitems[j].item) {
+            if (page == subitems[j].item && markactive) {
                 submenu += ' id = "active-page"';
             }
             submenu += '><a href="' + link + '">' + subitems[j].item + '</a></div>';
