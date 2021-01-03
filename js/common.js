@@ -2,7 +2,7 @@ let sidemenuItems = [{"item":"Home","link":"home.html"},{"item":"Background","li
 //SideMenu Start
 //What evet written  before '//SideMenu Start' will be relace with sidemenuItems in automation scripts
 
-let addsidemenu = function (page) {
+let addsidemenu = function (page, extraindirection = false) {
     let sidemenu = document.getElementById('side-menu');
 
     for (let i = 0; i < sidemenuItems.length; i++) {
@@ -31,7 +31,8 @@ let addsidemenu = function (page) {
             else {
                 link = item.link;
             }
-
+            if(extraindirection)
+                link = '../'+ link;
             let menuItem = document.createElement("div");
             let menuItemContent = '<a href="' + link + '">' + item.item + '</a>';
             menuItem.innerHTML = menuItemContent;
@@ -44,7 +45,10 @@ let addsidemenu = function (page) {
         }
         else {
             let menuItem = document.createElement("div");
-            let menuItemContent = '<a href="' + (item.link != '#' ? item.link : subitems[0].link) + '">' + item.item + '</a>';
+            let menuItemContent = '<a href="';
+            if(extraindirection)
+                menuItemContent += '../';
+            menuItemContent += (item.link != '#' ? item.link : subitems[0].link) + '">' + item.item + '</a>';
             menuItem.innerHTML = menuItemContent;
             menuItem.classList.add('navigation-items');
             menuItem.classList.add('hover-highlight');
@@ -54,7 +58,7 @@ let addsidemenu = function (page) {
             sidemenu.appendChild(menuItem);
             menuItem = document.createElement("div");
             menuItem.classList.add('expanded-navigation-item');
-            let submenu = buildsubmenu(item.subItems, page);
+            let submenu = buildsubmenu(item.subItems, page, extraindirection);
             menuItemContent = submenu;
             menuItem.innerHTML = menuItemContent;
             sidemenu.appendChild(menuItem);
@@ -62,29 +66,32 @@ let addsidemenu = function (page) {
     }
 }
 
-let buildsubmenu = function (subitems, page) {
+let buildsubmenu = function (subitems, page, extraindirection) {
     let submenu = '<div id="sub-navigation-bar">';
     for (var j = 0; j < subitems.length; j++) {
+        let link =subitems[j].link;
+        if(extraindirection)
+                link = '../'+ link;
         if (j == 0) {
             submenu += '<div class="first-sub-navigation-item hover-highlight"';
             if (page == subitems[j].item) {
                 submenu += ' id = "active-page"';
             }
-            submenu += '><a href="' + subitems[j].link + '">' + subitems[j].item + '</a></div>';
+            submenu += '><a href="' + link + '">' + subitems[j].item + '</a></div>';
         }
         else if (j == subitems.length - 1) {
             submenu += '<div class="last-sub-navigation-item hover-highlight"';
             if (page == subitems[j].item) {
                 submenu += ' id = "active-page"';
             }
-            submenu += '><a href="' + subitems[j].link + '">' + subitems[j].item + '</a></div>';
+            submenu += '><a href="' + link + '">' + subitems[j].item + '</a></div>';
         }
         else {
             submenu += '<div class="sub-navigation-items hover-highlight"';
             if (page == subitems[j].item) {
                 submenu += ' id = "active-page"';
             }
-            submenu += '><a href="' + subitems[j].link + '">' + subitems[j].item + '</a></div>';
+            submenu += '><a href="' + link + '">' + subitems[j].item + '</a></div>';
         }
     }
 
@@ -202,6 +209,8 @@ addfooter = function () {
 }
 
 let getDistinctAttributes = function (objects, attribute) {
+    if(objects == null)
+        return [];
     let mappedAttributes = objects.map(function (object) {
         return object[attribute];
     });
