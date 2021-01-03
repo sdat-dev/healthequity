@@ -109,15 +109,15 @@ let generateAccordionElem = function (level, collapseId, headerId, parentId, chi
 }
 
 let createTabNavigation = function (distincttabs, tabname) {
-    let navigationContent = '<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">';
+    let navigationContent = '<ul class="nav nav-pills" id="pills-tab" role="tablist">';
     for (let i = 0; i < distincttabs.length; i++) {
         let linkElement = '';
         let tabId = tabname + i.toString();
         if (i == 0) {
-            linkElement = '<li class="nav-item active"><a class="nav-link active" style="background-color:46166b;" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a></li>';
+            linkElement = '<li class="nav-item active"><a class="nav-link active" style="text-transform: uppercase !important; text-decoration: none !important;" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a></li>';
         }
         else {
-            linkElement = '<li class="nav-item"><a class="nav-link" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="false">' + distincttabs[i] + '</a></li>';
+            linkElement = '<li class="nav-item inactive"><a class="nav-link inactive" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="false">' + distincttabs[i] + '</a></li>';
         }
         navigationContent = navigationContent + linkElement;
     }
