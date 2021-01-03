@@ -74,7 +74,7 @@ Primary use:    Common.css file used for styling header and
     background-size: 100% 0.2em;
     background-position: 0 106%;
     transition: background-size 0.15s ease-in;
-    color: #444 !important;
+    color: #46166B !important;
     text-decoration: underline !important;
     text-decoration-color: #edba32 !important;
 }
