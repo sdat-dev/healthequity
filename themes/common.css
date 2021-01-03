@@ -91,6 +91,24 @@ Primary use:    Common.css file used for styling header and
     background: url('../assets/images/bkg-gray-pattern-tile.png');
 }
 
+.email-link {
+    text-decoration: underline;
+    color: black !important;
+    background-repeat: no-repeat;
+    background-size: 100% 0.2em;
+    background-position: 0 106%;
+    transition: background-size 0.15s ease-in;
+    color: #444;
+    text-decoration: underline !important;
+}
+
+.email-link:hover{
+    background-image: linear-gradient(120deg, #edba32 0%, #edba32 100%);
+    background-size: 105% 105%;
+    cursor: pointer;
+    text-decoration: none !important;
+} 
+
 .display-flex {
     display: flex;
     flex-wrap: wrap;
