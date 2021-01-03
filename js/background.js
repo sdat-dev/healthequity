@@ -54,7 +54,7 @@ request.onload = function(){
         }
         else if(type == 'li')
         {
-            content += '<li>'+ element.content +'</li>';
+            content += '<li style="padding-bottom:10px;">'+ element.content +'</li>';
         }
         else if(type == '/ul')
         {
