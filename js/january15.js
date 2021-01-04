@@ -167,7 +167,8 @@ let buildSessionContent =  function (sessions){
             for(var j = 0; j < panelists.length; j++){
                 let member = panelists[j];
                 conent += '<div class= "col-lg-3 col-md-3 col-sm-3" id="'+ (member.FirstName.replace(/ /g, '')) +'">'+
-                '   <p class="text-center"><a href="'+ ((member.FirstName == ""|| member.LastName == "")? '#':'agenda/' + member.FirstName.toLowerCase() + member.LastName.toLowerCase()+ '.html') +'">'+
+                '   <p class="text-center"><a href="'+ ((member.FirstName == ""|| member.LastName == "")? '#':'agenda/' + 
+                (member.FirstName.split(/\.|\ |-/).join("") + member.LastName.split(/\.|\ |-/).join("")).toLowerCase()+ '.html') +'">'+
                 '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="assets/images/Panelists/' + member.Photo + '" alt="panelist photo"></a></p>'  +
                 '   <p class="panelist-info dont-break-out"><span class="name">' +  member.FirstName + ' ' + member.LastName + '</span> ' + (member.DegreeCredential == ''? ",": ', ' + member.DegreeCredential+ ',') +
                 (member.JobTitle == ""? "" : '<br><span class="jobtitle">' + member.JobTitle + '</span>,')+
@@ -184,7 +185,8 @@ let buildSessionContent =  function (sessions){
             for(var j = 0; j < moderators.length; j++){
                 let member = moderators[j];
                 conent += '<div class= "col-lg-3 col-md-3 col-sm-3" id="'+ (member.FirstName.replace(/ /g, '')) +'">'+
-                '   <p class="text-center"><a href="'+ ((member.FirstName == ""|| member.LastName == "")? '#':'agenda/' + member.FirstName.toLowerCase() + member.LastName.toLowerCase()+ '.html') +'">'+
+                '   <p class="text-center"><a href="'+ ((member.FirstName == ""|| member.LastName == "")? '#':'agenda/' + 
+                (member.FirstName.split(/\.|\ |-/).join("") + member.LastName.split(/\.|\ |-/).join("")).toLowerCase()+ '.html') +'">'+
                 '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="assets/images/Panelists/' + member.Photo + '" alt="member photo"></a></p>'  +
                 '   <p class="panelist-info dont-break-out"><span class="name">' +  member.FirstName + ' ' + member.LastName + (member.DegreeCredential == ''? "": ', ' + member.DegreeCredential + ',') + '</span>'+
                 (member.JobTitle == ""? "" : '<br><span class="jobtitle">' + member.JobTitle + '</span>,')+
