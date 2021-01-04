@@ -54,7 +54,7 @@ request.onload = function(){
         }
         else if(type == 'li')
         {
-            content += '<li style="padding-bottom:10px;">'+ element.content +'</li>';
+            content += '<li>'+ element.content +'</li>';
         }
         else if(type == '/ul')
         {
@@ -130,7 +130,7 @@ let addheader =  function (headers){
             content += '<div class="carousel-item">';
         }
         if(header1==''){
-            content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
+            content +=  '<a target="_blank" href = "https://albany.az1.qualtrics.com/jfe/form/SV_7Vw1AmKqr14FT25"><img src="'+ source + image +'" class="d-block w-100" alt="..."></a>'+
         '</div>';
         }
         else{
