@@ -4,7 +4,7 @@
 }
 
 .partner-info{
-    margin-right: 15%;
+    margin-right: 5%;
     margin-bottom: 40px;
     min-height: 200px;
 }
@@ -46,6 +46,14 @@
 	-moz-transform: rotate(180deg);
 	transform: rotate(180deg);
 } 
+.address{
+    margin-bottom: 20px;
+}
+
+.poc{
+    padding-left: 0px!important;
+    margin-bottom: 20px;
+}
 
 .address span{
     color: #46166b;

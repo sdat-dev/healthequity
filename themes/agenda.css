@@ -8,8 +8,25 @@
 
 .panelist-info{
     text-align: center;
+    color: black;
 }
 
 .panelist-info > .name{
     font-weight: bold;
+}
+
+.content a {
+    background-repeat: no-repeat;
+    background-size: 100% 0.2em;
+    background-position: 0 106%;
+    transition: background-size 0.15s ease-in;
+    color: #46166b !important;
+    text-decoration: none !important;
+}
+
+.content a:hover {
+    background-image: linear-gradient(120deg, #edba32 0%, #edba32 100%);
+    background-size: 105% 105%;
+    cursor: pointer;
+    text-decoration: none !important;
 }
