@@ -165,15 +165,15 @@ let buildSessionContent =  function (sessions){
             conent +='<div class = "display-flex">'+
             '<div class= "col-xs-12"><h3 class="content-header">Panelists</h3></div>';
             for(var j = 0; j < panelists.length; j++){
-                let member = panelists[j];
-                conent += '<div class= "col-lg-3 col-md-3 col-sm-3" id="'+ (member.FirstName.replace(/ /g, '')) +'">'+
-                '   <p class="text-center"><a href="'+ ((member.FirstName == ""|| member.LastName == "")? '#':'agenda/' + 
-                (member.FirstName.split(/\.|\ |-/).join("") + member.LastName.split(/\.|\ |-/).join("")).toLowerCase()+ '.html') +'">'+
-                '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="assets/images/Panelists/' + member.Photo + '" alt="panelist photo"></a></p>'  +
-                '   <p class="panelist-info dont-break-out"><span class="name">' +  member.FirstName + ' ' + member.LastName + '</span> ' + (member.DegreeCredential == ''? ",": ', ' + member.DegreeCredential+ ',') +
-                (member.JobTitle == ""? "" : '<br><span class="jobtitle">' + member.JobTitle + '</span>,')+
-                (member.Department == ""? "": '<br><span class="department">' + member.Department + '</span>,') + 
-                (member.Organization  == ""? "": '<br><span class="organization">' + member.Organization + '</span>')+
+                let panelist = panelists[j];
+                conent += '<div class= "col-lg-3 col-md-3 col-sm-3" id="'+ (panelist.FirstName.replace(/ /g, '')) +'">'+
+                '   <p class="text-center"><a href="'+ ((panelist.FirstName == ""|| panelist.LastName == "")? '#':'agenda/' + 
+                (panelist.FirstName.split(/\.|\ |\,|-/).join("") + panelist.LastName.split(/\.|\ |\,|-/).join("")).toLowerCase()+ '.html') +'">'+
+                '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="assets/images/Panelists/' + panelist.Photo + '" alt="panelist photo"></a></p>'  +
+                '   <p class="panelist-info dont-break-out"><span class="name">' +  panelist.FirstName + ' ' + panelist.LastName + '</span>' + (panelist.DegreeCredential == ''? "": ', ' + panelist.DegreeCredential) +
+                (panelist.JobTitle == ""? "" : '<br><span class="jobtitle">' + panelist.JobTitle + '</span>,')+
+                (panelist.Department == ""? "": '<br><span class="department">' + panelist.Department + '</span>,') + 
+                (panelist.Organization  == ""? "": '<br><span class="organization">' + panelist.Organization + '</span>')+
                 '   </p>' + 
                 '</div>';   
             }
@@ -183,15 +183,15 @@ let buildSessionContent =  function (sessions){
             conent +='<div class = "display-flex">'+
                         '<div class= "col-xs-12"><h3 class="content-header">Moderator</h3></div>';
             for(var j = 0; j < moderators.length; j++){
-                let member = moderators[j];
-                conent += '<div class= "col-lg-3 col-md-3 col-sm-3" id="'+ (member.FirstName.replace(/ /g, '')) +'">'+
-                '   <p class="text-center"><a href="'+ ((member.FirstName == ""|| member.LastName == "")? '#':'agenda/' + 
-                (member.FirstName.split(/\.|\ |-/).join("") + member.LastName.split(/\.|\ |-/).join("")).toLowerCase()+ '.html') +'">'+
-                '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="assets/images/Panelists/' + member.Photo + '" alt="member photo"></a></p>'  +
-                '   <p class="panelist-info dont-break-out"><span class="name">' +  member.FirstName + ' ' + member.LastName + (member.DegreeCredential == ''? "": ', ' + member.DegreeCredential + ',') + '</span>'+
-                (member.JobTitle == ""? "" : '<br><span class="jobtitle">' + member.JobTitle + '</span>,')+
-                (member.Department == ""? "": '<br><span class="department">' + member.Department + '</span>,') + 
-                (member.Organization  == ""? "": '<br><span class="organization">' + member.Organization + '</span>')+
+                let moderator = moderators[j];
+                conent += '<div class= "col-lg-3 col-md-3 col-sm-3" id="'+ (moderator.FirstName.replace(/ /g, '')) +'">'+
+                '   <p class="text-center"><a href="'+ ((moderator.FirstName == ""|| moderator.LastName == "")? '#':'agenda/' + 
+                (moderator.FirstName.split(/\.|\ |\,|-/).join("") + moderator.LastName.split(/\.|\ |\,|-/).join("")).toLowerCase()+ '.html') +'">'+
+                '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="assets/images/Panelists/' + moderator.Photo + '" alt="panelist photo"></a></p>'  +
+                '   <p class="panelist-info dont-break-out"><span class="name">' +  moderator.FirstName + ' ' + moderator.LastName + '</span>' + (moderator.DegreeCredential == ''? "": ', ' + moderator.DegreeCredential) +
+                (moderator.JobTitle == ""? "" : '<br><span class="jobtitle">' + moderator.JobTitle + '</span>,')+
+                (moderator.Department == ""? "": '<br><span class="department">' + moderator.Department + '</span>,') + 
+                (moderator.Organization  == ""? "": '<br><span class="organization">' + moderator.Organization + '</span>')+
                 '   </p>' + 
                 '</div>'; 
             }
