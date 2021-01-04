@@ -115,7 +115,6 @@ let addheader = function (headers) {
         if (header1 == '') {
             content += '<img src="' + source + image + '" class="d-block w-100" alt="...">' +
                 '</div>';
-            console.log("if");
         }
         else if (header1.includes('link')) {
             console.log("else if");
@@ -129,12 +128,10 @@ let addheader = function (headers) {
                 '<p>' + header2 + '</p>' +
                 '</div>' +
                 '</div>';
-            console.log("else");
         }
     }
     content += '</div></div>';
     header.innerHTML = content;
-    console.log(content);
 }
 
 $('.carousel').carousel({
