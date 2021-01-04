@@ -135,7 +135,7 @@ let buildMemberElement = function(member){
     '   <p class="member-info">' + buildNameElement(member) +
     '   <br><span class="jobtitle">' + member.title +
     '   <br><span class="organization">' + member.organization +
-    '   <br><a href = mailto:' + member.email + ' class ="dont-break-out email">'+ member.email+ '</a>'+
+    '   <br><a href = mailto:' + member.email + ' class ="dont-break-out email-link">'+ member.email+ '</a>'+
     '   <br>'+ (member.phone != ""? member.phone : "" )+ 
     '   </p>' + 
     '</div>';   
