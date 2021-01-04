@@ -45,9 +45,8 @@ request.onload = function () {
             else
                 content += '<ul class="sub-list ' + element.content + '">';
         }
-        else if(type == 'li')
-        {
-            content += '<li>'+ element.content +'</li>';
+        else if (type == 'li') {
+            content += '<li style="padding-bottom:10px;">' + element.content + '</li>';
         }
         else if (type == '/ul') {
             content += '</ul>';
@@ -113,22 +112,26 @@ let addheader = function (headers) {
         else {
             content += '<div class="carousel-item">';
         }
-        if(header1==''){
-            content +=  '<a target="_blank" href = "https://albany.az1.qualtrics.com/jfe/form/SV_7Vw1AmKqr14FT25"><img src="'+ source + image +'" class="d-block w-100" alt="..."></a>'+
-        '</div>';
+        if (header1 == '') {
+            content += '<img src="' + source + image + '" class="d-block w-100" alt="...">' +
+                '</div>';
         }
-        else{
-            content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
-            '<div id = "landing-page-text-wrapper">'+
-                '<h1>'+ header1 +'</h1>' + 
-                '<p>' + header2 + '</p>' +      
-            '</div>'+
-        '</div>';
+        else if (header1.includes('link')) {
+            console.log("else if");
+            content += '<a target = "_blank" href="https://albany.az1.qualtrics.com/jfe/form/SV_7Vw1AmKqr14FT25"> <img src="' + source + image + '" class="d-block w-100" alt="..."></a>' +
+                '</div>';
+        }
+        else {
+            content += '<img src="' + source + image + '" class="d-block w-100" alt="...">' +
+                '<div id = "landing-page-text-wrapper">' +
+                '<h1>' + header1 + '</h1>' +
+                '<p>' + header2 + '</p>' +
+                '</div>' +
+                '</div>';
         }
     }
     content += '</div></div>';
     header.innerHTML = content;
-    console.log(content);
 }
 
 $('.carousel').carousel({
