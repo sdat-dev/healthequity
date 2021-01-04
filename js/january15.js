@@ -159,7 +159,7 @@ let buildSessionContent =  function (sessions){
         conent +=   '<section class="session">'+
                         '<h3 class="content-header">'+ session[0].SessionTitle +'</h3>'+ 
                         '<h4>Time: '+ getTime(session[0].StartTime) +' - '+ getTime(session[0].EndTime) +', January 15</h4>'+
-                        (session[0].ZoomLink == ""? "": '<h4>Zoon Link: <a href="'+ session[0].ZoomLink + '">'+session[0].ZoomLink+'</a></h4>') +
+                        (session[0].ZoomLink == ""? "": '<h4>Zoom Link: <a href="'+ session[0].ZoomLink + '">'+session[0].ZoomLink+'</a></h4>') +
                         '<p>'+ session[0].PanelDescription +'</p>';
         if(panelists.length != 0){
             conent +='<div class = "display-flex">'+
