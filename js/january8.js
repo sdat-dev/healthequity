@@ -147,11 +147,13 @@ let buildSessionContent =  function (sessions){
         });
 
         let panelists = session.filter(function(object){
-            return object.Role == "Panelist";
+            return object.Role == "Panelist" && 
+            object.FirstName != "" && object.LastName != "";
         });
 
         let moderators = session.filter(function(object){
-            return object.Role == "Moderator";
+            return object.Role == "Moderator" && 
+            object.FirstName != "" && object.LastName != "";
         });
 
         conent +=   '<section class="session">'+
