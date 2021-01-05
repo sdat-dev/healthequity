@@ -214,7 +214,7 @@ let buildUniversityResearcherElements = function(researchers){
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
         '>'+ researcher.Q13+ '</a><br>'+ (researcher.Q14 != ""? '<strong>Phone: </strong>'+ researcher.Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ 
         getResearchInterests(researcher) + '</p><p>' + researcher.Q42 +'</p>'+ generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
-        generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) + '<div>Counter:' + researcher.Q17 + '</div></div>';
+        generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) + '<div style="display:none">Counter:' + researcher.Q17 + '</div></div>';
     }
     return content;
 }
@@ -297,7 +297,7 @@ let buildOtherResearcherElements = function(researchers){
         (researcher.Q14 != ""? '<strong>Phone: </strong>'+ researcher.Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(researcher) + '</p>'+
         '<p>' + researchers[i].Q42 +'</p>'+generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
         (researcher["Q16"] == "University" ? generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) : '') +
-        '<div>Counter:'+researcher.Q17+'</div></div>';
+        '<div style="display:none">Counter:'+researcher.Q17+'</div></div>';
     }
     return content;
 }
