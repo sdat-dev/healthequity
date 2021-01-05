@@ -331,6 +331,8 @@ Primary use:    Common.css file used for styling header and
 
 .button-properties:hover {
     background-color: white;
+    color: #46166b;
+    border: 2px solid #46166b;
 } 
 
 #register-button{
