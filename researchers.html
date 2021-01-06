@@ -16,47 +16,12 @@
     <link rel="stylesheet" href="themes/custom-fonts.css" />
     <link rel="stylesheet" href="themes/footer.css" />
     <link rel="stylesheet" href="themes/home.css" />
-    <link rel="stylesheet" href="themes/experts.css" />
-    <link rel="stylesheet" href="themes/accordion-transparent-theme.css" />
-
     <title>
     </title>
 </head>
 <body>
-    <section id="header">
-        <div class="header" style="width: 100%;">
-          <div class="nav-bar">
-            <div>
-                <a target="_blank" href="https://www.albany.edu/"><img class="ualbany-logo" src="assets/images/logo.png" /></a>
-            </div>
-            <div class="nav-list">
-              <div class="hamburger"><div class="bar"></div></div>
-              <ul>
-                <li><a href="https://www.albany.edu/myualbany">MYUALBANY</a></li>
-                <li><a href="https://www.albany.edu/apply-now">APPLY</a></li>
-                <li><a href="https://www.alumni.albany.edu/s/1642/18-giving/landing.aspx?sid=1642&gid=2&pgid=2040&appealcode=uahome">GIVE</a></li>
-                    <li><form class="searchbox"></li>
-                      <li><button type="button" style="padding-left: 20px; padding-right: 0px;" class="btn1" id="search-toggle">
-                            <span class="fa fa-search" style="line-height: 50px; font-size: 20px;"></i>
-                        </button> </li>
-                        <li><button type="button" class="btn1 hidden11 " id="times-button">
-                            <span class="fa fa-times" style="line-height: 50px; font-size: 20px;"></i>
-                        </button></li>
-                        <input type="search" style=" width:0px; height:0px; margin-left:20px; " class="searchbox-input" id="textInput" >
-                        <input class="submitButton"  style=" width:0px; height:0px; margin-bottom:5px; margin-left:5px; margin-right:5px;" value="Search" type="submit" onclick="getValue()">
-                    </form>
-                 
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <div class="test" style="padding-top: 25px;">
-        <button id="buttonatag" data-toggle="collapse" data-target=".hh" aria-expanded="false" aria-controls=".hh" aria-label="Toggle navigation" class="collapsed">MENU<br><i class="fa fa-bars"></i>
-        </button>
-    </div>
-
+    <header id="navbar-header">
+    </header>
     <div id="mega-menu">
     </div>
     <div id = "page-header">
@@ -64,19 +29,16 @@
     <section class="content-wrapper">
         <div class="buffer">
             <div class = "content-tool-bar">
-                <button id="button-properties"><a target="_blank" href = "https://twitter.com/ResearchUAlbany">
-                    #SUNYCOVID-MHD
+                <button id="social-media-button"><a target="_blank" href = "https://twitter.com/ResearchUAlbany">
+                    @ResearchUAlbany
                     <img src="assets/images/twitter.png"></a>
-                </button>
-                <button id="button-properties"><a target="_blank" href = "https://albany.az1.qualtrics.com/jfe/form/SV_7Vw1AmKqr14FT25">
-                    REGISTER NOW!</a>
                 </button>
             </div>
         </div>
         <div class="display-flex">
             <div class="col-sm-12 col-md-5 col-lg-4 col-xl-3">
-                <div id="navigation-bar">
-                </div>
+                <ul id="navigation-bar">
+                </ul>
             </div>
             <div class="main-content col-sm-12 col-md-7 col-lg-8 col-xl-9">
                 <h1 class="content-header">
@@ -86,14 +48,12 @@
     </section>
     <footer id="footer">
     </footer>
-    <script src= "libraries/jquery/jquery-3.5.1.min.js"></script>
+    <script src= "libraries/jquery/jquery-3.3.1.slim.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/topmenu.js"></script>
     <script src="js/common.js"></script>
 	<script>addsidemenu("Researchers")</script>
-    <script src="js/researchers.js"></script>
-    <script src="js/search-box.js"></script>
+	<script src="js/researchers.js"></script>
 </body>
 </html>

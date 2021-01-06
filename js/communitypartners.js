@@ -1,95 +1,96 @@
-$(window).on("load", function () {
-    let requestURL = "data/communitypartners.json"; 
-    let datarequestURL = "data/communitypartnersdata.json"; 
-    let request =  axios.get(requestURL);
-    let datarequest =  axios.get(datarequestURL);
-    let maincontentContainer = document.getElementsByClassName('main-content')[0];
-    axios.all([request, datarequest]).then(axios.spread((...responses) => {
-        let partnerspage =  responses[0].data;
-        let partners  = responses[1].data;
-        let webelements = partnerspage.content;
-        let content = '';
-        let logostart = true;
-        let pageheaders = [];
-        for(let i = 0; i < webelements.length; i++)
+let requestURL = "data/communitypartners.json";
+let request = new XMLHttpRequest();
+//getting content Element to append grants information
+let maincontentContainer = document.getElementsByClassName('main-content')[0];
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+request.onload = function(){
+    let content = '';
+    const webelementsjson = request.response;
+    //condition for checking if browser is Internet Explorer
+    let webelements =  ((false || !!document.documentMode))? JSON.parse(webelementsjson): webelementsjson;
+    let logostart = true;
+    let pageheaders = [];
+    for(let i = 0; i < webelements.length; i++)
+    {
+        let element = webelements[i]; 
+        let type = element.type.toLowerCase(); 
+        if(type == 'ph')
         {
-            let element = webelements[i]; 
-            let type = element.type.toLowerCase(); 
-            if(type == 'ph')
-            {
-                pageheaders.push(element);
-            }
-            else if(type == 'ch')
-            {
-                let header = document.getElementsByClassName("content-header")[0];
-                header.innerHTML = element.content.toUpperCase();
-            }
-            else if(type == 'p')
-            {
+            pageheaders.push(element);
+        }
+        else if(type == 'ch')
+        {
+            let header = document.getElementsByClassName("content-header")[0];
+            header.innerHTML = element.content.toUpperCase();
+            if(element.hasOwnProperty('style'))
+                header.setAttribute('style', element.style);
+        }
+        else if(type == 'p')
+        {
+            if(element.hasOwnProperty('style'))
+                content += '<p style ="'+element.style+'">' + element.content + '</p>';
+            else
                 content += '<p>' + element.content + '</p>';
-            }
-            else if(type == 'img')
-            {
+        }
+        else if(type == 'img')
+        {
+            if(element.hasOwnProperty('style'))
+                content += '<img src="assets/images/'+ element.content + '" alt="" style="'+ element.style +'">';
+            else
                 content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
-            }
-            else if(type == 'iframe')
-            {
-                content += '<iframe '+ element.content +'></iframe>';
-            }
-            else if(type == 'ul')
-            { 
+        }
+        else if(type == 'iframe')
+        {
+            content += '<iframe '+ element.content +'></iframe>';
+        }
+        else if(type == 'ul')
+        { 
+            if(element.hasOwnProperty('style'))
+                content += '<ul class="sub-list ' + element.content +'" style ="'+element.style+'">';
+            else
                 content += '<ul class="sub-list ' + element.content +'">';
-            }
-            else if(type == 'li')
+        }
+        else if(type == 'li')
+        {
+            content += '<li>'+ element.content +'</li>';
+        }
+        else if(type == '/ul')
+        {
+            content += '</ul>';
+        }
+        else if(type == 'a' && !element.hasOwnProperty("logo"))
+        {
+            content +='<a href = "'+ element.source +'">'+ element.content + '</a>';
+        }
+        else if(type == 'a' && element.logo != '')
+        {
+            if(logostart == true)
             {
-                content += '<li>'+ element.content +'</li>';
+                content +='<div class = "display-flex">';
+                logostart = false;
             }
-            else if(type == '/ul')
-            {
-                content += '</ul>';
-            }
-            else if(type == 'a' && !element.hasOwnProperty("logo"))
-            {
-                content +='<a href = "'+ element.source +'">'+ element.content + '</a>';
-            }
-            else if(type == 'a' && element.logo != '')
-            {
-                if(logostart == true)
-                {
-                    content +='<div class = "display-flex">';
-                    logostart = false;
-                }
-                content +='<div class = "col-xl-4 col-lg-6 col-md-12">'+
-                            '<a target = "_blank" href = "'+ element.source +'">'+
-                                '<div class = "home-logo-container">' +
-                                    '<img class = "home-logo" src = "assets/images/' + element.logo+ '">'+
-                                    '<p>'+ element.content+'</p>' +
-                                '</div>'+
-                            '</a>'+
-                        '</div>';
-                if(i+1 ==  webelements.length){
-                    content += '</div>';
-                }
+            content +='<div class = "col-xl-4 col-lg-6 col-md-12">'+
+                        '<a target = "_blank" href = "'+ element.source +'">'+
+                            '<div class = "home-logo-container">' +
+                                '<img class = "home-logo" src = "assets/images/' + element.logo+ '">'+
+                                '<p>'+ element.content+'</p>' +
+                            '</div>'+
+                        '</a>'+
+                    '</div>';
+            if(i+1 ==  webelements.length){
+                content += '</div>';
             }
         }
-        content += '<input id = "search-box" placeholder = "Search Experts...">'+
-                   '<button id = "search-button" type = "submit"><i class="fa fa-search"></i></button>'+
-                   '<br><span id = "search-box-results"></span>';
-        content +='<div id="experts-content">'+buildPartnersContent(partners)+'</div>';
-        addheader(pageheaders);
-        let contentElement = document.createElement('div');
-        contentElement.classList.add('content');
-        contentElement.innerHTML = content.trim();
-        maincontentContainer.appendChild(contentElement);
-        addfooter();
-        let searchbox = document.getElementById('search-box');
-        let searchbutton = document.getElementById('search-button');
-        searchbox.onkeyup = searchfunction;
-        searchbutton.onclick = searchfunction;
-    })).catch(errors => {
-        console.log(errors);
-    })
-});
+    }
+    addheader(pageheaders);
+    let contentElement = document.createElement('div');
+    contentElement.classList.add('content');
+    contentElement.innerHTML = content.trim();
+    maincontentContainer.appendChild(contentElement);
+    addfooter();
+}
 
 let addheader =  function (headers){
     let header = document.getElementById("page-header");
@@ -114,107 +115,24 @@ let addheader =  function (headers){
         {
             content += '<div class="carousel-item">';
         }
-        content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
-                    '<div id = "landing-page-text-wrapper">'+
-                        '<h1>'+ header1 +'</h1>' + 
-                        '<p>' + header2 + '</p>' +      
-                    '</div>'+
-                '</div>';
+        if(header1==''){
+            content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
+        '</div>';
+        }
+        else{
+            content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
+            '<div id = "landing-page-text-wrapper">'+
+                '<h1>'+ header1 +'</h1>' + 
+                '<p>' + header2 + '</p>' +      
+            '</div>'+
+        '</div>';
+        }
     }
     content +=  '</div></div>';
     header.innerHTML = content;
 }
 
-let buildPartnersContent = function(partners){
-    let content = '';
-    for(var i=0; i< partners.length; i++){
-        if(partners[i].Q12 == "")
-            continue;
-        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "assets/images/community-partners/'+ (partners[i]["Q63_Name"] != ''? partners[i].ResponseId+'_'+ partners[i]["Q63_Name"] :'placeholder.jpg') + '"/>'+
-        '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
-        '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 pl-0 mb-2 poc"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
-        '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-2 address"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
-        buildmissionandvision(partners[i])+'</div>';
-    }
-    return content;
-}
+$('.carousel').carousel({pause: "false",
+ interval: 2000
 
-let getAddress = function(partner){
-    let address = "";
-    if(partner.Q65 != ""){
-        address += partner.Q65;
-    }
-    if(partner.Q66 != "")
-    {
-        address = address == ""? partner.Q66 : (address + ",<br> " +  partner.Q66);
-    }
-    if(partner.Q67 != "")
-    {
-        address = address == ""? partner.Q67 : (address + ",<br> " +  partner.Q67);
-    }
-    if(partner.Q68 != "")
-    {
-        address = address == ""? partner.Q68 : (address + ",<br> " +  partner.Q68);
-    }
-    if(partner.Q69 != "")
-    {
-        address = address == ""? partner.Q69 : (address + ", " +  partner.Q69);
-    }
-    return address;
-}
-
-let getPointOfContact = function(partner){
-    let pointofcontact = "";
-    pointofcontact += partner.Q72 + " " + partner.Q71+ ",<br> "+ partner.Q75 + '<br> <a class = "email-link" href = mailto:' + partner.Q73 + 
-    '>'+ partner.Q73+ '</a>'+ (partner.Q74 == ""? '' : ',<br>'+ partner.Q74); 
-    return pointofcontact;
-}
-
-let counter = 1;
-let buildmissionandvision = function(partner){
-    let missionandvision = "";
-    missionandvision = '<p class="mav-header">'+
-                        '<button class="btn btn-mav collapsed" style="font-size:20px;" type="button" data-toggle="collapse" data-target="#missionandvision'+ counter +'" aria-expanded="false" aria-controls="missionandvision'+ counter +'">Mission and Vision '+
-                        '<i class="fas fa-chevron-up"></i></button>'+
-                        '</p>'+
-                        '<div class="collapse" id="missionandvision'+ counter +'">'+
-                            '<div class="card card-body">'+
-                            formatText(partner.Q64) +
-                            '</div>'+
-                        '</div>';
-    counter++;
-    return missionandvision;
-}
-
-let formatText = function(text){
-    let result = '';
-    let paras = text.split("\n\n");
-    for(var i=0; i< paras.length; i++){
-        let para = paras[i];
-        if(para.includes("\n") == false && para.search(/d.\t/) == -1)
-        {
-            result += para;
-        }
-        else
-        {
-            let lines = para.split(/\n/);
-            if(lines.length == 1)
-            {
-                result += lines[0]; 
-            }
-            else
-            {
-                for(var j =0; j< lines.length; j++)
-                {
-                    if(lines[j] == '') continue;
-                    result += '<p>'+lines[j]+'</p>'; 
-                }
-            }
-        }        
-    }
-
-
-    return result;
-}
-
-$('.carousel').carousel({pause: false});
+});

@@ -1,16 +1,16 @@
 .nav-pills, .nav-item a, .nav-links {
-    color: #004C93;
+    color: #46166b;
     text-transform: uppercase;
 }
 
 .partner-info{
-    margin-right: 15%;
+    margin-right: 5%;
     margin-bottom: 40px;
     min-height: 200px;
 }
 
 .partner-info a{
-    color: #004C93;
+    color: #46166b;
 }
 
 .partner-logo{
@@ -22,18 +22,19 @@
 }
 
 .btn-mav{
-    background-color: #004C93;
+    background-color: #46166b;
     color: white;
 }
 
 .btn:focus{
  box-shadow: 0 0 0 0;
+ color: white;
 }
 
 .btn:hover {
-    border:2px solid #004C93;
+    border:2px solid #46166b;
     background-color: white;
-    color: #004C93;
+    color: #46166b;
     text-decoration: none;
 }
 
@@ -46,14 +47,22 @@
 	-moz-transform: rotate(180deg);
 	transform: rotate(180deg);
 } 
+.address{
+    margin-bottom: 20px;
+}
+
+.poc{
+    padding-left: 0px!important;
+    margin-bottom: 20px;
+}
 
 .address span{
-    color: #004C93;
+    color: #46166b;
     text-transform: uppercase;
 }
 
 .poc span{
-    color: #004C93;
+    color: #46166b;
     text-transform: uppercase;
 }
 

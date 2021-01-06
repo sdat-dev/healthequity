@@ -1,7 +1,15 @@
-.nav-pills, .nav-item a, .nav-links {
-    color: #004C93;
-    text-transform: uppercase;
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff !important;
+    background-color: #46166b !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
 }
+
+.nav-pills>li.inactive>a, .nav-pills>li.inactive>a:focus, .nav-pills>li.inactive>a:hover {
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+}
+
 
 .expert-info{
     margin-right: 15%;
@@ -10,7 +18,7 @@
 }
 
 .expert-info a{
-    color: #004C93;
+    color: #46166b;
 }
 
 .expert-image{

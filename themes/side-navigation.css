@@ -33,18 +33,15 @@ Primary use:    side-navigation.css file used for styling components
 .navigation-items {
     border-bottom: 2px solid #909090;
     color: #46166b;
-    font-weight: 400;
     list-style-type: none;
-    padding: 10px 10px 10px 0px;
-    text-transform: uppercase;
+    padding: 20px 10px 10px 20px;
 }
 
 .expanded-navigation-item {
     border-bottom: 2px solid #909090;
     color: #46166b;
-    font-weight: 400;
     list-style-type: none;
-    text-transform: uppercase;
+    padding: 20px 10px 10px 20px;
 }
 
 .navigation-items>a, .first-sub-navigation-item>a, .last-sub-navigation-item>a, #expanded-navigation-item>a, .sub-navigation-items>a {
