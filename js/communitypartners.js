@@ -126,6 +126,19 @@ let addheader =  function (headers){
 }
 
 let buildPartnersContent = function(partners){
+
+    partners.sort(function(a, b){
+        var nameA = a.Q61.toUpperCase(); 
+        var nameB = b.Q61.toUpperCase(); 
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    });
+    
     let content = '';
     for(var i=0; i< partners.length; i++){
         if(partners[i].Q12 == "")
@@ -146,19 +159,19 @@ let getAddress = function(partner){
     }
     if(partner.Q66 != "")
     {
-        address = address == ""? partner.Q66 : (address + ",<br> " +  partner.Q66);
+        address = address == ""? partner.Q66 : (address + "<br> " +  partner.Q66);
     }
     if(partner.Q67 != "")
     {
-        address = address == ""? partner.Q67 : (address + ",<br> " +  partner.Q67);
+        address = address == ""? partner.Q67 : (address + "<br>" +  partner.Q67 + ",");
     }
     if(partner.Q68 != "")
     {
-        address = address == ""? partner.Q68 : (address + ",<br> " +  partner.Q68);
+        address = address == ""? partner.Q68 : (address + " " +  partner.Q68);
     }
     if(partner.Q69 != "")
     {
-        address = address == ""? partner.Q69 : (address + ", " +  partner.Q69);
+        address = address == ""? partner.Q69 : (address + " " +  partner.Q69);
     }
     return address;
 }
