@@ -11,21 +11,21 @@ searchfunction = function()
     //getting individual content withing sub-accordions to toggle display
     let accordionContent = document.getElementsByClassName('accordion-content');
     //Setting display to none for all accordion and sub-accordionElems
-    if(cardElems.length > 0)
-    {
-        for(let i = 0; i< cardElems.length; i++)
-        {
-            cardElems[i].style.display = "none";
-        }
-    }
+    // if(cardElems.length > 0)
+    // {
+    //     for(let i = 0; i< cardElems.length; i++)
+    //     {
+    //         cardElems[i].style.display = "none";
+    //     }
+    // }
 
-    if(accordionContent.length > 0)
-    {
-        for(let i = 0; i< accordionContainers.length; i++)
-        {
-            accordionContainers[i].style.display = "none";
-        }
-    }
+    // if(accordionContent.length > 0)
+    // {
+    //     for(let i = 0; i< accordionContainers.length; i++)
+    //     {
+    //         accordionContainers[i].style.display = "none";
+    //     }
+    // }
 
     //extracting search-text and trimming text to ignore additional-spaces
 	let searchtext = searchbox.value.trim();
