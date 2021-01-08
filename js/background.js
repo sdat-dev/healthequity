@@ -20,13 +20,8 @@ request.onload = function () {
         }
         else if (type == 'ch') {
             let header = document.getElementsByClassName("content-header")[0];
-<<<<<<< HEAD
-            header.innerHTML = element.content.toUpperCase();
-            if(element.hasOwnProperty('style'))
-=======
             header.innerHTML = element.content;
             if (element.hasOwnProperty('style'))
->>>>>>> 2aee0f61cb437b772da739fd6d59c9484164c715
                 header.setAttribute('style', element.style);
         }
         else if (type == 'p') {
@@ -56,24 +51,12 @@ request.onload = function () {
         else if (type == '/ul') {
             content += '</ul>';
         }
-<<<<<<< HEAD
-        else if(type == 'a' && !element.hasOwnProperty("logo"))
-        {
-            content +='<a href = "'+ element.source +'">'+ element.content + '</a>';
-        }
-        else if(type == 'a' && element.logo != '')
-        {
-            if(logostart == true)
-            {
-                content +='<div class = "display-flex">';
-=======
         else if (type == 'a' && !element.hasOwnProperty("logo") && !element.hasOwnProperty("style")) {
             content += '<a href = "' + element.source + '">' + element.content + '</a>';
         }
         else if (type == 'a' && !element.hasOwnProperty("style") && element.logo != '') {
             if (logostart == true) {
                 content += '<div class = "display-flex">';
->>>>>>> 2aee0f61cb437b772da739fd6d59c9484164c715
                 logostart = false;
             }
             content += '<div class = "col-xl-4 col-lg-6 col-md-12">' +
@@ -88,8 +71,6 @@ request.onload = function () {
                 content += '</div>';
             }
         }
-<<<<<<< HEAD
-=======
         else if (type == 'a' && element.hasOwnProperty("style") && element.logo != '') {
             content += '<a target = "_blank" href = "' + element.source + '">' +
                 '<img  img-fluid style="' + element.style + '" src = "assets/images/' + element.logo + '">' +
@@ -102,7 +83,6 @@ request.onload = function () {
             else
                 content += '<div>' + element.content + '</div>';
         }
->>>>>>> 2aee0f61cb437b772da739fd6d59c9484164c715
     }
     addheader(pageheaders);
     let contentElement = document.createElement('div');
