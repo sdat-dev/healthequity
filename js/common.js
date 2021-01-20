@@ -248,7 +248,7 @@ let formatPara = function(text){
     for(var i=0; i< paras.length; i++){
         let para = paras[i];
 
-            let lines = para.split(/\n(?=\d |\d.\t|[1-9]\d([0-9]\d){0,2}| \d.\t|\r\n|•\t|i\.|ii\.|iii\.|iv\.|v\.)/);
+            let lines = para.split(/(\n(?=\d |\d.\t|[1-9]\d([0-9]\d){0,2}| \d.\t|\r\n|•\t|i\.|ii\.|iii\.|iv\.|v\.))|\r\n/);
           
            
                 for(var j =0; j< lines.length; j++)
