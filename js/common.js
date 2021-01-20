@@ -100,11 +100,20 @@ let buildsubmenu = function (subitems, page, markactive, extraindirection) {
 
 let generateAccordionElem = function (level, collapseId, headerId, parentId, childId, header, accordionContent) {
     var headerno = level + 2;
-    let accordionElem = '<div class = "card"><div class="card-header level' + level + '" id="' + headerId + '">' +
-        '<button class="btn btn-link" data-toggle="collapse" data-target="#' + collapseId + '" aria-expanded="false" aria-controls="' + collapseId + '">' +
-        '<h' + headerno + ' class = "content-header-no-margin">' + header + '<i class="fas fa-chevron-down" style="padding-left:10px;"  ></i></h' + headerno + '></button></div>'
-        + '<div id="' + collapseId + '" class = "collapse" aria-labelledby= "' + headerId + '" data-parent="#' + parentId + '"> <div class = "card-body" id="' + childId + '">'
-        + accordionContent + '</div></div></div>';
+    let accordionElem = '<div class="panel panel-default">'+
+                          '<div class="panel-heading level' + level + '" role="tab" id="'+ headerId +'">' +
+                             '<h' + headerno + ' class = "panel-title">' +
+                                 '<button class="btn btn-link collapsed" type="button" data-toggle="collapse"  data-parent="#'+ parentId + '" data-target="#'+ collapseId + '" aria-expanded="false" aria-controls="'+collapseId+'">' +
+                                    header + '<i class="fas fa-chevron-up"></i>'+
+                                  '</button>'+
+                             '</h' + headerno + '>'+
+                          '</div>'
+                        + '<div id="' + collapseId + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="'+headerId+'">'+
+                            '<div div class="panel-body" id="' + childId + '">'
+                              + accordionContent + 
+                            '</div>'+
+                           '</div>'+
+                        '</div>';
     return accordionElem;
 }
 
@@ -114,10 +123,10 @@ let createTabNavigation = function (distincttabs, tabname) {
         let linkElement = '';
         let tabId = tabname + i.toString();
         if (i == 0) {
-            linkElement = '<li class="nav-item active"><a class="nav-link active" style="text-transform: uppercase !important; text-decoration: none !important;" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a></li>';
+            linkElement = '<li role="presentation" class="active"><a href="#pills-' + tabId + '" id="#pills-'+ tabId + '" aria-controls="pills-'+ tabId +'" role="tab" data-toggle="pill">' + distincttabs[i] + '</a></li>';
         }
         else {
-            linkElement = '<li class="nav-item inactive"><a class="nav-link inactive" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="false">' + distincttabs[i] + '</a></li>';
+            linkElement = '<li role="presentation"><a href="#pills-' + tabId + '" id="#pills-'+ tabId +'" aria-controls="pills-'+ tabId + '" role="tab" data-toggle="pill">' + distincttabs[i] + '</a></li>';
         }
         navigationContent = navigationContent + linkElement;
     }
@@ -131,10 +140,10 @@ let buildTabContent = function (distincttabs, tabname, tabContent) {
     for (let i = 0; i < distincttabs.length; i++) {
         let tabId = tabname + i.toString();
         if (i == 0) {
-            content += '<div class="tab-pane fade show active in" id="pills-' + tabId + '" role="tabpanel" aria-labelledby="pills-' + tabId + '-tab">';
+            content += '<div class="tab-pane fade in active" id="pills-' + tabId + '" role="tabpanel">';
         }
         else {
-            content += '<div class="tab-pane fade" id="pills-' + tabId + '" role="tabpanel" aria-labelledby="pills-' + tabId + '-tab">';
+            content += '<div class="tab-pane fade" id="pills-' + tabId + '" role="tabpanel">';
         }
         content += tabContent[i];
         content += '</div>';
