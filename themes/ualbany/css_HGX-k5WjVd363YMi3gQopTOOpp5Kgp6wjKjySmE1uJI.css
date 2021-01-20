@@ -692,6 +692,12 @@ body.drawer-open #navbar .region-mobile-navigation.drawer-nav {
     font-weight: bold;
 }
 
+#mobile-nav-holder .mobile-nav-toplink a:hover {
+    background-color: #EEB211;
+    color: #333;
+    font-weight: bold;
+}
+
 #mobile-nav-holder ul li:first-child .mobile-nav-toplink {
     border-top: none;
 }
@@ -741,6 +747,12 @@ body.drawer-open #navbar .region-mobile-navigation.drawer-nav {
     display: block;
 }
 
+#mobile-nav-holder ul ul a:hover {
+    display: block;
+    background-color: #EEB211;
+    color: #333;
+}
+
 #mobile-nav-holder ul.extra-nav {
     margin-top: 1em;
 }
@@ -748,6 +760,11 @@ body.drawer-open #navbar .region-mobile-navigation.drawer-nav {
 #mobile-nav-holder ul.extra-nav a {
     padding: 0.5em 1em;
     display: block;
+}
+
+#mobile-nav-holder ul.extra-nav a:hover {
+    background-color: #EEB211;
+    color: #333;
 }
 
 main {
