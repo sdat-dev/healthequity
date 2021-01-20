@@ -214,7 +214,7 @@ let buildUniversityResearcherElements = function(researchers){
         '<h2 class = "content-header-no-margin">'+ (researcher["Q43_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q43_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
-        '>'+ researcher.Q13+ '</a><br>'+ (researcher.Q14 != ""? '<strong>Phone: </strong>'+ researcher.Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ 
+        '>'+ researcher.Q13+ '</a><br>'+ (researcher.Q14 != ""? '<strong>Phone: </strong>'+ formatPhone(researcher.Q14) + '<br>': "")+'<strong>Research Interests: </strong>'+ 
         getResearchInterests(researcher) + '</p><p>' + researcher.Q42 +'</p>'+ generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
         generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) + '<div style="display:none">Counter:' + researcher.Q17 + '</div></div>';
     }
@@ -295,7 +295,7 @@ let buildOtherResearcherElements = function(researchers){
         '<h2 class = "content-header-no-margin">'+ (researcher["Q43_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q43_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         generateOtherResearcherTitle(researcher) + generateLogoContent(researcher) +
         '<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + '>'+ researcher.Q13+ '</a><br>'+ 
-        (researcher.Q14 != ""? '<strong>Phone: </strong>'+ researcher.Q14 + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(researcher) + '</p>'+
+        (researcher.Q14 != ""? '<strong>Phone: </strong>'+ formatPhone(researcher.Q14) + '<br>': "")+'<strong>Research Interests: </strong>'+ getResearchInterests(researcher) + '</p>'+
         '<p>' + researchers[i].Q42 +'</p>'+generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
         (researcher["Q16"] == "University" ? generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) : '') +
         '<div style="display:none">Counter:'+researcher.Q17+'</div></div>';
@@ -446,6 +446,14 @@ let clearsearch = function(){
             searchElems[i].style.display = "block";
         }
     }
+}
+
+let formatPhone = function(text){
+    let result = text;
+    if(isNaN(text) == false){
+        result = (text/10000000 |0)+ '-' + ((text/10000)%1000|0) + '-' + text%10000
+    }
+    return result;
 }
 
 $('.carousel').carousel({pause: null});
