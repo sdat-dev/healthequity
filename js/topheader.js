@@ -199,7 +199,7 @@ let addTopHeader = function () {
                                     '</li>'+
                                 '</ul>'+
                                 '<ul class="extra-nav">'+
-                                    '<li><a href="/myualbany">MYUAlbany</a></li>'+
+                                    '<li><a href="https://www.albany.edu/myualbany">MYUAlbany</a></li>'+
                                     '<li><a href="https://www.alumni.albany.edu/s/1642/18-giving/landing.aspx?sid=1642&amp;gid=2&amp;pgid=2040&amp;appealcode=uahome">Give</a>'+
                                     '</li>'+
                                 '</ul>'+
