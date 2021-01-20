@@ -100,6 +100,115 @@ let addTopHeader = function () {
                 '</div>'+
             '</section>'+
 
+            '<div class="region region-mobile-navigation">'+
+            '<div class="drawer-wrap">'+
+                '<section id="block-mobilenav2020"'+
+                    'data-block-plugin-id="block_content:dec7b8e7-3499-466e-8026-187dc475eab1"'+
+                    'class="block block-block-content block-block-contentdec7b8e7-3499-466e-8026-187dc475eab1 clearfix">'+
+                    '<div class="field field--name-body field--type-text-with-summary field--label-hidden field--item">'+
+                        '<div id="mobile-nav-holder">'+
+                            '<nav id="mobile-nav" aria-label="Mobile Navigation Menu">'+
+                                '<ul>'+
+                                    '<li>'+
+                                        '<div class="mobile-nav-toplink">'+
+                                            '<a href="https://www.albany.edu/about-ualbany">About</a>'+
+                                            '<button class="mobile-nav-dropdown"><span class="sr-only">toggle about'+
+                                                    'menu</span></button>'+
+                                        '</div>'+
+                                        '<ul>'+
+                                        '<li><a href="https://www.albany.edu/administration/index.php">Leadership</a></li>'+
+                                        '<li><a href="https://www.alumni.albany.edu/">Alumni</a></li>'+
+                                        '<li><a href="https://www.albany.edu/publicengagement/">Public Engagement</a></li>'+
+                                        '<li><a href="https://www.albany.edu/news-center">News</a></li>'+
+                                        '<li><a href="https://events.albany.edu/">Events</a></li>'+
+                                        '<li><a href="https://www.albany.edu/main/employment.shtml">Jobs</a></li>'+
+                                        '<li><a href="https://www.albany.edu/diversity-and-inclusion ">Diversity &amp; Inclusion</a></li>'+
+                                        '<li><a href="https://www.albany.edu/about/directories.php">Staff Directory</a></li>'+
+                                        '<li><a href="https://www.albany.edu/a-z-index">A-Z Index</a></li>'+
+                                    '</ul>'+
+                                    '</li>'+
+                                    '<li>'+
+                                        '<div class="mobile-nav-toplink">'+
+                                            '<a href="https://www.albany.edu/academics">Academics</a>'+
+                                            '<button class="mobile-nav-dropdown"><span class="sr-only">toggle academics'+
+                                                    'menu</span></button>'+
+                                        '</div>'+
+                                        '<ul>'+
+                                        '<li><a href="https://www.albany.edu/schools-colleges-affiliations">Schools &amp; Colleges</a></li>'+
+                                        '<li><a href="https://www.albany.edu/academics/undergraduate-programs.shtml">Undergraduate Majors</a></li>'+
+                                        '<li><a href="https://www.albany.edu/graduate/graduate-programs">Graduate Programs</a></li>'+
+                                        '<li><a href="https://www.albany.edu/online-learning">Online Learning</a></li>'+
+                                        '<li><a href="https://www.albany.edu/academics/advising.shtml">Academic Advising</a></li>'+
+                                        '<li><a href="https://www.albany.edu/registrar/academic_calendar.php">Academic Calendar</a></li>'+
+                                        '<li><a href="http://library.albany.edu/">Libraries</a></li>'+
+                                    '</ul>'+
+                                    '</li>'+
+                                    '<li>'+
+                                        '<div class="mobile-nav-toplink">'+
+                                            '<a href="https://www.albany.edu/admissions">Admissions &amp; Aid</a>'+
+                                            '<button class="mobile-nav-dropdown"><span class="sr-only">toggle admissions'+
+                                                    'menu</span></button>'+
+                                        '</div>'+
+                                        '<ul>'+
+                                        '<li><a href="https://www.albany.edu/admissions-undergraduate">Freshman</a></li>'+
+                                        '<li><a href="https://www.albany.edu/admissions-transfer">Transfer</a></li>'+
+                                        '<li><a href="https://www.albany.edu/graduate">Graduate</a></li>'+
+                                        '<li><a href="https://www.albany.edu/admissions-international">International</a></li>'+
+                                        '<li><a href="https://www.albany.edu/cost-aid/tuition-fees">Tuition &amp; Cost</a></li>'+
+                                        '<li><a href="https://www.albany.edu/cost-aid/financial-aid">Financial Aid</a></li>'+
+                                        '<li><a href="https://www.albany.edu/cost-aid/apply-additional-scholarships ">Scholarships</a></li>'+
+                                        '<li><a href="https://www.albany.edu/apply-now">Apply</a></li>'+
+                                        '<li><a href="https://www.albany.edu/admissions/tour.php">Visit</a></li>'+
+                                    '</ul>'+
+                                    '</li>'+
+                                    '<li>'+
+                                        '<div class="mobile-nav-toplink">'+
+                                            '<a href="https://www.albany.edu/student-life">Campus Life</a>'+
+                                            '<button class="mobile-nav-dropdown"><span class="sr-only">toggle campus life'+
+                                                    'menu</span></button>'+
+                                        '</div>'+
+                                        '<ul>'+
+                                        '<li><a href="https://www.albany.edu/housing/index.shtml">Residential Life</a></li>'+
+                                        '<li><a href="https://www.albany.edu/pmts">Parking</a></li>'+
+                                        '<li><a href="https://www.albany.edu/map/">Maps</a></li>'+
+                                        '<li><a href="http://www.ualbanydining.com/">Dining</a></li>'+
+                                        '<li><a href="https://www.albany.edu/studentassociation/">Clubs</a></li>'+
+                                        '<li><a href="https://www.albany.edu/career/">Career Services</a></li>'+
+                                        '<li><a href="https://www.albany.edu/arts">Arts</a></li>'+
+                                        '<li><a href="https://www.albany.edu/student-life">Student Life</a></li>'+
+                                        '<li class="disappear"><a href="https://ualbanysports.com/">Athletics</a></li>'+
+                                    '</ul>'+
+                                    '</li>'+
+                                    '<li>'+
+                                        '<div class="mobile-nav-toplink">'+
+                                            '<a href="https://www.albany.edu/research-ualbany">Research</a>'+
+                                            '<button class="mobile-nav-dropdown"><span class="sr-only">toggle research'+
+                                                    'menu</span></button>'+
+                                        '</div>'+
+                                        '<ul>'+
+                                            '<li><a href="https://www.albany.edu/research">Division of Research</a></li>'+
+                                            '<li><a href="https://www.albany.edu/undergrad-research">Undergraduate Research</a></li>'+
+                                            '<li><a href="https://www.albany.edu/research/research-centers.php">Centers</a></li>'+
+                                            '<li><a href="https://www.albany.edu/news-center/experts">Experts</a></li>'+
+                                        '</ul>'+
+                                    '</li>'+
+                                    '<li>'+
+                                        '<div class="mobile-nav-toplink">'+
+                                            '<a href="https://ualbanysports.com/">Athletics</a>'+
+                                        '</div>'+
+                                    '</li>'+
+                                '</ul>'+
+                                '<ul class="extra-nav">'+
+                                    '<li><a href="/myualbany">MYUAlbany</a></li>'+
+                                    '<li><a href="https://www.alumni.albany.edu/s/1642/18-giving/landing.aspx?sid=1642&amp;gid=2&amp;pgid=2040&amp;appealcode=uahome">Give</a>'+
+                                    '</li>'+
+                                '</ul>'+
+                            '</nav>'+
+                        '</div>'+
+                    '</div>'+
+                '</section>'+
+            '</div>'+
+        '</div>'+
             '<section id="block-albany-searchblockbutton" class="search-button block block-block-content block-block-contentf5fc99ed-9b0b-4fef-9f5a-708a4da0e836 clearfix" data-block-plugin-id="block_content:f5fc99ed-9b0b-4fef-9f5a-708a4da0e836">'+
                 '<div class="field field--name-body field--type-text-with-summary field--label-hidden field--item"><p><a href="https://www.albany.edu/search-results">Search</a></p>'+
                 '</div>'+
