@@ -79,14 +79,14 @@ Primary use:    Common.css file used for styling header and
     text-decoration-color: #edba32 !important; */
 }
 
-.content a:hover{
+.content a:hover {
     background-image: linear-gradient(120deg, #edba32 0%, #edba32 100%);
     background-size: 105% 105%;
     cursor: pointer;
     text-decoration: none !important;
-} 
+}
 
-.content-header-top-bottom-margin{
+.content-header-top-bottom-margin {
     color: #46166C;
     font-family: 'TradeGothicLTStd-BdCn20', Helvetica, Arial, sans-serif;
     margin: 20px 0px;
@@ -115,12 +115,12 @@ Primary use:    Common.css file used for styling header and
     text-decoration-color: #edba32 !important;
 }
 
-.email-link:hover{
+.email-link:hover {
     background-image: linear-gradient(120deg, #edba32 0%, #edba32 100%);
     background-size: 105% 105%;
     cursor: pointer;
     text-decoration: none !important;
-} 
+}
 
 .display-flex {
     display: flex;
@@ -138,7 +138,7 @@ Primary use:    Common.css file used for styling header and
     position: relative;
 }
 
-#page-header{
+#page-header {
     width: 100%;
     position: relative;
     padding-top: 134px;
@@ -149,7 +149,7 @@ Primary use:    Common.css file used for styling header and
     color: #46166b;
 }
 
-.email-link{
+.email-link {
     color: cornflowerblue;
     text-decoration: underline;
 }
@@ -160,7 +160,7 @@ Primary use:    Common.css file used for styling header and
     font-size: 28px;
 }
 
-.no-link-decoration:hover{
+.no-link-decoration:hover {
     color: inherit;
 }
 
@@ -173,7 +173,7 @@ Primary use:    Common.css file used for styling header and
 }
 
 #navbar-header {
-    background-color:#004C93;
+    background-color: #004C93;
     height: 100px;
     position: sticky;
     top: 0;
@@ -189,16 +189,15 @@ Primary use:    Common.css file used for styling header and
     list-style: none;
 }
 
-.num-list{
-    list-style:decimal;
+.num-list {
+    list-style: decimal;
 }
 
-.underline{
+.underline {
     text-decoration: underline;
 }
 
-#landing-page-text-wrapper
-{
+#landing-page-text-wrapper {
     background-color: rgb(0, 0, 0, 0.5);
     font-family: 'TradeGothicLTStd-BdCn20', Helvetica, Arial, sans-serif;
     text-shadow: 3px 1px 2px black;
@@ -207,24 +206,22 @@ Primary use:    Common.css file used for styling header and
     position: absolute;
 }
 
-#landing-page-text-wrapper>h1
-{
+#landing-page-text-wrapper>h1 {
     color: white;
     text-transform: uppercase;
 }
 
-#landing-page-text-wrapper>p
-{
+#landing-page-text-wrapper>p {
     color: #eeb211;
     font-size: 35px !important;
 }
 
-#landing-logo-wrapper{
+#landing-logo-wrapper {
     position: absolute;
     right: 5%;
 }
 
-#landing-logo-wrapper > img{
+#landing-logo-wrapper>img {
     width: 100%;
 }
 
@@ -232,7 +229,7 @@ Primary use:    Common.css file used for styling header and
     list-style-type: lower-alpha;
 }
 
-.list-more-indentation > li {
+.list-more-indentation>li {
     padding-left: 5px;
 }
 
@@ -240,75 +237,75 @@ Primary use:    Common.css file used for styling header and
     list-style-type: lower-roman;
 }
 
-.sub-list > li{
+.sub-list>li {
     padding-left: 10px;
 }
 
-.purple-font{
+.purple-font {
     color: #46166C;
 }
 
-.PURPLE-FONT{
+.PURPLE-FONT {
     color: #46166C;
 }
 
-.yellow-font{
+.yellow-font {
     color: #eeb211;
 }
 
-.YELLOW-FONT{
+.YELLOW-FONT {
     color: #eeb211;
 }
 
-.black-font{
+.black-font {
     color: black;
 }
 
-.BLACK-FONT{
+.BLACK-FONT {
     color: black;
 }
 
-.blue-font{
+.blue-font {
     color: #46166b;
 }
 
-.BLUE-FONT{
+.BLUE-FONT {
     color: #46166b;
 }
 
-.grey-font{
+.grey-font {
     color: #838687;
 }
 
-.GREY-FONT{
+.GREY-FONT {
     color: #838687;
 }
 
-.cyan-font{
+.cyan-font {
     color: #009EE0;
 }
 
-.CYAN-FONT{
+.CYAN-FONT {
     color: #009EE0;
 }
 
-.deepblue-font{
+.deepblue-font {
     color: #46166B;
 }
 
-.DEEPBLUE-FONT{
+.DEEPBLUE-FONT {
     color: #46166B;
 }
 
-.content-tool-bar{
+.content-tool-bar {
     position: relative;
 }
 
-.italic{
+.italic {
     font-style: italic;
 }
 
-.button-properties{
+.button-properties {
     color: white;
     background-color: #46166b;
     padding: 9px !important;
@@ -320,12 +317,12 @@ Primary use:    Common.css file used for styling header and
     border-radius: 1%;
 }
 
-.button-properties > a{
+.button-properties>a {
     color: inherit;
     text-decoration: none;
 }
 
-.button-properties > a img{
+.button-properties>a img {
     max-height: 30px !important;
 }
 
@@ -333,9 +330,9 @@ Primary use:    Common.css file used for styling header and
     background-color: white;
     color: #46166b;
     border: 2px solid #46166b;
-} 
+}
 
-#register-button{
+#register-button {
     color: white;
     background-color: #46166b;
     padding: 9px;
@@ -347,22 +344,20 @@ Primary use:    Common.css file used for styling header and
     border-radius: 1%;
 }
 
-#register-button > a{
+#register-button>a {
     color: inherit;
     text-decoration: none;
 }
 
-#register-button > a img{
+#register-button>a img {
     height: 30px;
 }
 
-
-.list-preceding-paragraph, 
-.zero-bottom-margin-paragraph{
+.list-preceding-paragraph, .zero-bottom-margin-paragraph {
     margin-bottom: 0px;
 }
 
-.content> #search-box{
+.content>#search-box {
     background-color: #F9F9F9;
     height: 40px;
     border: 1px solid #B9B9B9;
@@ -371,11 +366,11 @@ Primary use:    Common.css file used for styling header and
     padding: 5px 0px 10px 2px;
 }
 
-.content>#search-box-results{
+.content>#search-box-results {
     display: block;
 }
 
-#search-button{
+#search-button {
     height: 40px;
     width: 40px;
     background-color: #46166b;
@@ -401,38 +396,38 @@ Primary use:    Common.css file used for styling header and
 
 .sunny-logo {
     max-width: 100px;
-    width:100%;
+    width: 100%;
 }
 
 .downstate-logo {
     margin-top: 20px;
     margin-right: 5px;
     max-width: 222px;
-    width:100%;
+    width: 100%;
 }
 
 .upstate-logo {
     margin-top: 25px;
     margin-right: 5px;
     max-width: 170px;
-    width:100%;
+    width: 100%;
 }
 
-.sponsor-title-container{
+.sponsor-title-container {
     display: inline-block;
     margin-bottom: 5px;
 }
 
-.sponsor-title{
+.sponsor-title {
     display: block;
     font-weight: bold;
 }
 
-.sponsor-title>img{
-    height:70px;
+.sponsor-title>img {
+    height: 70px;
 }
 
-.logo{
+.logo {
     margin-right: 10px;
 }
 
@@ -440,7 +435,7 @@ Primary use:    Common.css file used for styling header and
     width: 100%!important;
 }
 
-.none-list li::marker{
+.none-list li::marker {
     content: "";
 }
 
@@ -448,13 +443,11 @@ Primary use:    Common.css file used for styling header and
     /* These are technically the same, but use both */
     overflow-wrap: break-word;
     word-wrap: break-word;
-  
     -ms-word-break: break-all;
     /* This is the dangerous one in WebKit, as it breaks things wherever */
     word-break: break-all;
     /* Instead use this non-standard one: */
     word-break: break-word;
-  
     /* Adds a hyphen where the word breaks, if supported (No Blink) */
     -ms-hyphens: auto;
     -moz-hyphens: auto;
@@ -462,34 +455,30 @@ Primary use:    Common.css file used for styling header and
     hyphens: auto;
 }
 
-.mx-auto{
+.mx-auto {
     float: none;
     margin: 0 auto;
 }
 
-@media only screen and (max-width: 340px)
-{
-    .ualbany-logo{
+@media only screen and (max-width: 340px) {
+    .ualbany-logo {
         margin-left: 5%;
         width: 90%;
     }
 }
 
 @media only screen and (max-width: 600px) {
-    #landing-page-text-wrapper
-    {   
+    #landing-page-text-wrapper {
         bottom: 10%;
         width: 35%;
     }
-    #landing-page-text-wrapper>h1
-    {
+    #landing-page-text-wrapper>h1 {
         font-size: 6vw;
     }
-    #landing-page-text-wrapper>p
-    {
+    #landing-page-text-wrapper>p {
         display: none;
     }
-    #landing-logo-wrapper{
+    #landing-logo-wrapper {
         bottom: 10%;
         width: 20%;
     }
@@ -499,124 +488,111 @@ Primary use:    Common.css file used for styling header and
     .main-content>ul, .main-content>ol {
         margin-left: 20px;
     }
-    .content> #search-box{       
+    .content>#search-box {
         margin-bottom: 5px;
         width: 80%;
-    }   
-    .content>#search-box-results{
+    }
+    .content>#search-box-results {
         margin-bottom: 30px;
     }
 }
 
 @media only screen and (min-width: 600px) {
-
-    #landing-page-text-wrapper
-    {   
+    #landing-page-text-wrapper {
         bottom: 10%;
         width: 40%;
     }
-    #landing-page-text-wrapper>h1
-    {
+    #landing-page-text-wrapper>h1 {
         font-size: 6vw;
     }
-    #landing-page-text-wrapper>p
-    {
+    #landing-page-text-wrapper>p {
         display: none;
     }
-    #landing-logo-wrapper{
+    #landing-logo-wrapper {
         bottom: 10%;
         width: 20%;
     }
     .main-content>ul, .main-content>ol {
         margin-left: 20px;
     }
-    .content> #search-box{       
+    .content>#search-box {
         margin-bottom: 5px;
         width: 60%;
     }
-    
-    .content>#search-box-results{
+    .content>#search-box-results {
         margin-bottom: 30px;
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 767px) {
+    #page-header {
+        display: contents;
+    }
+}
 
-    #landing-page-text-wrapper
-    {
+@media only screen and (min-width: 768px) {
+    #landing-page-text-wrapper {
         bottom: 10%;
         width: 40%;
     }
-    #landing-page-text-wrapper>h1
-    {
+    #landing-page-text-wrapper>h1 {
         font-size: 4.6vw;
     }
-    #landing-page-text-wrapper>p
-    {
+    #landing-page-text-wrapper>p {
         display: none;
     }
-    #landing-logo-wrapper{
+    #landing-logo-wrapper {
         bottom: 10%;
         width: 20%;
     }
     .main-content>h1, .main-content>h2, .main-content>h3, .main-content>h4, .main-content>h5, .main-content>h6, .main-content>p, .main-content>div {
         margin-left: 50px;
     }
-
     .main-content>ul, .main-content>ol {
         margin-left: 90px;
     }
-    .content> #search-box{       
+    .content>#search-box {
         margin: 0px 0px 5px 0px;
         width: 255px;
     }
-    .content>#search-box-results{
+    .content>#search-box-results {
         margin: 0px 0px 20px 0px;
     }
 }
 
 @media only screen and (min-width: 992px) {
-
-    .content> #search-box{       
+    .content>#search-box {
         width: 510px;
     }
-    
-    #landing-page-text-wrapper
-    {
+    #landing-page-text-wrapper {
         bottom: 10%;
         width: 40%;
     }
-    #landing-page-text-wrapper>h1
-    {
+    #landing-page-text-wrapper>h1 {
         font-size: 3.75vw;
     }
-    #landing-page-text-wrapper>p
-    {
+    #landing-page-text-wrapper>p {
         display: block;
         font-size: 1.9vw;
     }
-    #landing-logo-wrapper{
+    #landing-logo-wrapper {
         bottom: 10%;
         width: 20%;
     }
 }
 
 @media only screen and (min-width: 1192px) {
-
-    #landing-page-text-wrapper
-    {
+    #landing-page-text-wrapper {
         bottom: 10%;
         width: 40%;
     }
-    #landing-page-text-wrapper>h1
-    {
+    #landing-page-text-wrapper>h1 {
         font-size: 3.2vw;
     }
-    #landing-page-text-wrapper>p
-    {
+    #landing-page-text-wrapper>p {
         font-size: 1.75vw;
     }
-    #landing-logo-wrapper{
+    #landing-logo-wrapper {
         bottom: 10%;
         width: 20%;
     }
