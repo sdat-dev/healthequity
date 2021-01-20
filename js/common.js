@@ -237,3 +237,27 @@ let appendMainContent = function (maincontentContainer, content) {
     mainContentElement.innerHTML = content.trim();
     maincontentContainer.appendChild(mainContentElement);
 }
+
+let formatPara = function(text){
+    let result = '';
+    if(typeof text === "undefined" || isNaN(text) == false){
+        return text;
+    }
+    else{
+    let paras = text.split("\n\n");
+    for(var i=0; i< paras.length; i++){
+        let para = paras[i];
+
+            let lines = para.split(/\n(?=\d |\d.\t|[1-9]\d([0-9]\d){0,2}| \d.\t|\r\n|•\t|i\.|ii\.|iii\.|iv\.|v\.)/);
+          
+           
+                for(var j =0; j< lines.length; j++)
+                {
+                    if(lines[j] == '' || typeof lines[j] === "undefined") continue;
+                    result += '<p>'+lines[j]+'</p>'; 
+                }
+            
+        }        
+    }
+    return result;
+}
