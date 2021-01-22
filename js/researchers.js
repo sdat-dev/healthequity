@@ -210,7 +210,7 @@ let buildUniversityResearcherElements = function(researchers){
             continue;
         let researcher = researchers[i];
         content +='<div class = "search-container expert-info">'+
-        '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q44_Name"] != '' && (researcher["Q44_Name"].includes(".jpg")||researcher["Q44_Name"].includes(".png")))? researcher.ResponseId+'_'+researcher["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q44_Name"] != '' && !researcher["Q44_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
         '<h2 class = "content-header-no-margin">'+ (researcher["Q43_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q43_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
@@ -291,7 +291,7 @@ let buildOtherResearcherElements = function(researchers){
         if(researchers[i].Q12 == "") //skip of there is no first name
             continue;
         let researcher = researchers[i];
-        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q44_Name"] != '' && (researcher["Q44_Name"].includes(".jpg")||researcher["Q44_Name"].includes(".png")))? researcher.ResponseId+'_'+researcher["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
+        content +='<div class = "search-container expert-info"><img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q44_Name"] != '' && !researcher["Q44_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
         '<h2 class = "content-header-no-margin">'+ (researcher["Q43_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q43_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         generateOtherResearcherTitle(researcher) + generateLogoContent(researcher) +
         '<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + '>'+ researcher.Q13+ '</a><br>'+ 
