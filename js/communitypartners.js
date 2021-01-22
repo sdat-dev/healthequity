@@ -143,7 +143,7 @@ let buildPartnersContent = function(partners){
     for(var i=0; i< partners.length; i++){
         if(partners[i].Q12 == "")
             continue;
-        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "assets/images/community-partners/'+ (partners[i]["Q63_Name"] != ''? partners[i].ResponseId+'_'+ partners[i]["Q63_Name"] :'placeholder.jpg') + '"/>'+
+        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "assets/images/community-partners/'+ ((partners[i]["Q63_Name"] != '' && (partners[i]["Q63_Name"].includes(".jpg")||partners[i]["Q63_Name"].includes(".png")))? partners[i].ResponseId+'_'+ partners[i]["Q63_Name"] :'placeholder.jpg') + '"/>'+
         '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
         '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 poc dont-break-out"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
         '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 address dont-break-out"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
@@ -179,7 +179,7 @@ let getAddress = function(partner){
 let getPointOfContact = function(partner){
     let pointofcontact = "";
     pointofcontact += partner.Q72 + " " + partner.Q71+ ",<br> "+ partner.Q75 + '<br> <a class = "email-link" href = mailto:' + partner.Q73 + 
-    '>'+ partner.Q73+ '</a>'+ (partner.Q74 == ""? '' : ',<br>'+ partner.Q74); 
+    '>'+ partner.Q73+ '</a>'+ (partner.Q74 == ""? '' : ',<br>'+ formatPhone(partner.Q74)); 
     return pointofcontact;
 }
 
@@ -225,8 +225,14 @@ let formatText = function(text){
             }
         }        
     }
+    return result;
+}
 
-
+let formatPhone = function(text){
+    let result = text;
+    if(isNaN(text) == false){
+        result = (text/10000000 |0)+ '-' + ((text/10000)%1000|0) + '-' + text%10000
+    }
     return result;
 }
 
