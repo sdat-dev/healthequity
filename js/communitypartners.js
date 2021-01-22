@@ -143,7 +143,7 @@ let buildPartnersContent = function(partners){
     for(var i=0; i< partners.length; i++){
         if(partners[i].Q12 == "")
             continue;
-        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "assets/images/community-partners/'+ ((partners[i]["Q63_Name"] != '' && (partners[i]["Q63_Name"].includes(".jpg")||partners[i]["Q63_Name"].includes(".png")))? partners[i].ResponseId+'_'+ partners[i]["Q63_Name"] :'placeholder.jpg') + '"/>'+
+        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "assets/images/community-partners/'+ ((partners[i]["Q63_Name"] != '' && !partners[i]["Q63_Name"].includes(".docx"))? partners[i].ResponseId+'_'+ partners[i]["Q63_Name"] :'placeholder.jpg') + '"/>'+
         '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
         '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 poc dont-break-out"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
         '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 address dont-break-out"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
