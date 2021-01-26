@@ -59,7 +59,7 @@ request.onload = function () {
                 content += '<div class = "display-flex">';
                 logostart = false;
             }
-            content += '<div class = "col-xl-4 col-lg-6 col-md-12">' +
+            content += '<div class = "col-xl-4 col-lg-4 col-md-4">' +
                 '<a target = "_blank" href = "' + element.source + '">' +
                 '<div class = "home-logo-container">' +
                 '<img class = "home-logo" src = "assets/images/' + element.logo + '">' +
