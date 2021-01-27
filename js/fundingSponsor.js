@@ -219,7 +219,7 @@ for (let i = 0; i < arr.length; i++) {
         '<i class="fas fa-dollar-sign"></i> <strong>Estimated Funding: </strong>' + Estimated_Funding +
         '<br>' +
         '</div><div class = "col-sm-12 col-md-12 col-lg-12 col-xl-6">' +
-        '<i class="fas fa-calendar-day"></i> <strong>Due Date: </strong>' + dueDate  +
+        '<i class="fas fa-calendar-day"></i> <strong>Date: </strong>' + dueDate  +
         '<br></div></div></div>' +
         '<p class = "opp-description">' + description + '</p>' +
         '<button type = "button" class = "details-button" onclick = "location.href = \'' + arr[i].programurl + '\'">View Details</button></div>';
