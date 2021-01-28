@@ -1,4 +1,4 @@
-let sidemenuItems = [{"item":"Home","link":"home.html"},{"item":"Message from Event Chair","link":"messagefromeventchair.html"},{"item":"Multi-campus Conversations","link":"multi-campusconversations.html","subItems":[{"item":"January 8","link":"january8.html"},{"item":"January 15","link":"january15.html"},{"item":"January 22","link":"january22.html"}]},{"item":"Researchers","link":"researchers.html"},{"item":"Community Partners","link":"communitypartners.html"},{"item":"Planning Committee","link":"planningcommittee.html"},{"item":"Funder Toolkit","link":"#","subItems":[{"item":"Proposal Preparation","link":"proposalpreparation.html"},{"item":"Library Resources","link":"libraryresources.html"},{"item":"Video Resources","link":"videoresources.html"},{"item":"Talk To A Program Officer","link":"talktoaprogramofficer.html"}]},{"item":"Funding Opportunities","link":"fundingopportunities.html"},{"item":"Questions","link":"questions.html"}]
+let sidemenuItems = [{"item":"Home","link":"home.html"},{"item":"Message from Event Chair","link":"messagefromeventchair.html"},{"item":"Multi-campus Conversations","link":"multi-campusconversations.html","subItems":[{"item":"January 8","link":"january8.html"},{"item":"January 15","link":"january15.html"},{"item":"January 22","link":"january22.html"}]},{"item":"Researchers","link":"researchers.html"},{"item":"Community Partners","link":"communitypartners.html"},{"item":"Planning Committee","link":"planningcommittee.html"},{"item":"Funding Opportunity","link":"fundingopportunity.html"},{"item":"Funder Toolkit","link":"fundertoolkit.html","subItems":[{"item":"Proposal Preparation","link":"proposalpreparation.html"},{"item":"Library Resources","link":"libraryresources.html"},{"item":"Video Resources","link":"videoresources.html"},{"item":"Talk To A Program Officer","link":"talktoaprogramofficer.html"}]},{"item":"Questions","link":"questions.html"}]
 //SideMenu Start
 //What evet written  before '//SideMenu Start' will be relace with sidemenuItems in automation scripts
 
@@ -52,7 +52,6 @@ let addsidemenu = function (page, markactive = true, extraindirection = false) {
             menuItem.innerHTML = menuItemContent;
             menuItem.classList.add('navigation-items');
             menuItem.classList.add('hover-highlight');
-            console.log(menuItemContent);
 
             if (page == item.item) {
                 menuItem.setAttribute("id", "active-page");
@@ -70,7 +69,6 @@ let addsidemenu = function (page, markactive = true, extraindirection = false) {
 
 let buildsubmenu = function (subitems, page, markactive, extraindirection) {
     let submenu = '<div id="sub-navigation-bar">';
-    console.log("TEST", subitems);
     for (var j = 0; j < subitems.length; j++) {
         let link =subitems[j].link;
         if(extraindirection)
@@ -94,6 +92,7 @@ let buildsubmenu = function (subitems, page, markactive, extraindirection) {
             if (page == subitems[j].item && markactive) {
                 submenu += ' id = "active-page"';
             }
+            console.log("link: ", link);
             submenu += '><a href="' + link + '">' + subitems[j].item + '</a></div>';
         }
     }

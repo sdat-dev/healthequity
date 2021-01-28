@@ -67,7 +67,6 @@ let createAgencyNavigation = function(distinctAgencies, agencyAcronyms)
         {
             buttonContent = '<a class="nav-link" id="pills-'+ agencyId +'-tab" data-toggle="pill" href="#pills-'+ agencyId +'" role="tab" aria-controls="pills-'+ agencyId +'" aria-selected="true">'+ acronym +'</a>';
         }
-       
         let linkElement = '<li class="nav-item">' + buttonContent + '</li>';
         navigationContent = navigationContent + linkElement;
     }
@@ -87,7 +86,7 @@ let buildAgencyTabContent = function(distinctAgencies, proposalGuidance, headers
 
         if(i == 0)
         {
-            tabContent +='<div class="tab-pane fade show active" id="pills-'+ agencyId +'" role="tabpanel" aria-labelledby="pills-'+ agencyId +'-tab">';
+            tabContent +='<div class="tab-pane fade show active in" id="pills-'+ agencyId +'" role="tabpanel" aria-labelledby="pills-'+ agencyId +'-tab">';
         }
         else
         {
