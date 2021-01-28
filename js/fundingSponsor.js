@@ -266,6 +266,3 @@ if (p.ErrorType != null) {
 }
 getAccordiationData(p);
 };
-
-
-

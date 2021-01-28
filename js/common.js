@@ -48,7 +48,7 @@ let addsidemenu = function (page, markactive = true, extraindirection = false) {
             let menuItemContent = '<a href="';
             if(extraindirection)
                 menuItemContent += '../';
-            // menuItemContent += (item.link != '#' ? item.link : subitems[0].link) + '">' + item.item + '</a>';
+            menuItemContent += (item.link != '#' ? item.link : subitems[0].link) + '">' + item.item + '</a>';
             menuItem.innerHTML = menuItemContent;
             menuItem.classList.add('navigation-items');
             menuItem.classList.add('hover-highlight');
