@@ -102,6 +102,7 @@ let buildsubmenu = function (subitems, page, markactive, extraindirection) {
 
 let generateAccordionElem = function (level, collapseId, headerId, parentId, childId, header, accordionContent) {
     var headerno = level + 2;
+    
     let accordionElem = '<div class="panel panel-default">'+
                           '<div class="panel-heading level' + level + '" role="tab" id="'+ headerId +'">' +
                              '<h' + headerno + ' class = "panel-title">' +
