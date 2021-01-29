@@ -155,11 +155,11 @@ let buildSessionContent =  function (sessions){
             return object.Role == "Moderator" && 
             object.FirstName != "" && object.LastName != "";
         });
-
+        console.log(session[0]);
         conent +=   '<section class="session">'+
                         '<h3 class="content-header">'+ session[0].SessionTitle +'</h3>'+ 
                         '<h4>Time: '+ getTime(session[0].StartTime) +' - '+ getTime(session[0].EndTime) +', January 8</h4>'+
-                        (session[0].ZoomLink == ""? "": '<h4>Zoom Link: <a href="'+ session[0].ZoomLink + '">'+session[0].ZoomLink+'</a></h4>') +
+                        (session[0].ZoomLink == ""? "": '<h4>Session Link: <a href="'+ session[0].Video + '">Click here!</a></h4>') +
                         '<h4><a href="'+ session[0].Summary +'">Summary</a></h4>'+
                         '<p><b>Description: </b>'+ session[0].PanelDescription +'</p>';
         if(panelists.length != 0){
