@@ -92,40 +92,6 @@ window.onload = function () {
     })
 }
 
-let addheader =  function (headers){
-    let header = document.getElementById("page-header");
-    let content ="";
-    let image = "";
-    let header1 = "";
-    let header2 = "";
-
-    content += '<div class="carousel slide carousel-fade pointer-event" data-ride="carousel">'+
-                    '<div class="carousel-inner">';
-    for(var i =0 ; i < headers.length; i++)
-    {
-        image = typeof headers[i].logo != 'undefined' && headers[i].logo != ''? headers[i].logo : image;
-        header1 =  typeof headers[i].content != 'undefined' && headers[i].content != ''? headers[i].content : header1;
-        header2 =  typeof headers[i].subcontent != 'undefined' && headers[i].subcontent != ''? headers[i].subcontent : header2;
-        let source = 'assets/images/' + (typeof headers[i].source != 'undefined' && headers[i].source != ''? headers[i].source+'/' : '');
-        if(i == 0)
-        {
-            content += '<div class="carousel-item active">';
-        }
-        else
-        {
-            content += '<div class="carousel-item">';
-        }
-        content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
-                    '<div id = "landing-page-text-wrapper">'+
-                        '<h1>'+ header1 +'</h1>' + 
-                        '<p>' + header2 + '</p>' +      
-                    '</div>'+
-                '</div>';
-    }
-    content +=  '</div></div>';
-    header.innerHTML = content;
-}
-
 let buildResearchersContent = function(experts){
     console.log(experts);
     let content = '';
