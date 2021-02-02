@@ -26,29 +26,13 @@ $.ajax({
 
 function getAccordiationData(p) {
 
-    let requestURL = "data/fundingopportunity.json";
-    let request = new XMLHttpRequest();
     //getting content Element to append grants information
     let maincontentContainer = document.getElementsByClassName('main-content')[0];
-    request.open('GET', requestURL);
-    request.responseType = 'json';
-    request.send();
-    request.onload = function () {
-        let content = '';
-        const webelementsjson = request.response;
-        //condition for checking if browser is Internet Explorer
-        let webelements = ((false || !!document.documentMode)) ? JSON.parse(webelementsjson) : webelementsjson;
-        let contentElement = document.createElement('div');
-        contentElement.classList.add('content');
-        contentElement.innerHTML = getContent(webelements);
-        maincontentContainer.appendChild(contentElement);
-        addfooter();
-    }
-
+    
     var covid_data = p;
     let distinctCategories = ['NIH','NSF', 'Federal - Others', 'Others'];
     let FederalsubCategories = ['Federal - All CDC', 'Federal - All HHS', 'Federal - All DoD', 'Federal - All DoE'];
-    let content =  '<div class="panel-group" id = "fundingopps" role="tablist" aria-multiselectable="true">';
+    let content =  '<div class="panel-group" id = "accordion-ops" role="tablist" aria-multiselectable="true">';
     let counter = 1;
 
     for (var k = 0; k < distinctCategories.length; k++) {
@@ -129,16 +113,32 @@ function getAccordiationData(p) {
         let collapseId = "collapse" + counter;
         let headerId = "heading" + counter;
         let childId = "child" + counter;
-        let accordionElem = generateAccordionElem(1, collapseId, headerId, "fundingopps", childId, categoryHeader, accordionContent);
+        let accordionElem = generateAccordionElem(1, collapseId, headerId, "accordion-ops", childId, categoryHeader, accordionContent);
         content = content + accordionElem;
         counter++;
     }
     content += '</div>';
 
-    let accordionElement = document.createElement('div');
+    let accordionElement = document.getElementById('fundingopps');
     accordionElement.classList.add('accordion-container');
     accordionElement.innerHTML = content.trim();
     maincontentContainer.appendChild(accordionElement);
+
+    let requestURL = "data/fundingopportunity.json";
+    let request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    request.onload = function () {
+        const webelementsjson = request.response;
+        //condition for checking if browser is Internet Explorer
+        let webelements = ((false || !!document.documentMode)) ? JSON.parse(webelementsjson) : webelementsjson;
+        let contentElement = document.getElementsByClassName('content')[0];
+        let content = getContent(webelements);
+        contentElement.innerHTML = content;
+        maincontentContainer.appendChild(contentElement);
+        addfooter();
+    }
 }
 
 let generateFederalAccordionContent = function (arr, img_url, funding_name) {
