@@ -24,7 +24,7 @@
 <body>
     <header id="navbar">
     </header>
-    <div id="page-header">
+    <div id = "page-header">
     </div>
     <section class="content-wrapper">
         <div class="buffer">
@@ -43,8 +43,6 @@
             <div class="main-content col-xs-12 col-sm-9" style="line-height: 1.45;">
                 <h1 class="content-header">
                 </h1>
-                <div class="content"> 
-                </div>
             </div>
         </div>
     </section>
@@ -79,21 +77,8 @@
     <script src="libraries/ualbany/detailed-title.js"></script>
     <script src="libraries/bootstrap/js/popover.js"></script>
     <script src="js/common.js"></script>
-	<script>addsidemenu("Funding Opportunity")</script>
-    <script src="js/fundingSponsor.js"></script>
-    <script src="libraries/ualbany/iscroll-new.js"></script>
-    <script>
-        $(document).ready(function () {
-            $.getScript("js/fundingSponsor.js");
-        });
-        $(window).on("load", function () {
-            $(function () {
-                $(".preload").fadeOut(1000, function () {
-                    $("#fundingopps").fadeIn(800);
-                });
-            });
-        });
-    </script>
-    <script src="js/search-box.js"></script>
+	<script>addsidemenu("Funding Opportunity (NEW)")</script>
+	<script src="js/fundingopportunity(new).js"></script>
+	<script src="libraries/ualbany/iscroll-new.js"></script>
 </body>
 </html>
