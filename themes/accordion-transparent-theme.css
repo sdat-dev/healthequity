@@ -80,6 +80,7 @@ button.btn-link:focus{
     font-size: 28px;
     padding: 10px !important;
     border: none;
+    text-transform: uppercase;
 }
 
 .panel-title > .btn:focus{
