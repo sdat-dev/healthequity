@@ -337,7 +337,6 @@ let generateRelevantCourses = function(courses){
 }
 
 //Search Function
-
 searchfunction = function () {
     //getting search-box Element
     let searchbox = document.getElementById('search-box');
