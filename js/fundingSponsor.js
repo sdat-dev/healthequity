@@ -28,7 +28,7 @@ let addSpinData = function(){
         isCrossDomain: true,
         callback: 'parseData',
         keywords: '[SOLR]keyword_exact:"Health Disparities"',
-        uniqueId: '801E4DCB-736C-4601-B'
+        //uniqueId: '801E4DCB-736C-4601-B'
     };
 
     let params = new URLSearchParams(data).toString();
