@@ -84,8 +84,8 @@ window.onload = function () {
         addfooter();
         let searchbox = document.getElementById('search-box');
         let searchbutton = document.getElementById('search-button');
-        searchbox.onkeyup = searchfunction;
-        searchbutton.onclick = searchfunction;
+        searchbox.onkeyup = searchfunctioncommunity;
+        searchbutton.onclick = searchfunctioncommunity;
     })).catch(errors => {
         console.log(errors);
     })

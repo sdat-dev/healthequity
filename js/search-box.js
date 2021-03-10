@@ -65,8 +65,8 @@ let clearsearch = function(){
     }
 }
 
-/*
-searchfunction = function()
+
+searchfunctioncommunity = function()
 {   
     //getting search-box Element
     let searchbox = document.getElementById('search-box');
@@ -179,7 +179,7 @@ searchfunction = function()
                  searchElems[i].style.display = "block";
              }
         }
-}*/
+}
 
 let searchbox = document.getElementById('search-box');
 let searchbutton = document.getElementById('search-button');
