@@ -79,7 +79,7 @@ let buildAgencyTabContent = function (distinctAgencies, proposalGuidance, header
         });
 
         if (i == 0) {
-            tabContent += '<div class="tab-pane fade active in" id="pills-' + agencyId + '" role="tabpanel" aria-labelledby="pills-' + agencyId + '-tab">';
+            tabContent += '<div class="tab-pane fade active in show" id="pills-' + agencyId + '" role="tabpanel" aria-labelledby="pills-' + agencyId + '-tab">';
         }
         else {
             tabContent += '<div class="tab-pane fade" id="pills-' + agencyId + '" role="tabpanel" aria-labelledby="pills-' + agencyId + '-tab">';
