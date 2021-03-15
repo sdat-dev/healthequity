@@ -67,6 +67,28 @@ let addsidemenu = function (page, markactive = true, extraindirection = false) {
     }
 }
 
+let customSort = function(sortOrder, objects){
+    let i,j = 0;
+    for(i = 0; i< objects.length; i++)
+    {
+        for(j = 0; j < objects.length - (i+1); j++)
+        {
+            if(sortOrder.indexOf(objects[j]) > sortOrder.indexOf(objects[j+1]))
+            {
+                let swap = objects[j];
+                objects[j] = objects[j+1];
+                objects[j+1] = swap;
+            }
+        }
+    }
+    return objects;
+}
+
+let updatecontentHeading = function(heading){
+    let header = document.getElementsByClassName("content-header")[0];
+    header.innerHTML = heading.toUpperCase();
+}
+
 let buildsubmenu = function (subitems, page, markactive, extraindirection) {
     let submenu = '<div id="sub-navigation-bar">';
     for (var j = 0; j < subitems.length; j++) {
@@ -316,7 +338,7 @@ addfooter = function (relativepath = ".") {
                                     '</p>'+
                                 '</div>'+
                             '</div>'+
-                            '<div class="footer-end">'+
+                            '<div class="footer-end row">'+
                             '<div class="col-sm-12 col-md-6 address-phone">'+
                             '<a target="_blank" href="https://www.google.com/maps/place/1400+Washington+Ave,+Albany,+NY+12222/@42.6859115,-73.8287166,17z/data=!3m1!4b1!4m5!3m4!1s0x89de0b3ce5c93e45:0x4cdbe8d7b52fa412!8m2!3d42.6859115!4d-73.8265279"'+
                                         'target="_blank">1400 Washington Avenue, Albany, NY 12222</a> | Phone: <a'+

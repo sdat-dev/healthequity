@@ -1,34 +1,52 @@
-let spinURL = "https://spin.infoedglobal.com/Service/ProgramSearch";
-var data = {
-    PublicKey: "96183961-68B2-4B14-AEA3-376E734380CD",
-    InstCode: "SUNYALB",
-    signature: "97707afe4847b9862f27c9ce80a9cb6e",
-    responseFormat: 'JSONP',
-    pageSize: 3000,
-    columns: ["synopsis", "id", "spon_name", "NextDeadlineDate", "total_funding_limit", "programurl", "sponsor_type", "prog_title", "revision_date"],
-    isCrossDomain: true,
-    callback: 'parseData',
-    keywords: "health disparities",
-    uniqueId: '3AF9322F-EA4D-48DF-9'
-};
+let requestURL = "data/fundingopportunity.json";
+let request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+let maincontentContainer = document.getElementsByClassName('main-content')[0];
+request.onload = function () {
+    const webelementsjson = request.response;
+    //condition for checking if browser is Internet Explorer
+    let webelements = ((false || !!document.documentMode)) ? JSON.parse(webelementsjson) : webelementsjson;
+    let contentElement = document.getElementsByClassName('content')[0];
+    let content = getContent(webelements);
+    contentElement.innerHTML = content;
+    maincontentContainer.appendChild(contentElement);
+    addfooter();
+    addSpinData();
+}
 
-let params = new URLSearchParams(data).toString();
-let final_url = spinURL + '?' + params;
-let contentURL = "data/fundingopportunity.json";
+let addSpinData = function(){
+    let spinURL = "https://spin.infoedglobal.com/Service/ProgramSearch";
+    var data = {
+        PublicKey: "96183961-68B2-4B14-AEA3-376E734380CD",
+        InstCode: "SUNYALB",
+        signature: "97707afe4847b9862f27c9ce80a9cb6e",
+        responseFormat: 'JSONP',
+        pageSize: 3000,
+        columns: ["synopsis", "id", "spon_name", "NextDeadlineDate", "total_funding_limit", "programurl", "sponsor_type", "prog_title", "revision_date"],
+        isCrossDomain: true,
+        callback: 'parseData',
+        keywords: '[SOLR]keyword_exact:"Health Disparities"',
+        //uniqueId: '801E4DCB-736C-4601-B'
+    };
 
-$.ajax({
-    url: final_url,
-    dataType: 'jsonp',
-    success: function (dataWeGotViaJsonp) {
-        console.log(dataWeGotViaJsonp);
-    }
-});
+    let params = new URLSearchParams(data).toString();
+    let final_url = spinURL + '?' + params;
+
+    $.ajax({
+        url: final_url,
+        dataType: 'jsonp',
+        success: function (dataWeGotViaJsonp) {
+            console.log(dataWeGotViaJsonp);
+        }
+    });
+}
+
 
 function getAccordiationData(p) {
 
-    //getting content Element to append grants information
-    let maincontentContainer = document.getElementsByClassName('main-content')[0];
-    
+    //getting content Element to append grants information 
     var covid_data = p;
     let distinctCategories = ['NIH','NSF', 'Federal - Others', 'Others'];
     let FederalsubCategories = ['Federal - All CDC', 'Federal - All HHS', 'Federal - All DoD', 'Federal - All DoE'];
@@ -108,7 +126,7 @@ function getAccordiationData(p) {
         }
 
 
-        let categoryHeader = distinctCategories[k] + ' (' + length + ' Solicitations)';
+        let categoryHeader = distinctCategories[k] + ' (<span class="noofsolis">' + length + '</span> Solicitations)';
         let accordionContent = generateFederalAccordionContent(arr, img_url, distinctCategories[k]);
         let collapseId = "collapse" + counter;
         let headerId = "heading" + counter;
@@ -123,22 +141,6 @@ function getAccordiationData(p) {
     accordionElement.classList.add('accordion-container');
     accordionElement.innerHTML = content.trim();
     maincontentContainer.appendChild(accordionElement);
-
-    let requestURL = "data/fundingopportunity.json";
-    let request = new XMLHttpRequest();
-    request.open('GET', requestURL);
-    request.responseType = 'json';
-    request.send();
-    request.onload = function () {
-        const webelementsjson = request.response;
-        //condition for checking if browser is Internet Explorer
-        let webelements = ((false || !!document.documentMode)) ? JSON.parse(webelementsjson) : webelementsjson;
-        let contentElement = document.getElementsByClassName('content')[0];
-        let content = getContent(webelements);
-        contentElement.innerHTML = content;
-        maincontentContainer.appendChild(contentElement);
-        addfooter();
-    }
 }
 
 let generateFederalAccordionContent = function (arr, img_url, funding_name) {
