@@ -67,6 +67,28 @@ let addsidemenu = function (page, markactive = true, extraindirection = false) {
     }
 }
 
+let customSort = function(sortOrder, objects){
+    let i,j = 0;
+    for(i = 0; i< objects.length; i++)
+    {
+        for(j = 0; j < objects.length - (i+1); j++)
+        {
+            if(sortOrder.indexOf(objects[j]) > sortOrder.indexOf(objects[j+1]))
+            {
+                let swap = objects[j];
+                objects[j] = objects[j+1];
+                objects[j+1] = swap;
+            }
+        }
+    }
+    return objects;
+}
+
+let updatecontentHeading = function(heading){
+    let header = document.getElementsByClassName("content-header")[0];
+    header.innerHTML = heading.toUpperCase();
+}
+
 let buildsubmenu = function (subitems, page, markactive, extraindirection) {
     let submenu = '<div id="sub-navigation-bar">';
     for (var j = 0; j < subitems.length; j++) {
