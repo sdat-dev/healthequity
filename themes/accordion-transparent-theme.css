@@ -143,3 +143,15 @@ button.btn-link:focus{
     line-height: 30px;
     font-size: 15px;
 }
+
+.level2 .btn{
+    background-color: #EEB211;
+    font-size: 20px;
+    color: #46166b;
+}
+
+.level2 .btn:hover{
+    background-color: #46166b;
+    font-size: 20px !important;
+    color: white !important;
+}
