@@ -12,7 +12,6 @@ request.onload = function () {
     //condition for checking if browser is Internet Explorer
     let videoresources = ((false || !!document.documentMode)) ? JSON.parse(videoresourcesjson) : videoresourcesjson;
     let distinctAgencies = getDistinctAttributes(videoresources, 'acronym');
-    // distinctAgencies = customSort(agencies_sort, distinctAgencies);
 
     let navContent = createAgencyNavigation(distinctAgencies);
     let tabContent = buildAgencyVideos(distinctAgencies, videoresources);
@@ -111,7 +110,6 @@ let buildVideoContent = function (videos) {
     content += '<div class="display-flex">';
     for (let i = 0; i < youtubelinks.length; i++) {
         let youtubelink = '';
-        let channel_title = '';
         let link = youtubelinks[i].link;
         if (link.includes("user")) {
             channel_title = link;
@@ -129,18 +127,16 @@ let buildVideoContent = function (videos) {
         var ampersandPosition = youtubelink.indexOf('&');
         if (ampersandPosition != -1)
             youtubelink = youtubelink.substring(0, ampersandPosition);
-
-        // console.log(youtubelinks[i].title);
         if (youtubelinks[i].title.includes("Channel")) {
             content += '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 video-padding-margin">' +
-                '   <div class="videoWrapper wide-screen"><iframe src="assets/images/youtube.jpg" autoplay="false"></iframe></div>' +
-                '   <a target = "_blank" href="' + youtubelink +'"><h5 class="video-title">' + youtubelinks[i].title + '</h5></a>' +
+                '   <div class="videoWrapper wide-screen"><iframe src="assets/sponsor_logos/' + youtubelinks[i].acronym.toLowerCase() + '.png"></iframe></div>' +
+                '   <a target = "_blank" href="' + youtubelink + '"><h5 class="video-title">' + youtubelinks[i].title + '</h5></a>' +
                 '</div>';
         }
         else {
             content += '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 video-padding-margin">' +
                 '   <div class="videoWrapper wide-screen"><iframe  src="' + youtubelink + '" allowfullscreen="true" autoplay="false"></iframe></div>' +
-                '   <h5 class="video-title">' + youtubelinks[i].title + '</h5>' +
+                '   <a target = "_blank" href="' + youtubelink + '"><h5 class="video-title">' + youtubelinks[i].title + '</h5></a>' +
                 '</div>';
         }
 

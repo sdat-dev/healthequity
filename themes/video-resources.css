@@ -29,6 +29,7 @@
     border: 2px solid gray;
 }
 
+
 .video-padding-margin{
     padding: 0px;
     margin-bottom: 15px;
@@ -37,4 +38,9 @@
 .videoWrapper video{
     width: 85%;
     padding-top: 8%;
+}
+
+.videoWrapper > img{
+  width: 50% !important;
+
 }
