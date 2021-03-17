@@ -3,7 +3,6 @@ window.onload = function () {
     let request = axios.get(requestURL);
     axios.all([request]).then(axios.spread((...responses) => {
         let proposalcontent =  responses[0].data;
-        console.log(proposalcontent);
         let webelements = proposalcontent;
         let content = '';
         let logostart = true;
