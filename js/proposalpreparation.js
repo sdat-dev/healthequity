@@ -1,11 +1,11 @@
-let requestURL = "data/proposalpreparationdata.json";
-let request = new XMLHttpRequest();
+let datarequestURL = "data/proposalpreparationdata.json";
+let datarequest = new XMLHttpRequest();
 //getting content Element to append grants information
 let maincontentContainer = document.getElementsByClassName('main-content')[0];
-request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
-request.onload = function () {
+datarequest.open('GET', datarequestURL);
+datarequest.responseType = 'json';
+datarequest.send();
+datarequest.onload = function () {
     let headers_sort = ['Find information: News, Funding Opportunities, and Past Awards',
         'Plan Your Proposal: Guidance and Resources',
         'Draft Your Proposal: Section Instructions and Templates'];
@@ -34,7 +34,8 @@ request.onload = function () {
     { Name: 'National Institute of Justice (NIJ)', Acronym: 'NIJ' },
     { Name: 'Substance Abuse and Mental Health Services Administration (SAMHSA)', Acronym: 'SAMHSA' },
     { Name: 'U.S. Department of Agriculture (USDA)', Acronym: 'USDA' }];
-    const proposalGuidances = request.response;
+    const proposalGuidances = datarequest.response;
+    console.log("proposalGuidances", proposalGuidances);
     //condition for checking if browser is Internet Explorer
     let proposalGuidance = ((false || !!document.documentMode)) ? JSON.parse(proposalGuidances) : proposalGuidances;
     let distinctAgencies = getDistinctAttributes(proposalGuidance, 'agency');
