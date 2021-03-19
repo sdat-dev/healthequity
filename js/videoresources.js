@@ -209,7 +209,7 @@ let buildVideoContent = function (videos) {
             youtubelink = youtubelink.substring(0, ampersandPosition);
         if (youtubelinks[i].title.includes("Channel")) {
             content += '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 video-padding-margin">' +
-                '   <div class="videoWrapper wide-screen"><iframe src="assets/sponsor_logos/' + youtubelinks[i].acronym.toLowerCase() + '.png"></iframe></div>' +
+                '   <div class="videoWrapper wide-screen"><img src="assets/sponsor_logos/' + youtubelinks[i].acronym.toLowerCase() + '.png""></img></div>' +
                 '   <a target = "_blank" href="' + youtubelink + '"><h5 class="video-title">' + youtubelinks[i].title + '</h5></a>' +
                 '</div>';
         }
