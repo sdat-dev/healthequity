@@ -93,7 +93,6 @@ window.onload = function () {
 }
 
 let buildResearchersContent = function(experts){
-    console.log(experts);
     let content = '';
     let universityResearchers = experts.filter(function(expert){
         return (expert["Q16"] == "University") && (expert.Q17 != "Other (Please specify)");

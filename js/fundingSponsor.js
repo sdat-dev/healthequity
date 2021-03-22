@@ -161,14 +161,14 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
         var deadlineDate = "";
         var Estimated_Funding = "";
         if (arr[i].NextDeadlineDate != null) {
-
+            console.log("arr[i].NextDeadlineDate", arr[i].NextDeadlineDate);
             if (arr[i].NextDeadlineDate.length <= 11) {
-                dueDate = new Date(arr[i].NextDeadlineDate);
+                dueDate = arr[i].NextDeadlineDate;
                 deadlineDate = new Date(arr[i].NextDeadlineDate).toLocaleDateString();
             }
             else {
                 var dateArr = arr[i].NextDeadlineDate.split(" ");
-                dueDate = new Date(dateArr[0]);
+                dueDate = arr[i].NextDeadlineDate.substring(1,11);
                 deadlineDate = new Date(dateArr[0]).toLocaleDateString();
 
             }
@@ -176,11 +176,14 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
             dueDate = "Continuous Submission/Contact the Program Officer"
             flag = true;
         }
-
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        });
         if (arr[i].total_funding_limit === 0) {
             Estimated_Funding = "N/A";
         } else {
-            Estimated_Funding = '$' + arr[i].total_funding_limit;
+            Estimated_Funding = formatter.format(arr[i].total_funding_limit);
         }
 
         var image_name = getImageName(arr[i].spon_name).toLowerCase();

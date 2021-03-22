@@ -114,7 +114,6 @@ let buildsubmenu = function (subitems, page, markactive, extraindirection) {
             if (page == subitems[j].item && markactive) {
                 submenu += ' id = "active-page"';
             }
-            console.log("link: ", link);
             submenu += '><a href="' + link + '">' + subitems[j].item + '</a></div>';
         }
     }
