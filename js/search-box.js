@@ -5,6 +5,7 @@ let searchfunction = function () {
     let searchtext = searchbox.value.trim();
     //getting individual content withing sub-accordions to toggle display
     let fundingopps = document.getElementById("fundingopps");
+    console.log("fundingopps", fundingopps);
     let searchElems = document.getElementsByClassName('search-container');
     let panels = fundingopps.getElementsByClassName("panel");
     clearsearch();

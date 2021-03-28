@@ -24,7 +24,7 @@ let addSpinData = function(){
         signature: "97707afe4847b9862f27c9ce80a9cb6e",
         responseFormat: 'JSONP',
         pageSize: 3000,
-        columns: ["synopsis", "id", "spon_name", "NextDeadlineDate", "total_funding_limit", "programurl", "sponsor_type", "prog_title", "revision_date"],
+        columns: ["synopsis", "id", "spon_name", "NextDeadlineDate", "total_funding_limit", "programurl", "sponsor_type", "prog_title", "revision_date", "deadline_note"],
         isCrossDomain: true,
         callback: 'parseData',
         keywords: '[SOLR]keyword_exact:"Health Disparities"',
@@ -127,6 +127,7 @@ function getAccordiationData(p) {
 
 
         let categoryHeader = distinctCategories[k] + ' (<span class="noofsolis">' + length + '</span> Solicitations)';
+        console.log("categoryHeader",categoryHeader);
         let accordionContent = generateFederalAccordionContent(arr, img_url, distinctCategories[k]);
         let collapseId = "collapse" + counter;
         let headerId = "heading" + counter;
@@ -161,7 +162,6 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
         var deadlineDate = "";
         var Estimated_Funding = "";
         if (arr[i].NextDeadlineDate != null) {
-            console.log("arr[i].NextDeadlineDate", arr[i].NextDeadlineDate);
             if (arr[i].NextDeadlineDate.length <= 11) {
                 dueDate = arr[i].NextDeadlineDate;
                 deadlineDate = new Date(arr[i].NextDeadlineDate).toLocaleDateString();
@@ -217,7 +217,6 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
                 }
                 else {
                     img_url = "assets/logos-funding-opportunities/SPIN_logo.png";
-                // console.log("ddd");
                 }          
             }
         }
@@ -250,9 +249,29 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
             '</div><div class = "col-sm-12 col-md-12 col-lg-12 col-xl-6">' +
             '<i class="fas fa-calendar-day"></i> <strong>Date: </strong>' + dueDate  +
             '<br></div></div></div>' +
-            '<p class = "opp-description">' + description + '</p>' +
-            '<button type = "button" class = "details-button" onclick = "location.href = \'' + arr[i].programurl + '\'">View Details</button></div>';
-    }
+            '<p class = "opp-description">' + description + '</p>';
+            if(arr[i].deadline_note != null)
+            {
+                content += buildduedatenote(arr[i].deadline_note);
+            }
+            content += '<p class="width100"><button type = "button" class = "details-button" onclick = "location.href = \'' + arr[i].programurl + '\'">View Details</button></p></div>';
+        }
+    return content;
+}
+
+let counter = 1;
+let buildduedatenote = function(deadlinenote){
+    let content = "";
+    content = '<p class="mav-header">'+
+                '<button class="btn btn-mav details-button collapsed" type="button" data-toggle="collapse" data-target="#deadlinenote'+ counter +'" aria-expanded="false" aria-controls="deadlinenote'+ counter +'">Due Date Note '+
+                '<i class="fas fa-chevron-up"></i></button>'+
+              '</p>'+
+              '<div class="collapse" id="deadlinenote'+ counter +'">'+
+                '<div class="card card-body">'+
+                    deadlinenote +
+                '</div>'+
+              '</div>';
+    counter++;
     return content;
 }
 
@@ -277,7 +296,6 @@ let checkFileExists = function (url) {
 }
 
 var parseData = function (p) {
-    console.log(p);
     data = p;
     if (p.ErrorType != null) {
         if ($('#waiter').is(':visible')) $('#waiter').hide();
