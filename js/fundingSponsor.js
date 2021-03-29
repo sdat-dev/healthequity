@@ -16,7 +16,7 @@ request.onload = function () {
     addSpinData();
 }
 
-let addSpinData = function(){
+let addSpinData = function () {
     let spinURL = "https://spin.infoedglobal.com/Service/ProgramSearch";
     var data = {
         PublicKey: "96183961-68B2-4B14-AEA3-376E734380CD",
@@ -28,7 +28,7 @@ let addSpinData = function(){
         isCrossDomain: true,
         callback: 'parseData',
         keywords: '[SOLR]keyword_exact:"Health Disparities"',
-        //uniqueId: '801E4DCB-736C-4601-B'
+        uniqueId: '801E4DCB-736C-4601-B'
     };
 
     let params = new URLSearchParams(data).toString();
@@ -48,9 +48,9 @@ function getAccordiationData(p) {
 
     //getting content Element to append grants information 
     var covid_data = p;
-    let distinctCategories = ['NIH','NSF', 'Federal - Others', 'Others'];
+    let distinctCategories = ['NIH', 'NSF', 'Federal - Others', 'Others'];
     let FederalsubCategories = ['Federal - All CDC', 'Federal - All HHS', 'Federal - All DoD', 'Federal - All DoE'];
-    let content =  '<div class="panel-group" id = "accordion-ops" role="tablist" aria-multiselectable="true">';
+    let content = '<div class="panel-group" id = "accordion-ops" role="tablist" aria-multiselectable="true">';
     let counter = 1;
 
     for (var k = 0; k < distinctCategories.length; k++) {
@@ -64,7 +64,7 @@ function getAccordiationData(p) {
         var arr = [];
         for (var j = 0; j < covid_data.Programs.length; j++) {
             var programs_value = covid_data.Programs[j];
-        
+
             if (programs_value.spon_name.includes('NSF') ||
                 programs_value.spon_name.includes('National Science Foundation') ||
                 programs_value.spon_name === "Directorate for Engineering/NSF"
@@ -72,16 +72,16 @@ function getAccordiationData(p) {
                 NSF_arr.push(programs_value);
             }
             else if (programs_value.spon_name.includes('NIH') ||
-            programs_value.spon_name.includes('DHHS')    
+                programs_value.spon_name.includes('DHHS')
                 || programs_value.spon_name.includes('National Institute of Health')
-                && !NIH_arr.includes(programs_value) 
+                && !NIH_arr.includes(programs_value)
             ) {
                 NIH_arr.push(programs_value);
 
             }
             else if (distinctCategories[k] == 'Federal - Others') {
                 if (programs_value.sponsor_type == 'US Federal' && !programs_value.spon_name.includes('DHHS') &&
-                    !programs_value.spon_name.includes('NIH') && !programs_value.spon_name.includes('NSF')     ) {
+                    !programs_value.spon_name.includes('NIH') && !programs_value.spon_name.includes('NSF')) {
                     federal_arr.push(programs_value);
                 }
             }
@@ -89,7 +89,7 @@ function getAccordiationData(p) {
                 if (distinctCategories[k] == 'Others') {
                     if (programs_value.sponsor_type != 'US Federal' &&
 
-                        !federal_arr.includes(programs_value)  && !NIH_arr.includes(programs_value)
+                        !federal_arr.includes(programs_value) && !NIH_arr.includes(programs_value)
                     ) {
 
                         others.push(programs_value);
@@ -127,7 +127,7 @@ function getAccordiationData(p) {
 
 
         let categoryHeader = distinctCategories[k] + ' (<span class="noofsolis">' + length + '</span> Solicitations)';
-        console.log("categoryHeader",categoryHeader);
+        console.log("categoryHeader", categoryHeader);
         let accordionContent = generateFederalAccordionContent(arr, img_url, distinctCategories[k]);
         let collapseId = "collapse" + counter;
         let headerId = "heading" + counter;
@@ -151,9 +151,30 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
     var flag_defunct = true;
 
     arr.sort(function(a, b) {
-        var c = new Date(a.revision_date);
-        var d = new Date(b.revision_date);
-        return d-c;
+        var deadlineDate_a = new Date();
+        var deadlineDate_b = new Date();
+        if (a.NextDeadlineDate != null) {
+    
+            if (a.NextDeadlineDate.length <= 11) {
+                deadlineDate_a = new Date(a.NextDeadlineDate);
+            }
+            else {
+                var dateArr = a.NextDeadlineDate.split(" ");
+                deadlineDate_a = new Date(dateArr[0]);
+            }
+        }
+    
+        if (b.NextDeadlineDate != null) {
+    
+            if (b.NextDeadlineDate.length <= 11) {
+                deadlineDate_b = new Date(b.NextDeadlineDate);
+            }
+            else {
+                var dateArr = b.NextDeadlineDate.split(" ");
+                deadlineDate_b = new Date(dateArr[0]);
+            }
+        }   
+        return deadlineDate_a-deadlineDate_b;
     });
 
     for (let i = 0; i < arr.length; i++) {
@@ -168,7 +189,7 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
             }
             else {
                 var dateArr = arr[i].NextDeadlineDate.split(" ");
-                dueDate = arr[i].NextDeadlineDate.substring(1,11);
+                dueDate = arr[i].NextDeadlineDate.substring(1, 11);
                 deadlineDate = new Date(dateArr[0]).toLocaleDateString();
 
             }
@@ -217,7 +238,7 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
                 }
                 else {
                     img_url = "assets/logos-funding-opportunities/SPIN_logo.png";
-                }          
+                }
             }
         }
         if (funding_name === 'Others') {
@@ -232,8 +253,8 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
         }
         var description = arr[i].synopsis.replace(/<[^>]*>/g, '');
         if (dueDate != "Continuous Submission/Contact the Program Officer") {
-        if (dueDate > today) {
-            flag = true;
+            if (dueDate > today) {
+                flag = true;
                 dueDate = deadlineDate;
             }
         }
@@ -247,30 +268,29 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
             '<i class="fas fa-dollar-sign"></i> <strong>Estimated Funding: </strong>' + Estimated_Funding +
             '<br>' +
             '</div><div class = "col-sm-12 col-md-12 col-lg-12 col-xl-6">' +
-            '<i class="fas fa-calendar-day"></i> <strong>Date: </strong>' + dueDate  +
+            '<i class="fas fa-calendar-day"></i> <strong>Date: </strong>' + dueDate +
             '<br></div></div></div>' +
             '<p class = "opp-description">' + description + '</p>';
-            if(arr[i].deadline_note != null)
-            {
-                content += buildduedatenote(arr[i].deadline_note);
-            }
-            content += '<p class="width100"><button type = "button" class = "details-button" onclick = "location.href = \'' + arr[i].programurl + '\'">View Details</button></p></div>';
+        if (arr[i].deadline_note != null) {
+            content += buildduedatenote(arr[i].deadline_note);
         }
+        content += '<p class="width100"><button type = "button" class = "details-button" onclick = "location.href = \'' + arr[i].programurl + '\'">View Details</button></p></div>';
+    }
     return content;
 }
 
 let counter = 1;
-let buildduedatenote = function(deadlinenote){
+let buildduedatenote = function (deadlinenote) {
     let content = "";
-    content = '<p class="mav-header">'+
-                '<button class="btn btn-mav details-button collapsed" type="button" data-toggle="collapse" data-target="#deadlinenote'+ counter +'" aria-expanded="false" aria-controls="deadlinenote'+ counter +'">Due Date Note '+
-                '<i class="fas fa-chevron-up"></i></button>'+
-              '</p>'+
-              '<div class="collapse" id="deadlinenote'+ counter +'">'+
-                '<div class="card card-body">'+
-                    deadlinenote +
-                '</div>'+
-              '</div>';
+    content = '<p class="mav-header">' +
+        '<button class="btn btn-mav details-button collapsed" type="button" data-toggle="collapse" data-target="#deadlinenote' + counter + '" aria-expanded="false" aria-controls="deadlinenote' + counter + '">Due Date Note ' +
+        '<i class="fas fa-chevron-up"></i></button>' +
+        '</p>' +
+        '<div class="collapse" id="deadlinenote' + counter + '">' +
+        '<div class="card card-body">' +
+        deadlinenote +
+        '</div>' +
+        '</div>';
     counter++;
     return content;
 }
@@ -289,10 +309,10 @@ let checkFileExists = function (url) {
     xhr.send();
 
     if (xhr.status == "404") {
-            return false;
-        } else {
-            return true;
-        }
+        return false;
+    } else {
+        return true;
+    }
 }
 
 var parseData = function (p) {
