@@ -87,40 +87,6 @@ window.onload = function () {
     })
 }
 
-let addheader =  function (headers){
-    let header = document.getElementById("page-header");
-    let content ="";
-    let image = "";
-    let header1 = "";
-    let header2 = "";
-
-    content += '<div class="carousel slide carousel-fade pointer-event" data-ride="carousel">'+
-                    '<div class="carousel-inner">';
-    for(var i =0 ; i < headers.length; i++)
-    {
-        image = typeof headers[i].logo != 'undefined' && headers[i].logo != ''? headers[i].logo : image;
-        header1 =  typeof headers[i].content != 'undefined' && headers[i].content != ''? headers[i].content : header1;
-        header2 =  typeof headers[i].subcontent != 'undefined' && headers[i].subcontent != ''? headers[i].subcontent : header2;
-        let source = 'assets/images/' + (typeof headers[i].source != 'undefined' && headers[i].source != ''? headers[i].source+'/' : '');
-        if(i == 0)
-        {
-            content += '<div class="carousel-item active">';
-        }
-        else
-        {
-            content += '<div class="carousel-item">';
-        }
-        content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
-                    '<div id = "landing-page-text-wrapper">'+
-                        '<h1>'+ header1 +'</h1>' + 
-                        '<p>' + header2 + '</p>' +      
-                    '</div>'+
-                '</div>';
-    }
-    content +=  '</div></div>';
-    header.innerHTML = content;
-}
-
 function getTime(decimaltime) {
     var hrs = parseInt(Number(decimaltime * 24));
     var min = Math.round((Number(decimaltime * 24)-hrs) * 60);
@@ -159,7 +125,7 @@ let buildSessionContent =  function (sessions){
         conent +=   '<section class="session">'+
                         '<h3 class="content-header">'+ session[0].SessionTitle +'</h3>'+ 
                         '<h4>Time: '+ getTime(session[0].StartTime) +' - '+ getTime(session[0].EndTime) +', January 15</h4>'+
-                        (session[0].ZoomLink == ""? "": '<h4>Zoom Link: <a href="'+ session[0].ZoomLink + '">'+session[0].ZoomLink+'</a></h4>') +
+                        // (session[0].ZoomLink == ""? "": '<h4>Session Link: Coming Soon!</h4>') +
                         '<p>'+ session[0].PanelDescription +'</p>';
         if(panelists.length != 0){
             conent +='<div class = "display-flex">'+

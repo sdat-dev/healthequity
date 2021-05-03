@@ -10,6 +10,7 @@ request.onload = function () {
     const webelementsjson = request.response;
     //condition for checking if browser is Internet Explorer
     let webelements = ((false || !!document.documentMode)) ? JSON.parse(webelementsjson) : webelementsjson;
+<<<<<<< HEAD
     let logostart = true;
     let pageheaders = [];
     for (let i = 0; i < webelements.length; i++) {
@@ -88,10 +89,16 @@ request.onload = function () {
     let contentElement = document.createElement('div');
     contentElement.classList.add('content');
     contentElement.innerHTML = content.trim();
+=======
+    let contentElement = document.createElement('div');
+    contentElement.classList.add('content');
+    contentElement.innerHTML = getContent(webelements);
+>>>>>>> 8f0cb92223194d9e307a58f1e7568431ef73cf43
     maincontentContainer.appendChild(contentElement);
     addfooter();
 }
 
+<<<<<<< HEAD
 let addheader = function (headers) {
     let header = document.getElementById("page-header");
     let content = "";
@@ -134,6 +141,8 @@ let addheader = function (headers) {
     header.innerHTML = content;
 }
 
+=======
+>>>>>>> 8f0cb92223194d9e307a58f1e7568431ef73cf43
 $('.carousel').carousel({
     pause: "false",
     interval: 2000

@@ -84,52 +84,18 @@ window.onload = function () {
         addfooter();
         let searchbox = document.getElementById('search-box');
         let searchbutton = document.getElementById('search-button');
-        searchbox.onkeyup = searchfunction;
-        searchbutton.onclick = searchfunction;
+        searchbox.onkeyup = searchfunctioncommunity;
+        searchbutton.onclick = searchfunctioncommunity;
     })).catch(errors => {
         console.log(errors);
     })
 }
 
-let addheader =  function (headers){
-    let header = document.getElementById("page-header");
-    let content ="";
-    let image = "";
-    let header1 = "";
-    let header2 = "";
-
-    content += '<div class="carousel slide carousel-fade pointer-event" data-ride="carousel">'+
-                    '<div class="carousel-inner">';
-    for(var i =0 ; i < headers.length; i++)
-    {
-        image = typeof headers[i].logo != 'undefined' && headers[i].logo != ''? headers[i].logo : image;
-        header1 =  typeof headers[i].content != 'undefined' && headers[i].content != ''? headers[i].content : header1;
-        header2 =  typeof headers[i].subcontent != 'undefined' && headers[i].subcontent != ''? headers[i].subcontent : header2;
-        let source = 'assets/images/' + (typeof headers[i].source != 'undefined' && headers[i].source != ''? headers[i].source+'/' : '');
-        if(i == 0)
-        {
-            content += '<div class="carousel-item active">';
-        }
-        else
-        {
-            content += '<div class="carousel-item">';
-        }
-        content +=  '<img src="'+ source + image +'" class="d-block w-100" alt="...">'+
-                    '<div id = "landing-page-text-wrapper">'+
-                        '<h1>'+ header1 +'</h1>' + 
-                        '<p>' + header2 + '</p>' +      
-                    '</div>'+
-                '</div>';
-    }
-    content +=  '</div></div>';
-    header.innerHTML = content;
-}
-
 let buildPartnersContent = function(partners){
 
     partners.sort(function(a, b){
-        var nameA = a.Q61.toUpperCase(); 
-        var nameB = b.Q61.toUpperCase(); 
+        var nameA = a.Q21.toUpperCase(); 
+        var nameB = b.Q21.toUpperCase(); 
         if (nameA < nameB) {
             return -1;
         }
@@ -143,8 +109,8 @@ let buildPartnersContent = function(partners){
     for(var i=0; i< partners.length; i++){
         if(partners[i].Q12 == "")
             continue;
-        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "assets/images/community-partners/'+ (partners[i]["Q63_Name"] != ''? partners[i].ResponseId+'_'+ partners[i]["Q63_Name"] :'placeholder.jpg') + '"/>'+
-        '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
+        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "assets/images/community-partners/'+ ((partners[i]["Q23_Name"] != '' && !partners[i]["Q23_Name"].includes(".docx"))? partners[i].ResponseId+'_'+ partners[i]["Q23_Name"] :'placeholder.jpg') + '"/>'+
+        '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].Q22 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q22 + '>' + partners[i].Q21 + '</a>': partners[i].Q21) +'</h2>'+
         '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 poc dont-break-out"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
         '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 address dont-break-out"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
         buildmissionandvision(partners[i])+'</div>';
@@ -154,32 +120,32 @@ let buildPartnersContent = function(partners){
 
 let getAddress = function(partner){
     let address = "";
-    if(partner.Q65 != ""){
-        address += partner.Q65;
+    if(partner.Q25 != ""){
+        address += partner.Q25;
     }
-    if(partner.Q66 != "")
+    if(partner.Q26 != "")
     {
-        address = address == ""? partner.Q66 : (address + "<br> " +  partner.Q66);
+        address = address == ""? partner.Q26 : (address + "<br> " +  partner.Q26);
     }
-    if(partner.Q67 != "")
+    if(partner.Q27 != "")
     {
-        address = address == ""? partner.Q67 : (address + "<br>" +  partner.Q67 + ",");
+        address = address == ""? partner.Q27 : (address + "<br>" +  partner.Q27 + ",");
     }
-    if(partner.Q68 != "")
+    if(partner.Q28 != "")
     {
-        address = address == ""? partner.Q68 : (address + " " +  partner.Q68);
+        address = address == ""? partner.Q28 : (address + " " +  partner.Q28);
     }
-    if(partner.Q69 != "")
+    if(partner.Q29 != "")
     {
-        address = address == ""? partner.Q69 : (address + " " +  partner.Q69);
+        address = address == ""? partner.Q29 : (address + " " +  partner.Q29);
     }
     return address;
 }
 
 let getPointOfContact = function(partner){
     let pointofcontact = "";
-    pointofcontact += partner.Q72 + " " + partner.Q71+ ",<br> "+ partner.Q75 + '<br> <a class = "email-link" href = mailto:' + partner.Q73 + 
-    '>'+ partner.Q73+ '</a>'+ (partner.Q74 == ""? '' : ',<br>'+ partner.Q74); 
+    pointofcontact += partner.Q12 + " " + partner.Q11+ ",<br> "+ partner.Q15 + '<br> <a class = "email-link" href = mailto:' + partner.Q13 + 
+    '>'+ partner.Q13+ '</a>'+ (partner.Q14 == ""? '' : ',<br>'+ formatPhone(partner.Q14)); 
     return pointofcontact;
 }
 
@@ -192,7 +158,7 @@ let buildmissionandvision = function(partner){
                         '</p>'+
                         '<div class="collapse" id="missionandvision'+ counter +'">'+
                             '<div class="card card-body">'+
-                            formatText(partner.Q64) +
+                            formatText(partner.Q24) +
                             '</div>'+
                         '</div>';
     counter++;
@@ -225,8 +191,14 @@ let formatText = function(text){
             }
         }        
     }
+    return result;
+}
 
-
+let formatPhone = function(text){
+    let result = text;
+    if(isNaN(text) == false){
+        result = (text/10000000 |0)+ '-' + ((text/10000)%1000|0) + '-' + text%10000
+    }
     return result;
 }
 

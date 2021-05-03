@@ -52,6 +52,7 @@ let addsidemenu = function (page, markactive = true, extraindirection = false) {
             menuItem.innerHTML = menuItemContent;
             menuItem.classList.add('navigation-items');
             menuItem.classList.add('hover-highlight');
+
             if (page == item.item) {
                 menuItem.setAttribute("id", "active-page");
             }
@@ -64,6 +65,28 @@ let addsidemenu = function (page, markactive = true, extraindirection = false) {
             sidemenu.appendChild(menuItem);
         }
     }
+}
+
+let customSort = function(sortOrder, objects){
+    let i,j = 0;
+    for(i = 0; i< objects.length; i++)
+    {
+        for(j = 0; j < objects.length - (i+1); j++)
+        {
+            if(sortOrder.indexOf(objects[j]) > sortOrder.indexOf(objects[j+1]))
+            {
+                let swap = objects[j];
+                objects[j] = objects[j+1];
+                objects[j+1] = swap;
+            }
+        }
+    }
+    return objects;
+}
+
+let updatecontentHeading = function(heading){
+    let header = document.getElementsByClassName("content-header")[0];
+    header.innerHTML = heading.toUpperCase();
 }
 
 let buildsubmenu = function (subitems, page, markactive, extraindirection) {
@@ -100,11 +123,21 @@ let buildsubmenu = function (subitems, page, markactive, extraindirection) {
 
 let generateAccordionElem = function (level, collapseId, headerId, parentId, childId, header, accordionContent) {
     var headerno = level + 2;
-    let accordionElem = '<div class = "card"><div class="card-header level' + level + '" id="' + headerId + '">' +
-        '<button class="btn btn-link" data-toggle="collapse" data-target="#' + collapseId + '" aria-expanded="false" aria-controls="' + collapseId + '">' +
-        '<h' + headerno + ' class = "content-header-no-margin">' + header + '<i class="fas fa-chevron-down" style="padding-left:10px;"  ></i></h' + headerno + '></button></div>'
-        + '<div id="' + collapseId + '" class = "collapse" aria-labelledby= "' + headerId + '" data-parent="#' + parentId + '"> <div class = "card-body" id="' + childId + '">'
-        + accordionContent + '</div></div></div>';
+    
+    let accordionElem = '<div class="panel panel-default">'+
+                          '<div class="panel-heading level' + level + '" role="tab" id="'+ headerId +'">' +
+                             '<h' + headerno + ' class = "panel-title">' +
+                                 '<button class="btn btn-link collapsed" type="button" data-toggle="collapse"  data-parent="#'+ parentId + '" data-target="#'+ collapseId + '" aria-expanded="false" aria-controls="'+collapseId+'">' +
+                                    header + '<i class="fas fa-chevron-up"></i>'+
+                                  '</button>'+
+                             '</h' + headerno + '>'+
+                          '</div>'
+                        + '<div id="' + collapseId + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="'+headerId+'">'+
+                            '<div div class="panel-body" id="' + childId + '">'
+                              + accordionContent + 
+                            '</div>'+
+                           '</div>'+
+                        '</div>';
     return accordionElem;
 }
 
@@ -114,10 +147,10 @@ let createTabNavigation = function (distincttabs, tabname) {
         let linkElement = '';
         let tabId = tabname + i.toString();
         if (i == 0) {
-            linkElement = '<li class="nav-item active"><a class="nav-link active" style="text-transform: uppercase !important; text-decoration: none !important;" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="true">' + distincttabs[i] + '</a></li>';
+            linkElement = '<li role="presentation" class="active"><a href="#pills-' + tabId + '" id="#pills-'+ tabId + '" aria-controls="pills-'+ tabId +'" role="tab" data-toggle="pill">' + distincttabs[i] + '</a></li>';
         }
         else {
-            linkElement = '<li class="nav-item inactive"><a class="nav-link inactive" id="pills-' + tabId + '-tab" data-toggle="pill" href="#pills-' + tabId + '" role="tab" aria-controls="pills-' + tabId + '" aria-selected="false">' + distincttabs[i] + '</a></li>';
+            linkElement = '<li role="presentation"><a href="#pills-' + tabId + '" id="#pills-'+ tabId +'" aria-controls="pills-'+ tabId + '" role="tab" data-toggle="pill">' + distincttabs[i] + '</a></li>';
         }
         navigationContent = navigationContent + linkElement;
     }
@@ -131,10 +164,10 @@ let buildTabContent = function (distincttabs, tabname, tabContent) {
     for (let i = 0; i < distincttabs.length; i++) {
         let tabId = tabname + i.toString();
         if (i == 0) {
-            content += '<div class="tab-pane fade show active in" id="pills-' + tabId + '" role="tabpanel" aria-labelledby="pills-' + tabId + '-tab">';
+            content += '<div class="tab-pane fade in active" id="pills-' + tabId + '" role="tabpanel">';
         }
         else {
-            content += '<div class="tab-pane fade" id="pills-' + tabId + '" role="tabpanel" aria-labelledby="pills-' + tabId + '-tab">';
+            content += '<div class="tab-pane fade" id="pills-' + tabId + '" role="tabpanel">';
         }
         content += tabContent[i];
         content += '</div>';
@@ -148,6 +181,128 @@ function getDate(serial) {
     let utc_value = utc_days * 86400;
     let date_info = new Date(utc_value * 1000);
     return (parseInt(date_info.getMonth(), 10) + 1) + '/' + (parseInt(date_info.getDate(), 10) + 1) + '/' + date_info.getFullYear();//, 0, minutes, seconds);
+}
+
+let getContent = function (webelements){
+    let content = '';
+    let logostart = true;
+    let pageheaders = [];
+    for (let i = 0; i < webelements.length; i++) {
+        let element = webelements[i];
+        let type = element.type.toLowerCase();
+        if (type == 'ph') {
+            pageheaders.push(element);
+        }
+        else if (type == 'ch') {
+            let header = document.getElementsByClassName("content-header")[0];
+            header.innerHTML = element.content;
+            if (element.hasOwnProperty('style'))
+                header.setAttribute('style', element.style);
+        }
+        else if (type == 'p') {
+            if (element.hasOwnProperty('style'))
+                content += '<p style ="' + element.style + '">' + element.content + '</p>';
+            else
+                content += '<p>' + element.content + '</p>';
+        }
+        else if (type == 'img') {
+            if (element.hasOwnProperty('style'))
+                content += '<img src="assets/images/' + element.content + '" alt="" style="' + element.style + '">';
+            else
+                content += '<img src="assets/images/' + element.content + '" alt="" style="width: 100%;">';
+        }
+        else if (type == 'iframe') {
+            content += '<iframe ' + element.content + '></iframe>';
+        }
+        else if (type == 'ul') {
+            if (element.hasOwnProperty('style'))
+                content += '<ul class="sub-list ' + element.content + '" style ="' + element.style + '">';
+            else
+                content += '<ul class="sub-list ' + element.content + '">';
+        }
+        else if (type == 'li') {
+            content += '<li style="padding-bottom:10px;">' + element.content + '</li>';
+        }
+        else if (type == '/ul') {
+            content += '</ul>';
+        }
+        else if (type == 'a' && !element.hasOwnProperty("logo") && !element.hasOwnProperty("style")) {
+            content += '<a href = "' + element.source + '">' + element.content + '</a>';
+        }
+        else if (type == 'a' && !element.hasOwnProperty("style") && element.logo != '') {
+            if (logostart == true) {
+                content += '<div class = "display-flex">';
+                logostart = false;
+            }
+            content += '<div class = "col-xl-4 col-lg-4 col-md-4">' +
+                '<a target = "_blank" href = "' + element.source + '">' +
+                '<div class = "home-logo-container">' +
+                '<img class = "home-logo" src = "assets/images/' + element.logo + '">' +
+                '<p>' + element.content + '</p>' +
+                '</div>' +
+                '</a>' +
+                '</div>';
+            if (i + 1 == webelements.length) {
+                content += '</div>';
+            }
+        }
+        else if (type == 'a' && element.hasOwnProperty("style") && element.logo != '') {
+            content += '<a target = "_blank" href = "' + element.source + '">' +
+                '<img  img-fluid style="' + element.style + '" src = "assets/images/' + element.logo + '">' +
+                '<p>' + element.content + '</p>' +
+                '</a>';
+        }
+        else if (type == 'div') {
+            if (element.hasOwnProperty('style'))
+                content += '<div style ="' + element.style + '">' + element.content + '</div>';
+            else
+                content += '<div>' + element.content + '</div>';
+        }
+    }
+    addheader(pageheaders);
+    return content;
+}
+
+let addheader = function (headers) {
+    let header = document.getElementById("page-header");
+    let content = "";
+    let image = "";
+    let header1 = "";
+    let header2 = "";
+
+    content += '<div class="carousel slide carousel-fade pointer-event" data-ride="carousel">' +
+        '<div class="carousel-inner">';
+    for (var i = 0; i < headers.length; i++) {
+        image = typeof headers[i].logo != 'undefined' && headers[i].logo != '' ? headers[i].logo : image;
+        header1 = typeof headers[i].content != 'undefined' && headers[i].content != '' ? headers[i].content : header1;
+        header2 = typeof headers[i].subcontent != 'undefined' && headers[i].subcontent != '' ? headers[i].subcontent : header2;
+        let source = 'assets/images/' + (typeof headers[i].source != 'undefined' && headers[i].source != '' ? headers[i].source + '/' : '');
+        if (i == 0) {
+            content += '<div class="carousel-item active">';
+        }
+        else {
+            content += '<div class="carousel-item">';
+        }
+        if (header1 == '') {
+            content += '<img src="' + source + image + '" class="d-block w-100" alt="...">' +
+                '</div>';
+        }
+        else if (header1.includes('link')) {
+            console.log("else if");
+            content += '<a target = "_blank" href="https://albany.az1.qualtrics.com/jfe/form/SV_7Vw1AmKqr14FT25"> <img src="' + source + image + '" class="d-block w-100" alt="..."></a>' +
+                '</div>';
+        }
+        else {
+            content += '<img src="' + source + image + '" class="d-block w-100" alt="...">' +
+                '<div id = "landing-page-text-wrapper">' +
+                '<h1>' + header1 + '</h1>' +
+                '<p>' + header2 + '</p>' +
+                '</div>' +
+                '</div>';
+        }
+    }
+    content += '</div></div>';
+    header.innerHTML = content;
 }
 
 addfooter = function (relativepath = ".") {
@@ -182,7 +337,7 @@ addfooter = function (relativepath = ".") {
                                     '</p>'+
                                 '</div>'+
                             '</div>'+
-                            '<div class="footer-end">'+
+                            '<div class="footer-end row">'+
                             '<div class="col-sm-12 col-md-6 address-phone">'+
                             '<a target="_blank" href="https://www.google.com/maps/place/1400+Washington+Ave,+Albany,+NY+12222/@42.6859115,-73.8287166,17z/data=!3m1!4b1!4m5!3m4!1s0x89de0b3ce5c93e45:0x4cdbe8d7b52fa412!8m2!3d42.6859115!4d-73.8265279"'+
                                         'target="_blank">1400 Washington Avenue, Albany, NY 12222</a> | Phone: <a'+
@@ -227,4 +382,28 @@ let appendMainContent = function (maincontentContainer, content) {
     mainContentElement.id = 'accordionExample';
     mainContentElement.innerHTML = content.trim();
     maincontentContainer.appendChild(mainContentElement);
+}
+
+let formatPara = function(text){
+    let result = '';
+    if(typeof text === "undefined" || isNaN(text) == false){
+        return text;
+    }
+    else{
+    let paras = text.split("\n\n");
+    for(var i=0; i< paras.length; i++){
+        let para = paras[i];
+
+            let lines = para.split(/(\n(?=\d |\d.\t|[1-9]\d([0-9]\d){0,2}| \d.\t|\r\n|•\t|i\.|ii\.|iii\.|iv\.|v\.))|\r\n/);
+          
+           
+                for(var j =0; j< lines.length; j++)
+                {
+                    if(lines[j] == '' || typeof lines[j] === "undefined") continue;
+                    result += '<p>'+lines[j]+'</p>'; 
+                }
+            
+        }        
+    }
+    return result;
 }

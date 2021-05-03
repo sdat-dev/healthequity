@@ -29,6 +29,18 @@
     border: 2px solid gray;
 }
 
+.videoWrapper img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 85%;
+  height: 85%;
+ /* box-shadow: 2px 2px 12px black;*/
+  float: left;
+  border: 2px solid gray;
+}
+
+
 .video-padding-margin{
     padding: 0px;
     margin-bottom: 15px;
