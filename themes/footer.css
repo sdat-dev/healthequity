@@ -120,7 +120,10 @@ footer.footer .footer-new a, footer.footer .footer-new p {
     .col-sm-offset-0 {
         margin-left: 18%;
     }
-    .col-sm-12 {
+    .footer-new .col-sm-12 {
+        width: 75%;
+    }
+    .footer-end .col-sm-12 {
         width: 75%;
     }
     .address-phone {

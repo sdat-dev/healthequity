@@ -460,6 +460,18 @@ Primary use:    Common.css file used for styling header and
     margin: 0 auto;
 }
 
+.grid-title{
+    color: #efb310;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.grid-subtitle{
+    color: #FFFFFF;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 @media only screen and (max-width: 340px) {
     .ualbany-logo {
         margin-left: 5%;
