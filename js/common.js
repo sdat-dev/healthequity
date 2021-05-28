@@ -316,7 +316,7 @@ addfooter = function (relativepath = ".") {
 
                         '<div class="field field--name-body field--type-text-with-summary field--label-hidden field--item">'+
                             '<div class="footer-new">'+
-                                '<div class="col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">'+
+                                '<div class="col-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">'+
                                     '<a target="_blank" href="https://www.albany.edu/">'+
                                         '<img alt="University at Albany Logo" class=" img-responsive footer-logo" height="39"'+
                                         'src="'+relativepath+'/assets/images/UAlbany-logo.png" typeof="Image" />'+
