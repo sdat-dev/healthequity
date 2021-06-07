@@ -136,6 +136,12 @@ let buildUniversityResearchers = function(tabId, tabexperts){
                         '<div class="panel-group" id = "' + tabId + '" role="tablist" aria-multiselectable="true">';
     let distinctLevel1s = getDistinctAttributes(tabexperts, 'Q17');
     distinctLevel1s.sort();
+    var index = distinctLevel1s.indexOf("");
+    if(index != -1)
+    {
+        distinctLevel1s.splice(index, 1);
+    }
+    distinctLevel1s.push("");
     distinctLevel1s.forEach(function(level1) {
         let collapseId1 = "collapse" + counter;
         let headerId1 = "heading" + counter;
@@ -161,6 +167,10 @@ let buildUniversityResearchers = function(tabId, tabexperts){
                 level2Elem+= buildUniversityResearcherElements(level3s);
             });
         }  
+        if(level1 == "")
+        {
+            level1 = "Other";
+        }
         contactElem+= generateAccordionElem(1, collapseId1, headerId1, tabId, childId1, level1, level2Elem);
     });
     contactElem +=      '</div>'+
@@ -192,6 +202,12 @@ let buildOtherResearchers = function(tabId, tabresearchers){
     contactElem += '<div class="panel-group" id = "' + tabId + '" role="tablist" aria-multiselectable="true">';
     let distinctLevel1s = getDistinctOrganizations(tabresearchers);
     distinctLevel1s.sort();
+    var index = distinctLevel1s.indexOf("");
+    if(index != -1)
+    {
+        distinctLevel1s.splice(index, 1);
+    }
+    distinctLevel1s.push("");
     distinctLevel1s.forEach(function(level1) {
         let collapseId1 = "collapse" + counter;
         let headerId1 = "heading" + counter;
