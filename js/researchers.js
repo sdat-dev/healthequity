@@ -176,13 +176,13 @@ let buildUniversityResearcherElements = function(researchers){
             continue;
         let researcher = researchers[i];
         content +='<div class = "search-container expert-info">'+
-        '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q44_Name"] != '' && !researcher["Q44_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
-        '<h2 class = "content-header-no-margin">'+ (researcher["Q43_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q43_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
+        '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q24_Name"] != '' && !researcher["Q24_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q24_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<h2 class = "content-header-no-margin">'+ (researcher["Q23_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q23_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
         '>'+ researcher.Q13+ '</a><br>'+ (researcher.Q14 != ""? '<strong>Phone: </strong>'+ formatPhone(researcher.Q14) + '<br>': "")+'<strong>Research Interests: </strong>'+ 
-        getResearchInterests(researcher) + '</p><p>' + researcher.Q42 +'</p>'+ generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
-        generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) + '<div style="display:none">Counter:' + researcher.Q17 + '</div></div>';
+        getResearchInterests(researcher) + '</p><p>' + researcher.Q22 +'</p>'+ generateProjectsContent([researcher["Q31_1"],researcher["Q31_14"],researcher["Q31_15"],researcher["Q31_16"],researcher["Q31_17"]])+
+        generateRelevantCourses([researcher["Q32_1"],researcher["Q32_14"],researcher["Q32_15"],researcher["Q32_16"],researcher["Q32_17"]]) + '<div style="display:none">Counter:' + researcher.Q17 + '</div></div>';
     }
     return content;
 }
@@ -200,7 +200,7 @@ let buildOtherResearchers = function(tabId, tabresearchers){
         let level2Elem = '';
         //filter level2s
         let level2s = tabresearchers.filter(function(researcher){
-            return (researcher["Q16"] == "University") ? researcher["Q17_4_TEXT"] == level1 : (researcher["Q16"] == "Other (Please specify)")? researcher["Q16_6_TEXT"] == level1 : researcher.Q110 == level1;
+            return (researcher["Q16"] == "") ? researcher["Q16_7_TEXT"] == level1 : researcher["Q16"] == level1;
         }); 
         if(level2s.length > 0)
         {
@@ -209,7 +209,7 @@ let buildOtherResearchers = function(tabId, tabresearchers){
             distinctLevel2s.forEach(function(level2){
                 //filter level3 
                 let level3s = level2s.filter(function(researcher){
-                    return (researcher["Q16"] == "University") ? researcher.Q19 == level2 : researcher.Q111 == level2;
+                    return (researcher["Q16"] == "") ? researcher.Q19 == level2 : researcher.Q17 == level2;
                 });
                 level3s.sort((a,b) => b.firstName - a.firstName)
                 //for level2s build simple list
@@ -231,7 +231,7 @@ let buildOtherResearchers = function(tabId, tabresearchers){
 
 let getDistinctOrganizations = function(researchers){
     let mappedAttributes = researchers.map(function(researcher){
-        return  (researcher["Q16"] == "University") ? researcher["Q17_4_TEXT"] : (researcher["Q16"] == "Other (Please specify)")? researcher["Q16_6_TEXT"] : researcher.Q110;
+        return  (researcher["Q16"] == "") ? researcher["Q16_7_TEXT"] : researcher["Q16"];
     });
     let distinctOrganizations = mappedAttributes.filter(function(v, i, a){
         return a.indexOf(v) === i;
@@ -242,7 +242,7 @@ let getDistinctOrganizations = function(researchers){
 
 let getDistinctDivisions = function(researchers){
     let mappedAttributes = researchers.map(function(researcher){
-        return  (researcher["Q16"] == "University") ? researcher.Q19 : researcher.Q111;
+        return  (researcher["Q16"] == "") ? researcher.Q19 : researcher.Q17;
     });
     let distinctDivisions = mappedAttributes.filter(function(v, i, a){
         return a.indexOf(v) === i;
@@ -258,13 +258,13 @@ let buildOtherResearcherElements = function(researchers){
             continue;
         let researcher = researchers[i];
         content +='<div class = "search-container expert-info">'+
-        '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q44_Name"] != '' && !researcher["Q44_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
-        '<h2 class = "content-header-no-margin">'+ (researcher["Q43_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q43_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
+        '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q24_Name"] != '' && !researcher["Q24_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q24_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<h2 class = "content-header-no-margin">'+ (researcher["Q23_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q23_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
         '>'+ researcher.Q13+ '</a><br>'+ (researcher.Q14 != ""? '<strong>Phone: </strong>'+ formatPhone(researcher.Q14) + '<br>': "")+'<strong>Research Interests: </strong>'+ 
-        getResearchInterests(researcher) + '</p><p>' + researcher.Q42 +'</p>'+ generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
-        generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) + '<div style="display:none">Counter:' + researcher.Q17 + '</div></div>';
+        getResearchInterests(researcher) + '</p><p>' + researcher.Q22 +'</p>'+ generateProjectsContent([researcher["Q31_1"],researcher["Q31_14"],researcher["Q31_15"],researcher["Q31_16"],researcher["Q31_17"]])+
+        generateRelevantCourses([researcher["Q32_1"],researcher["Q32_14"],researcher["Q32_15"],researcher["Q32_16"],researcher["Q32_17"]]) + '<div style="display:none">Counter:' + researcher.Q17 + '</div></div>';
    }
     return content;
 }
@@ -272,23 +272,23 @@ let buildOtherResearcherElements = function(researchers){
 let generateOtherResearcherTitle = function(researcher){
 
     let title = '<h5 class = "content-header-no-margin faculty-title">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'');
-    if(researcher["Q16"] == "University")
-        title += (researcher.Q19 != ''? researcher.Q19 + ', ' :'') + (researcher.Q18 != ''? researcher.Q18 :'')  
+    if(researcher["Q16"] == "")
+        title += (researcher.Q16_7_TEXT != ''? researcher.Q16_7_TEXT + ', ' :'') + (researcher.Q19 != ''? researcher.Q19 :'')  
     else
-        title +=  (researcher.Q111 == ''? '' : researcher.Q111);
+        title +=  (researcher.Q17 == ''? '' : researcher.Q17);
     title += '</h5>';
     return title;
 }
 
 let generateLogoContent = function(expert){
-    let onlineCVContent = (expert["Q43_4"] == '')?'':
-    '<a href = "'+ expert["Q43_4"] +'"><img src = "assets/images/cv.png"></a>'; 
-    let researchGateContent = (expert["Q43_10"]== '')?'':
-    '<a href = "'+ expert["Q43_10"] +'"><img src = "assets/images/research-gate-logo.png"></a>'; 
-    let googleScholarContent = (expert["Q43_11"] == '')?'':
-    '<a href = "'+ expert["Q43_11"] +'"><img src = "assets/images/google-scholar-logo.png"></a>'; 
-    let otherContent = (expert["Q43_12"] == '')?'':
-    '<a href = "'+ expert["Q43_12"] +'"><img src = "assets/images/link.png"></a>'; 
+    let onlineCVContent = (expert["Q23_4"] == '')?'':
+    '<a href = "'+ expert["Q23_4"] +'"><img src = "assets/images/cv.png"></a>'; 
+    let researchGateContent = (expert["Q23_10"]== '')?'':
+    '<a href = "'+ expert["Q23_10"] +'"><img src = "assets/images/research-gate-logo.png"></a>'; 
+    let googleScholarContent = (expert["Q23_11"] == '')?'':
+    '<a href = "'+ expert["Q23_11"] +'"><img src = "assets/images/google-scholar-logo.png"></a>'; 
+    let otherContent = (expert["Q23_12"] == '')?'':
+    '<a href = "'+ expert["Q23_12"] +'"><img src = "assets/images/link.png"></a>'; 
     let linkContainer = '<div class = "display-flex icon-container">'+
     onlineCVContent + researchGateContent + googleScholarContent + otherContent + '</div>';
     return linkContainer;
@@ -296,8 +296,10 @@ let generateLogoContent = function(expert){
 
 let getResearchInterests = function(expert){
     let interests = "";
-    interests += (expert["Q41_1"] == ''?  "" : expert["Q41_1"] +"; " )+ (expert["Q41_8"] == ''?  "":expert["Q41_8"] +"; ") + (expert["Q41_9"] == ''?  "": expert["Q41_9"]+"; ") + (expert["Q41_10"]== ''?  "":expert["Q41_10"] +"; " )+
-    (expert["Q41_11"] == ''?  "":expert["Q41_11"] +"; ") + (expert["Q41_12"]== ''?"":expert["Q41_12"]+"; ") + expert["Q41_13"] ; 
+    interests += (expert["Q21_1"] == ''?  "" : expert["Q21_1"] +"; " )+ (expert["Q21_8"] == ''?  "":expert["Q21_8"] +"; ") + 
+    (expert["Q21_9"] == ''?  "": expert["Q21_9"]+"; ") + (expert["Q21_10"]== ''?  "":expert["Q21_10"] +"; " )+
+    (expert["Q21_11"] == ''?  "":expert["Q21_11"] +"; ") + (expert["Q21_12"]== ''?"":expert["Q21_12"]+"; ") +
+     expert["Q21_13"] ; 
     return interests;
 }
 
