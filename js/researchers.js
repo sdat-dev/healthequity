@@ -95,19 +95,19 @@ window.onload = function () {
 let buildResearchersContent = function(experts){
     let content = '';
     let universityResearchers = experts.filter(function(expert){
-        return (expert["Q16"] == "University") && (expert.Q17 != "Other (Please specify)");
+        return (expert["Q16"] != "") && (expert.Q17 == "");
     });
     let otherResearchers = experts.filter(function(expert){
-        return (expert["Q16"] != "University") ||((expert["Q16"] == "University") && (expert.Q17 == "Other (Please specify)"));
+        return (expert["Q16"] == "");
     });
-    let tabattribute = "Q17"
-    let distincttabs = getDistinctAttributes(universityResearchers, 'Q17'); 
+    let tabattribute = "Q16"
+    let distincttabs = getDistinctAttributes(universityResearchers, 'Q16'); 
     distincttabs.push("Other Organizations");
     content = createTabNavigation(distincttabs, tabattribute);
     let tabContent = [];
     for(let i = 0; i< distincttabs.length; i++){
         let tabexperts = universityResearchers.filter(function(expert){
-            return (expert.Q17 == distincttabs[i]) || (expert["Q17_4_TEXT"] == distincttabs[i]);
+            return (expert.Q16 == distincttabs[i]) || (expert["Q16_7_TEXT"] == distincttabs[i]);
         });
         let tabId = "";
         if(distincttabs[i] != "Other Organizations")
@@ -134,7 +134,7 @@ let buildUniversityResearchers = function(tabId, tabexperts){
     let contactElem = '';
     contactElem +=  '<div class = "accordion-container">'+
                         '<div class="panel-group" id = "' + tabId + '" role="tablist" aria-multiselectable="true">';
-    let distinctLevel1s = getDistinctAttributes(tabexperts, 'Q18');
+    let distinctLevel1s = getDistinctAttributes(tabexperts, 'Q17');
     distinctLevel1s.sort();
     distinctLevel1s.forEach(function(level1) {
         let collapseId1 = "collapse" + counter;
@@ -144,7 +144,7 @@ let buildUniversityResearchers = function(tabId, tabexperts){
         let level2Elem = '';
         //filter level2s
         let level2s = tabexperts.filter(function(expert){
-            return expert.Q18 == level1;
+            return expert.Q17 == level1;
         }); 
 
         if(level2s.length > 0)
