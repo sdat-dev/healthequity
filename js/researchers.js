@@ -95,7 +95,7 @@ window.onload = function () {
 let buildResearchersContent = function(experts){
     let content = '';
     let universityResearchers = experts.filter(function(expert){
-        return (expert["Q16"] != "") && (expert.Q17 == "");
+        return (expert["Q16"] != "") && (expert.Q16_7_TEXT == "");
     });
     let otherResearchers = experts.filter(function(expert){
         return (expert["Q16"] == "");
