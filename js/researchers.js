@@ -187,7 +187,7 @@ let buildUniversityResearcherElements = function(researchers){
         let researcher = researchers[i];
         content +='<div class = "search-container expert-info">'+
         '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q24_Name"] != '' && !researcher["Q24_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q24_Name"]  : 'placeholder.jpg') +'"/>'+
-        '<h2 class = "content-header-no-margin">'+ (researcher["Q23_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q23_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
+        '<h2 class = "content-header-no-margin">'+ (researcher["Q23_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + getHttpLink(researcher["Q23_9"]) + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
         '>'+ researcher.Q13+ '</a><br>'+ (researcher.Q14 != ""? '<strong>Phone: </strong>'+ formatPhone(researcher.Q14) + '<br>': "")+'<strong>Research Interests: </strong>'+ 
@@ -275,7 +275,7 @@ let buildOtherResearcherElements = function(researchers){
         let researcher = researchers[i];
         content +='<div class = "search-container expert-info">'+
         '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q24_Name"] != '' && !researcher["Q24_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q24_Name"]  : 'placeholder.jpg') +'"/>'+
-        '<h2 class = "content-header-no-margin">'+ (researcher["Q23_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q23_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
+        '<h2 class = "content-header-no-margin">'+ (researcher["Q23_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + getHttpLink(researcher["Q23_9"]) + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
         '>'+ researcher.Q13+ '</a><br>'+ (researcher.Q14 != ""? '<strong>Phone: </strong>'+ formatPhone(researcher.Q14) + '<br>': "")+'<strong>Research Interests: </strong>'+ 
@@ -435,6 +435,14 @@ let formatPhone = function(text){
     let result = text;
     if(isNaN(text) == false){
         result = (text/10000000 |0)+ '-' + ((text/10000)%1000|0) + '-' + text%10000
+    }
+    return result;
+}
+
+let getHttpLink = function(link){
+    let result = link;
+    if(link != "" && link.indexOf("http") == -1){
+        result = "https://" + link;
     }
     return result;
 }
