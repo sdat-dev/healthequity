@@ -276,7 +276,7 @@ let addheader = function (headers) {
         image = typeof headers[i].logo != 'undefined' && headers[i].logo != '' ? headers[i].logo : image;
         header1 = typeof headers[i].content != 'undefined' && headers[i].content != '' ? headers[i].content : header1;
         header2 = typeof headers[i].subcontent != 'undefined' && headers[i].subcontent != '' ? headers[i].subcontent : header2;
-        let source = 'assets/images/' + (typeof headers[i].source != 'undefined' && headers[i].source != '' ? headers[i].source + '/' : '');
+        let source = '../assets/images/' + (typeof headers[i].source != 'undefined' && headers[i].source != '' ? headers[i].source + '/' : '');
         if (i == 0) {
             content += '<div class="carousel-item active">';
         }
@@ -319,7 +319,7 @@ addfooter = function (relativepath = ".") {
                                 '<div class="col-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">'+
                                     '<a target="_blank" href="https://www.albany.edu/">'+
                                         '<img alt="University at Albany Logo" class=" img-responsive footer-logo" height="39"'+
-                                        'src="'+relativepath+'/assets/images/UAlbany-logo.png" typeof="Image" />'+
+                                        'src="https://sdat-dev.github.io/healthequity/assets/images/UAlbany-logo.png" typeof="Image" />'+
                                     '</a>'+
                                     '<p>'+
                                         '<a target="_blank" href="https://www.facebook.com/universityatalbany"><span class="fab fa-facebook-f footer-icon" role="img"'+
