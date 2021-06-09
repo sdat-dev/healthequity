@@ -140,8 +140,8 @@ let buildUniversityResearchers = function(tabId, tabexperts){
     if(index != -1)
     {
         distinctLevel1s.splice(index, 1);
+        distinctLevel1s.push("");
     }
-    distinctLevel1s.push("");
     distinctLevel1s.forEach(function(level1) {
         let collapseId1 = "collapse" + counter;
         let headerId1 = "heading" + counter;
@@ -206,8 +206,9 @@ let buildOtherResearchers = function(tabId, tabresearchers){
     if(index != -1)
     {
         distinctLevel1s.splice(index, 1);
+        distinctLevel1s.push("");
     }
-    distinctLevel1s.push("");
+    
     distinctLevel1s.forEach(function(level1) {
         let collapseId1 = "collapse" + counter;
         let headerId1 = "heading" + counter;
