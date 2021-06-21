@@ -106,3 +106,7 @@
     color: #efb310;
     line-height: 8rem;
 }
+
+tr{
+    border-bottom: .25px solid #45077d;
+}
