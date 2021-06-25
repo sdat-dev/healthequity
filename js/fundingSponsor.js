@@ -1,4 +1,4 @@
-let requestURL = "data/fundingopportunity.json";
+let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/fundingopportunity.json";
 let request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json';
@@ -101,27 +101,27 @@ function getAccordiationData(p) {
         if (distinctCategories[k] == 'NSF') {
             length = NSF_arr.length;
             arr = NSF_arr;
-            img_url = "assets/logos-funding-opportunities/nsf.png";
+            img_url = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/nsf.png";
         }
 
         if (distinctCategories[k] == 'NIH') {
             length = NIH_arr.length;
             arr = NIH_arr;
-            img_url = "assets/logos-funding-opportunities/NIH-logo.png";
+            img_url = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/NIH-logo.png";
 
 
         }
         if (distinctCategories[k] == 'Federal - Others') {
             length = federal_arr.length;
             arr = federal_arr;
-            img_url = "assets/logos-funding-opportunities/SPIN_logo.png";
+            img_url = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/SPIN_logo.png";
 
         }
 
         if (distinctCategories[k] == 'Others') {
             length = others.length;
             arr = others;
-            img_url = "assets/logos-funding-opportunities/SPIN_logo.png"
+            img_url = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/SPIN_logo.png"
 
         }
 
@@ -209,12 +209,12 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
 
         var image_name = getImageName(arr[i].spon_name).toLowerCase();
         if (funding_name === 'Federal - Others') {
-            var url_image = "assets/logos-funding-opportunities/" + image_name + ".png";
+            var url_image = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/" + image_name + ".png";
             var image = new Image(url_image);
 
             if (image_name === "cfgh" ||
                 image_name === "cdc") {
-                img_url = "assets/logos-funding-opportunities/cdc.png";
+                img_url = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/cdc.png";
             }
 
             else if (image_name === "dotaf" ||
@@ -224,31 +224,31 @@ let generateFederalAccordionContent = function (arr, img_url, funding_name) {
                 image_name === "dohs" ||
                 image_name === "dod"
             ) {
-                img_url = "assets/logos-funding-opportunities/dod.png";
+                img_url = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/dod.png";
 
             }
             else if (image_name === "niofaadoa"
                 || image_name === "arsdoa"
             ) {
-                img_url = "assets/logos-funding-opportunities/" + image_name + ".png";
+                img_url = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/" + image_name + ".png";
             }
             else {
                 if (checkFileExists(url_image)) {
                     img_url = url_image;
                 }
                 else {
-                    img_url = "assets/logos-funding-opportunities/SPIN_logo.png";
+                    img_url = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/SPIN_logo.png";
                 }
             }
         }
         if (funding_name === 'Others') {
-            var url_image = "assets/logos-funding-opportunities/" + image_name + ".png";
+            var url_image = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/" + image_name + ".png";
             var image = new Image(url_image);
             if (checkFileExists(url_image)) {
                 img_url = url_image;
             }
             else {
-                img_url = "assets/logos-funding-opportunities/SPIN_logo.png";
+                img_url = "https://sdat-dev.github.io/resources/healthequity/assets/logos-funding-opportunities/SPIN_logo.png";
             }
         }
         var description = arr[i].synopsis.replace(/<[^>]*>/g, '');
