@@ -1,6 +1,6 @@
 window.onload = function () {
-    let requestURL = "data/researchers.json"; 
-    let datarequestURL = "data/researchersdata.json"; 
+    let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/researchers.json"; 
+    let datarequestURL = "https://sdat-dev.github.io/resources/healthequity/data/researchersdata.json"; 
     let request =  axios.get(requestURL);
     let datarequest =  axios.get(datarequestURL);
     let maincontentContainer = document.getElementsByClassName('main-content')[0];
@@ -8,75 +8,11 @@ window.onload = function () {
         let researcherscontent =  responses[0].data;
         let researchers = responses[1].data;
         let webelements = researcherscontent;
-        let content = '';
-        let logostart = true;
-        let pageheaders = [];
-        for(let i = 0; i < webelements.length; i++)
-        {
-            let element = webelements[i]; 
-            let type = element.type.toLowerCase(); 
-            if(type == 'ph')
-            {
-                pageheaders.push(element);
-            }
-            else if(type == 'ch')
-            {
-                let header = document.getElementsByClassName("content-header")[0];
-                header.innerHTML = element.content.toUpperCase();
-            }
-            else if(type == 'p')
-            {
-                content += '<p>' + element.content + '</p>';
-            }
-            else if(type == 'img')
-            {
-                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
-            }
-            else if(type == 'iframe')
-            {
-                content += '<iframe '+ element.content +'></iframe>';
-            }
-            else if(type == 'ul')
-            { 
-                content += '<ul class="sub-list ' + element.content +'">';
-            }
-            else if(type == 'li')
-            {
-                content += '<li>'+ element.content +'</li>';
-            }
-            else if(type == '/ul')
-            {
-                content += '</ul>';
-            }
-            else if(type == 'a' && !element.hasOwnProperty("logo"))
-            {
-                content +='<a href = "'+ element.source +'">'+ element.content + '</a>';
-            }
-            else if(type == 'a' && element.logo != '')
-            {
-                if(logostart == true)
-                {
-                    content +='<div class = "display-flex">';
-                    logostart = false;
-                }
-                content +='<div class = "col-xl-4 col-lg-6 col-md-12">'+
-                            '<a target = "_blank" href = "'+ element.source +'">'+
-                                '<div class = "home-logo-container">' +
-                                    '<img class = "home-logo" src = "assets/images/' + element.logo+ '">'+
-                                    '<p>'+ element.content+'</p>' +
-                                '</div>'+
-                            '</a>'+
-                        '</div>';
-                if(i+1 ==  webelements.length){
-                    content += '</div>';
-                }
-            }
-        }
+        let content = getContent(webelements);
         content += '<input id = "search-box" placeholder = "Search Researchers...">'+
                     '<button id = "search-button" type = "submit"><i class="fa fa-search"></i></button>'+
                 '<br><span id = "search-box-results"></span>';
         content +='<div id="experts-content">'+buildResearchersContent(researchers)+'</div>';
-        addheader(pageheaders);
         let contentElement = document.createElement('div');
         contentElement.classList.add('content');
         contentElement.innerHTML = content.trim();
@@ -186,7 +122,7 @@ let buildUniversityResearcherElements = function(researchers){
             continue;
         let researcher = researchers[i];
         content +='<div class = "search-container expert-info">'+
-        '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q24_Name"] != '' && !researcher["Q24_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q24_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<img class = "expert-image" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/researchers/' + ((researcher["Q24_Name"] != '' && !researcher["Q24_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q24_Name"]  : 'placeholder.jpg') +'"/>'+
         '<h2 class = "content-header-no-margin">'+ (researcher["Q23_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + getHttpLink(researcher["Q23_9"]) + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
@@ -275,7 +211,7 @@ let buildOtherResearcherElements = function(researchers){
             continue;
         let researcher = researchers[i];
         content +='<div class = "search-container expert-info">'+
-        '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q24_Name"] != '' && !researcher["Q24_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q24_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<img class = "expert-image" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/researchers/' + ((researcher["Q24_Name"] != '' && !researcher["Q24_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q24_Name"]  : 'placeholder.jpg') +'"/>'+
         '<h2 class = "content-header-no-margin">'+ (researcher["Q23_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + getHttpLink(researcher["Q23_9"]) + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
@@ -299,13 +235,13 @@ let generateOtherResearcherTitle = function(researcher){
 
 let generateLogoContent = function(expert){
     let onlineCVContent = (expert["Q23_4"] == '')?'':
-    '<a href = "'+ expert["Q23_4"] +'"><img src = "assets/images/cv.png"></a>'; 
+    '<a href = "'+ expert["Q23_4"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/cv.png"></a>'; 
     let researchGateContent = (expert["Q23_10"]== '')?'':
-    '<a href = "'+ expert["Q23_10"] +'"><img src = "assets/images/research-gate-logo.png"></a>'; 
+    '<a href = "'+ expert["Q23_10"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/research-gate-logo.png"></a>'; 
     let googleScholarContent = (expert["Q23_11"] == '')?'':
-    '<a href = "'+ expert["Q23_11"] +'"><img src = "assets/images/google-scholar-logo.png"></a>'; 
+    '<a href = "'+ expert["Q23_11"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/google-scholar-logo.png"></a>'; 
     let otherContent = (expert["Q23_12"] == '')?'':
-    '<a href = "'+ expert["Q23_12"] +'"><img src = "assets/images/link.png"></a>'; 
+    '<a href = "'+ expert["Q23_12"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/link.png"></a>'; 
     let linkContainer = '<div class = "display-flex icon-container">'+
     onlineCVContent + researchGateContent + googleScholarContent + otherContent + '</div>';
     return linkContainer;
