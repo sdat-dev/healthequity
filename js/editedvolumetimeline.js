@@ -1,4 +1,4 @@
-let requestURL = "data/editedvolumetimeline.json";
+let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/editedvolumetimeline.json";
 let request = new XMLHttpRequest();
 //getting content Element to append grants information
 let maincontentContainer = document.getElementsByClassName('main-content')[0];
