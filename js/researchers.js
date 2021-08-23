@@ -1,6 +1,6 @@
 window.onload = function () {
-    let requestURL = "data/researchers.json"; 
-    let datarequestURL = "data/researchersdata.json"; 
+    let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/researchers.json"; 
+    let datarequestURL = "https://sdat-dev.github.io/resources/healthequity/data/researchersdata.json"; 
     let request =  axios.get(requestURL);
     let datarequest =  axios.get(datarequestURL);
     let maincontentContainer = document.getElementsByClassName('main-content')[0];
@@ -8,75 +8,11 @@ window.onload = function () {
         let researcherscontent =  responses[0].data;
         let researchers = responses[1].data;
         let webelements = researcherscontent;
-        let content = '';
-        let logostart = true;
-        let pageheaders = [];
-        for(let i = 0; i < webelements.length; i++)
-        {
-            let element = webelements[i]; 
-            let type = element.type.toLowerCase(); 
-            if(type == 'ph')
-            {
-                pageheaders.push(element);
-            }
-            else if(type == 'ch')
-            {
-                let header = document.getElementsByClassName("content-header")[0];
-                header.innerHTML = element.content.toUpperCase();
-            }
-            else if(type == 'p')
-            {
-                content += '<p>' + element.content + '</p>';
-            }
-            else if(type == 'img')
-            {
-                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
-            }
-            else if(type == 'iframe')
-            {
-                content += '<iframe '+ element.content +'></iframe>';
-            }
-            else if(type == 'ul')
-            { 
-                content += '<ul class="sub-list ' + element.content +'">';
-            }
-            else if(type == 'li')
-            {
-                content += '<li>'+ element.content +'</li>';
-            }
-            else if(type == '/ul')
-            {
-                content += '</ul>';
-            }
-            else if(type == 'a' && !element.hasOwnProperty("logo"))
-            {
-                content +='<a href = "'+ element.source +'">'+ element.content + '</a>';
-            }
-            else if(type == 'a' && element.logo != '')
-            {
-                if(logostart == true)
-                {
-                    content +='<div class = "display-flex">';
-                    logostart = false;
-                }
-                content +='<div class = "col-xl-4 col-lg-6 col-md-12">'+
-                            '<a target = "_blank" href = "'+ element.source +'">'+
-                                '<div class = "home-logo-container">' +
-                                    '<img class = "home-logo" src = "assets/images/' + element.logo+ '">'+
-                                    '<p>'+ element.content+'</p>' +
-                                '</div>'+
-                            '</a>'+
-                        '</div>';
-                if(i+1 ==  webelements.length){
-                    content += '</div>';
-                }
-            }
-        }
+        let content = getContent(webelements);
         content += '<input id = "search-box" placeholder = "Search Researchers...">'+
                     '<button id = "search-button" type = "submit"><i class="fa fa-search"></i></button>'+
                 '<br><span id = "search-box-results"></span>';
         content +='<div id="experts-content">'+buildResearchersContent(researchers)+'</div>';
-        addheader(pageheaders);
         let contentElement = document.createElement('div');
         contentElement.classList.add('content');
         contentElement.innerHTML = content.trim();
@@ -95,19 +31,19 @@ window.onload = function () {
 let buildResearchersContent = function(experts){
     let content = '';
     let universityResearchers = experts.filter(function(expert){
-        return (expert["Q16"] == "University") && (expert.Q17 != "Other (Please specify)");
+        return (expert["Q16"] != "") && (expert.Q16_7_TEXT == "");
     });
     let otherResearchers = experts.filter(function(expert){
-        return (expert["Q16"] != "University") ||((expert["Q16"] == "University") && (expert.Q17 == "Other (Please specify)"));
+        return (expert["Q16"] == "");
     });
-    let tabattribute = "Q17"
-    let distincttabs = getDistinctAttributes(universityResearchers, 'Q17'); 
+    let tabattribute = "Q16"
+    let distincttabs = getDistinctAttributes(universityResearchers, 'Q16'); 
     distincttabs.push("Other Organizations");
     content = createTabNavigation(distincttabs, tabattribute);
     let tabContent = [];
     for(let i = 0; i< distincttabs.length; i++){
         let tabexperts = universityResearchers.filter(function(expert){
-            return (expert.Q17 == distincttabs[i]) || (expert["Q17_4_TEXT"] == distincttabs[i]);
+            return (expert.Q16 == distincttabs[i]) || (expert["Q16_7_TEXT"] == distincttabs[i]);
         });
         let tabId = "";
         if(distincttabs[i] != "Other Organizations")
@@ -134,8 +70,14 @@ let buildUniversityResearchers = function(tabId, tabexperts){
     let contactElem = '';
     contactElem +=  '<div class = "accordion-container">'+
                         '<div class="panel-group" id = "' + tabId + '" role="tablist" aria-multiselectable="true">';
-    let distinctLevel1s = getDistinctAttributes(tabexperts, 'Q18');
+    let distinctLevel1s = getDistinctAttributes(tabexperts, 'Q17');
     distinctLevel1s.sort();
+    var index = distinctLevel1s.indexOf("");
+    if(index != -1)
+    {
+        distinctLevel1s.splice(index, 1);
+        distinctLevel1s.push("");
+    }
     distinctLevel1s.forEach(function(level1) {
         let collapseId1 = "collapse" + counter;
         let headerId1 = "heading" + counter;
@@ -144,7 +86,7 @@ let buildUniversityResearchers = function(tabId, tabexperts){
         let level2Elem = '';
         //filter level2s
         let level2s = tabexperts.filter(function(expert){
-            return expert.Q18 == level1;
+            return expert.Q17 == level1;
         }); 
 
         if(level2s.length > 0)
@@ -161,6 +103,10 @@ let buildUniversityResearchers = function(tabId, tabexperts){
                 level2Elem+= buildUniversityResearcherElements(level3s);
             });
         }  
+        if(level1 == "")
+        {
+            level1 = "Other";
+        }
         contactElem+= generateAccordionElem(1, collapseId1, headerId1, tabId, childId1, level1, level2Elem);
     });
     contactElem +=      '</div>'+
@@ -176,13 +122,13 @@ let buildUniversityResearcherElements = function(researchers){
             continue;
         let researcher = researchers[i];
         content +='<div class = "search-container expert-info">'+
-        '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q44_Name"] != '' && !researcher["Q44_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
-        '<h2 class = "content-header-no-margin">'+ (researcher["Q43_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q43_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
+        '<img class = "expert-image" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/researchers/' + ((researcher["Q24_Name"] != '' && !researcher["Q24_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q24_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<h2 class = "content-header-no-margin">'+ (researcher["Q23_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + getHttpLink(researcher["Q23_9"]) + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
         '>'+ researcher.Q13+ '</a><br>'+ (researcher.Q14 != ""? '<strong>Phone: </strong>'+ formatPhone(researcher.Q14) + '<br>': "")+'<strong>Research Interests: </strong>'+ 
-        getResearchInterests(researcher) + '</p><p>' + researcher.Q42 +'</p>'+ generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
-        generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) + '<div style="display:none">Counter:' + researcher.Q17 + '</div></div>';
+        getResearchInterests(researcher) + '</p><p>' + researcher.Q22 +'</p>'+ generateProjectsContent([researcher["Q31_1"],researcher["Q31_14"],researcher["Q31_15"],researcher["Q31_16"],researcher["Q31_17"]])+
+        generateRelevantCourses([researcher["Q32_1"],researcher["Q32_14"],researcher["Q32_15"],researcher["Q32_16"],researcher["Q32_17"]]) + '<div style="display:none">Counter:' + researcher.Q17 + '</div></div>';
     }
     return content;
 }
@@ -192,6 +138,13 @@ let buildOtherResearchers = function(tabId, tabresearchers){
     contactElem += '<div class="panel-group" id = "' + tabId + '" role="tablist" aria-multiselectable="true">';
     let distinctLevel1s = getDistinctOrganizations(tabresearchers);
     distinctLevel1s.sort();
+    var index = distinctLevel1s.indexOf("");
+    if(index != -1)
+    {
+        distinctLevel1s.splice(index, 1);
+        distinctLevel1s.push("");
+    }
+    
     distinctLevel1s.forEach(function(level1) {
         let collapseId1 = "collapse" + counter;
         let headerId1 = "heading" + counter;
@@ -200,7 +153,7 @@ let buildOtherResearchers = function(tabId, tabresearchers){
         let level2Elem = '';
         //filter level2s
         let level2s = tabresearchers.filter(function(researcher){
-            return (researcher["Q16"] == "University") ? researcher["Q17_4_TEXT"] == level1 : (researcher["Q16"] == "Other (Please specify)")? researcher["Q16_6_TEXT"] == level1 : researcher.Q110 == level1;
+            return (researcher["Q16"] == "") ? researcher["Q16_7_TEXT"] == level1 : researcher["Q16"] == level1;
         }); 
         if(level2s.length > 0)
         {
@@ -209,7 +162,7 @@ let buildOtherResearchers = function(tabId, tabresearchers){
             distinctLevel2s.forEach(function(level2){
                 //filter level3 
                 let level3s = level2s.filter(function(researcher){
-                    return (researcher["Q16"] == "University") ? researcher.Q19 == level2 : researcher.Q111 == level2;
+                    return (researcher["Q16"] == "") ? researcher.Q19 == level2 : researcher.Q17 == level2;
                 });
                 level3s.sort((a,b) => b.firstName - a.firstName)
                 //for level2s build simple list
@@ -231,7 +184,7 @@ let buildOtherResearchers = function(tabId, tabresearchers){
 
 let getDistinctOrganizations = function(researchers){
     let mappedAttributes = researchers.map(function(researcher){
-        return  (researcher["Q16"] == "University") ? researcher["Q17_4_TEXT"] : (researcher["Q16"] == "Other (Please specify)")? researcher["Q16_6_TEXT"] : researcher.Q110;
+        return  (researcher["Q16"] == "") ? researcher["Q16_7_TEXT"] : researcher["Q16"];
     });
     let distinctOrganizations = mappedAttributes.filter(function(v, i, a){
         return a.indexOf(v) === i;
@@ -242,7 +195,7 @@ let getDistinctOrganizations = function(researchers){
 
 let getDistinctDivisions = function(researchers){
     let mappedAttributes = researchers.map(function(researcher){
-        return  (researcher["Q16"] == "University") ? researcher.Q19 : researcher.Q111;
+        return  (researcher["Q16"] == "") ? researcher.Q19 : researcher.Q17;
     });
     let distinctDivisions = mappedAttributes.filter(function(v, i, a){
         return a.indexOf(v) === i;
@@ -258,13 +211,13 @@ let buildOtherResearcherElements = function(researchers){
             continue;
         let researcher = researchers[i];
         content +='<div class = "search-container expert-info">'+
-        '<img class = "expert-image" src = "assets/images/researchers/' + ((researcher["Q44_Name"] != '' && !researcher["Q44_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q44_Name"]  : 'placeholder.jpg') +'"/>'+
-        '<h2 class = "content-header-no-margin">'+ (researcher["Q43_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + researcher["Q43_9"] + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
+        '<img class = "expert-image" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/researchers/' + ((researcher["Q24_Name"] != '' && !researcher["Q24_Name"].includes(".docx"))? researcher.ResponseId+'_'+researcher["Q24_Name"]  : 'placeholder.jpg') +'"/>'+
+        '<h2 class = "content-header-no-margin">'+ (researcher["Q23_9"] == ""? researcher.Q12 + ' '+ researcher.Q11 : '<a class = "no-link-decoration" href = ' + getHttpLink(researcher["Q23_9"]) + '>' + researcher.Q12 + ' '+ researcher.Q11 + '</a>') + '</h2>'+
         '<h5 class = "content-header-no-margin faculty-title" style = "font-size:20px;">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'') + (researcher.Q19 != ''? researcher.Q19 :'') + '</h5>' +
         generateLogoContent(researcher) +'<p class = "faculty-description"><strong>Email: </strong> <a class = "email-link" href = mailto:' + researcher.Q13 + 
         '>'+ researcher.Q13+ '</a><br>'+ (researcher.Q14 != ""? '<strong>Phone: </strong>'+ formatPhone(researcher.Q14) + '<br>': "")+'<strong>Research Interests: </strong>'+ 
-        getResearchInterests(researcher) + '</p><p>' + researcher.Q42 +'</p>'+ generateProjectsContent([researcher["Q51_1"],researcher["Q51_14"],researcher["Q51_15"],researcher["Q51_16"],researcher["Q51_17"]])+
-        generateRelevantCourses([researcher["Q52_1"],researcher["Q52_14"],researcher["Q52_15"],researcher["Q52_16"],researcher["Q52_17"]]) + '<div style="display:none">Counter:' + researcher.Q17 + '</div></div>';
+        getResearchInterests(researcher) + '</p><p>' + researcher.Q22 +'</p>'+ generateProjectsContent([researcher["Q31_1"],researcher["Q31_14"],researcher["Q31_15"],researcher["Q31_16"],researcher["Q31_17"]])+
+        generateRelevantCourses([researcher["Q32_1"],researcher["Q32_14"],researcher["Q32_15"],researcher["Q32_16"],researcher["Q32_17"]]) + '<div style="display:none">Counter:' + researcher.Q17 + '</div></div>';
    }
     return content;
 }
@@ -272,23 +225,23 @@ let buildOtherResearcherElements = function(researchers){
 let generateOtherResearcherTitle = function(researcher){
 
     let title = '<h5 class = "content-header-no-margin faculty-title">'+ (researcher.Q15 != ''? researcher.Q15 + ',<br>':'');
-    if(researcher["Q16"] == "University")
-        title += (researcher.Q19 != ''? researcher.Q19 + ', ' :'') + (researcher.Q18 != ''? researcher.Q18 :'')  
+    if(researcher["Q16"] == "")
+        title += (researcher.Q16_7_TEXT != ''? researcher.Q16_7_TEXT + ', ' :'') + (researcher.Q19 != ''? researcher.Q19 :'')  
     else
-        title +=  (researcher.Q111 == ''? '' : researcher.Q111);
+        title +=  (researcher.Q17 == ''? '' : researcher.Q17);
     title += '</h5>';
     return title;
 }
 
 let generateLogoContent = function(expert){
-    let onlineCVContent = (expert["Q43_4"] == '')?'':
-    '<a href = "'+ expert["Q43_4"] +'"><img src = "assets/images/cv.png"></a>'; 
-    let researchGateContent = (expert["Q43_10"]== '')?'':
-    '<a href = "'+ expert["Q43_10"] +'"><img src = "assets/images/research-gate-logo.png"></a>'; 
-    let googleScholarContent = (expert["Q43_11"] == '')?'':
-    '<a href = "'+ expert["Q43_11"] +'"><img src = "assets/images/google-scholar-logo.png"></a>'; 
-    let otherContent = (expert["Q43_12"] == '')?'':
-    '<a href = "'+ expert["Q43_12"] +'"><img src = "assets/images/link.png"></a>'; 
+    let onlineCVContent = (expert["Q23_4"] == '')?'':
+    '<a href = "'+ expert["Q23_4"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/cv.png"></a>'; 
+    let researchGateContent = (expert["Q23_10"]== '')?'':
+    '<a href = "'+ expert["Q23_10"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/research-gate-logo.png"></a>'; 
+    let googleScholarContent = (expert["Q23_11"] == '')?'':
+    '<a href = "'+ expert["Q23_11"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/google-scholar-logo.png"></a>'; 
+    let otherContent = (expert["Q23_12"] == '')?'':
+    '<a href = "'+ expert["Q23_12"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/link.png"></a>'; 
     let linkContainer = '<div class = "display-flex icon-container">'+
     onlineCVContent + researchGateContent + googleScholarContent + otherContent + '</div>';
     return linkContainer;
@@ -296,8 +249,10 @@ let generateLogoContent = function(expert){
 
 let getResearchInterests = function(expert){
     let interests = "";
-    interests += (expert["Q41_1"] == ''?  "" : expert["Q41_1"] +"; " )+ (expert["Q41_8"] == ''?  "":expert["Q41_8"] +"; ") + (expert["Q41_9"] == ''?  "": expert["Q41_9"]+"; ") + (expert["Q41_10"]== ''?  "":expert["Q41_10"] +"; " )+
-    (expert["Q41_11"] == ''?  "":expert["Q41_11"] +"; ") + (expert["Q41_12"]== ''?"":expert["Q41_12"]+"; ") + expert["Q41_13"] ; 
+    interests += (expert["Q21_1"] == ''?  "" : expert["Q21_1"] +"; " )+ (expert["Q21_8"] == ''?  "":expert["Q21_8"] +"; ") + 
+    (expert["Q21_9"] == ''?  "": expert["Q21_9"]+"; ") + (expert["Q21_10"]== ''?  "":expert["Q21_10"] +"; " )+
+    (expert["Q21_11"] == ''?  "":expert["Q21_11"] +"; ") + (expert["Q21_12"]== ''?"":expert["Q21_12"]+"; ") +
+     expert["Q21_13"] ; 
     return interests;
 }
 
@@ -417,6 +372,14 @@ let formatPhone = function(text){
     let result = text;
     if(isNaN(text) == false){
         result = (text/10000000 |0)+ '-' + ((text/10000)%1000|0) + '-' + text%10000
+    }
+    return result;
+}
+
+let getHttpLink = function(link){
+    let result = link;
+    if(link != "" && link.indexOf("http") == -1){
+        result = "https://" + link;
     }
     return result;
 }
