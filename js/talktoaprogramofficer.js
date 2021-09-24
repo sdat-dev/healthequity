@@ -1,5 +1,5 @@
 window.onload = function () {
-    let requestURL = "data/talktoaprogramofficer.json";
+    let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/talktoaprogramofficer.json";
     let request = axios.get(requestURL);
     axios.all([request]).then(axios.spread((...responses) => {
         let proposalcontent =  responses[0].data;
