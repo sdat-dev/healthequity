@@ -18,6 +18,21 @@ let datarequestURL = "https://sdat-dev.github.io/resources/healthequity/data/pro
 let datarequest = new XMLHttpRequest();
 //getting content Element to append grants information
 let maincontentContainer = document.getElementsByClassName('main-content')[0];
+<<<<<<< HEAD
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+request.onload = function () {
+    let content = '';
+    const webelementsjson = request.response;
+    //condition for checking if browser is Internet Explorer
+    let webelements = ((false || !!document.documentMode)) ? JSON.parse(webelementsjson) : webelementsjson;
+    let contentElement = document.createElement('div');
+    contentElement.classList.add('content');
+    contentElement.innerHTML = getContent(webelements);
+    maincontentContainer.appendChild(contentElement);
+    addfooter();
+=======
 datarequest.open('GET', datarequestURL);
 datarequest.responseType = 'json';
 datarequest.send();
@@ -148,42 +163,11 @@ let buildAgencyTabContent = function (distinctAgencies, proposalGuidance, header
     tabContent += '</div>';
     return tabContent;
 
+>>>>>>> 5eaf0ff2d98f1397a85595c8437e7fd2e91bfec6
 }
 
-let buildLinkContent = function (guidance) {
-    let content = '';
-    let i = 0;
-    for (i; i < guidance.length && guidance[i].link.trim() == ''; i++) {
-        if (guidance[i].staticText.trim() != '') {
-            content += '<p>' + guidance[i].staticText + '</p>';
-        }
-    }
+$('.carousel').carousel({
+    pause: "false",
+    interval: 2000
 
-    content += '<ul class = "sub-list">';
-    for (i; i < guidance.length; i++) {
-        if (guidance[i].link.trim() != '' && guidance[i].title.trim() != '') {
-            content = content + '<li><a href = "' + guidance[i].link + '">' + guidance[i].title + '</a>';
-            if (i + 1 < guidance.length && guidance[i + 1].title.trim() == '') {
-                content += guidance[i].staticText.trim() != '' ? ' - ' + guidance[i].staticText : '';
-                content += '<ul class = "sub-list">';
-            }
-            else {
-                let staticTextContent = (guidance[i].staticText == '') ? '</li>' : ' - ' + guidance[i].staticText + '</li>';
-                content = content + staticTextContent;
-            }
-        }
-        else {
-            content += guidance[i].staticText != '' ? '<li>' + guidance[i].staticText + '</li>' : '';
-            if ((i + 1 < guidance.length && guidance[i + 1].title.trim() != '') || i + 1 == guidance.length) {
-                content += '</ul></li>';
-            }
-        }
-    }
-    content = content + '</ul>';
-    return content;
-}
-
-let wrapAccordionContent = function (agencyId, accordionElemContent) {
-    let content = '<div class = "accordion-container" id = "' + agencyId + '">' + accordionElemContent + '</div>';
-    return content;
-}
+});

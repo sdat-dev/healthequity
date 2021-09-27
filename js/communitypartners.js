@@ -1,6 +1,6 @@
 window.onload = function () {
-    let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/communitypartners.json"; 
-    let datarequestURL = "https://sdat-dev.github.io/resources/healthequity/data/communitypartnersdata.json"; 
+    let requestURL = "data/communitypartners.json"; 
+    let datarequestURL = "data/communitypartnersdata.json"; 
     let request =  axios.get(requestURL);
     let datarequest =  axios.get(datarequestURL);
     let maincontentContainer = document.getElementsByClassName('main-content')[0];
@@ -9,11 +9,74 @@ window.onload = function () {
         let partners  = responses[1].data;
         let webelements = partnerscontent;
         let content = '';
-        content = getContent(webelements);
+        let logostart = true;
+        let pageheaders = [];
+        for(let i = 0; i < webelements.length; i++)
+        {
+            let element = webelements[i]; 
+            let type = element.type.toLowerCase(); 
+            if(type == 'ph')
+            {
+                pageheaders.push(element);
+            }
+            else if(type == 'ch')
+            {
+                let header = document.getElementsByClassName("content-header")[0];
+                header.innerHTML = element.content.toUpperCase();
+            }
+            else if(type == 'p')
+            {
+                content += '<p>' + element.content + '</p>';
+            }
+            else if(type == 'img')
+            {
+                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
+            }
+            else if(type == 'iframe')
+            {
+                content += '<iframe '+ element.content +'></iframe>';
+            }
+            else if(type == 'ul')
+            { 
+                content += '<ul class="sub-list ' + element.content +'">';
+            }
+            else if(type == 'li')
+            {
+                content += '<li>'+ element.content +'</li>';
+            }
+            else if(type == '/ul')
+            {
+                content += '</ul>';
+            }
+            else if(type == 'a' && !element.hasOwnProperty("logo"))
+            {
+                content +='<a href = "'+ element.source +'">'+ element.content + '</a>';
+            }
+            else if(type == 'a' && element.logo != '')
+            {
+                if(logostart == true)
+                {
+                    content +='<div class = "display-flex">';
+                    logostart = false;
+                }
+                content +='<div class = "col-xl-4 col-lg-6 col-md-12">'+
+                            '<a target = "_blank" href = "'+ element.source +'">'+
+                                '<div class = "home-logo-container">' +
+                                    '<img class = "home-logo" src = "assets/images/' + element.logo+ '">'+
+                                    '<p>'+ element.content+'</p>' +
+                                '</div>'+
+                            '</a>'+
+                        '</div>';
+                if(i+1 ==  webelements.length){
+                    content += '</div>';
+                }
+            }
+        }
         content += '<input id = "search-box" placeholder = "Search Community Partners...">'+
                    '<button id = "search-button" type = "submit"><i class="fa fa-search"></i></button>'+
                    '<br><span id = "search-box-results"></span>';
         content +='<div id="experts-content">'+buildPartnersContent(partners)+'</div>';
+        addheader(pageheaders);
         let contentElement = document.createElement('div');
         contentElement.classList.add('content');
         contentElement.innerHTML = content.trim();
@@ -31,8 +94,8 @@ window.onload = function () {
 let buildPartnersContent = function(partners){
 
     partners.sort(function(a, b){
-        var nameA = a.Q21.toUpperCase(); 
-        var nameB = b.Q21.toUpperCase(); 
+        var nameA = a.Q61.toUpperCase(); 
+        var nameB = b.Q61.toUpperCase(); 
         if (nameA < nameB) {
             return -1;
         }
@@ -46,8 +109,8 @@ let buildPartnersContent = function(partners){
     for(var i=0; i< partners.length; i++){
         if(partners[i].Q12 == "")
             continue;
-        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/community-partners/'+ ((partners[i]["Q23_Name"] != '' && !partners[i]["Q23_Name"].includes(".docx"))? partners[i].ResponseId+'_'+ partners[i]["Q23_Name"] :'placeholder.jpg') + '"/>'+
-        '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].Q22 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q22 + '>' + partners[i].Q21 + '</a>': partners[i].Q21) +'</h2>'+
+        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "assets/images/community-partners/'+ ((partners[i]["Q63_Name"] != '' && !partners[i]["Q63_Name"].includes(".docx"))? partners[i].ResponseId+'_'+ partners[i]["Q63_Name"] :'placeholder.jpg') + '"/>'+
+        '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].Q62 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q62 + '>' + partners[i].Q61 + '</a>': partners[i].Q61) +'</h2>'+
         '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 poc dont-break-out"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
         '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 address dont-break-out"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
         buildmissionandvision(partners[i])+'</div>';
@@ -57,32 +120,32 @@ let buildPartnersContent = function(partners){
 
 let getAddress = function(partner){
     let address = "";
-    if(partner.Q25 != ""){
-        address += partner.Q25;
+    if(partner.Q65 != ""){
+        address += partner.Q65;
     }
-    if(partner.Q26 != "")
+    if(partner.Q66 != "")
     {
-        address = address == ""? partner.Q26 : (address + "<br> " +  partner.Q26);
+        address = address == ""? partner.Q66 : (address + "<br> " +  partner.Q66);
     }
-    if(partner.Q27 != "")
+    if(partner.Q67 != "")
     {
-        address = address == ""? partner.Q27 : (address + "<br>" +  partner.Q27 + ",");
+        address = address == ""? partner.Q67 : (address + "<br>" +  partner.Q67 + ",");
     }
-    if(partner.Q28 != "")
+    if(partner.Q68 != "")
     {
-        address = address == ""? partner.Q28 : (address + " " +  partner.Q28);
+        address = address == ""? partner.Q68 : (address + " " +  partner.Q68);
     }
-    if(partner.Q29 != "")
+    if(partner.Q69 != "")
     {
-        address = address == ""? partner.Q29 : (address + " " +  partner.Q29);
+        address = address == ""? partner.Q69 : (address + " " +  partner.Q69);
     }
     return address;
 }
 
 let getPointOfContact = function(partner){
     let pointofcontact = "";
-    pointofcontact += partner.Q12 + " " + partner.Q11+ ",<br> "+ partner.Q15 + '<br> <a class = "email-link" href = mailto:' + partner.Q13 + 
-    '>'+ partner.Q13+ '</a>'+ (partner.Q14 == ""? '' : ',<br>'+ formatPhone(partner.Q14)); 
+    pointofcontact += partner.Q72 + " " + partner.Q71+ ",<br> "+ partner.Q75 + '<br> <a class = "email-link" href = mailto:' + partner.Q73 + 
+    '>'+ partner.Q73+ '</a>'+ (partner.Q74 == ""? '' : ',<br>'+ formatPhone(partner.Q74)); 
     return pointofcontact;
 }
 
@@ -95,7 +158,7 @@ let buildmissionandvision = function(partner){
                         '</p>'+
                         '<div class="collapse" id="missionandvision'+ counter +'">'+
                             '<div class="card card-body">'+
-                            formatText(partner.Q24) +
+                            formatText(partner.Q64) +
                             '</div>'+
                         '</div>';
     counter++;

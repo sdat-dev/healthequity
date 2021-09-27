@@ -18,6 +18,28 @@ let datarequestURL = "https://sdat-dev.github.io/resources/healthequity/data/vid
 let datarequest = new XMLHttpRequest();
 //getting content Element to append grants information
 let maincontentContainer = document.getElementsByClassName('main-content')[0];
+<<<<<<< HEAD
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+request.onload = function () {
+    let content = '';
+    const webelementsjson = request.response;
+    //condition for checking if browser is Internet Explorer
+    let webelements = ((false || !!document.documentMode)) ? JSON.parse(webelementsjson) : webelementsjson;
+    let contentElement = document.createElement('div');
+    contentElement.classList.add('content');
+    contentElement.innerHTML = getContent(webelements);
+    maincontentContainer.appendChild(contentElement);
+    addfooter();
+}
+
+$('.carousel').carousel({
+    pause: "false",
+    interval: 2000
+
+});
+=======
 datarequest.open('GET', datarequestURL);
 datarequest.responseType = 'json';
 datarequest.send();
@@ -165,3 +187,4 @@ let buildVideoContent = function (videos) {
     return content;
 
 }
+>>>>>>> 5eaf0ff2d98f1397a85595c8437e7fd2e91bfec6
