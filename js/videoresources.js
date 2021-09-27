@@ -14,6 +14,7 @@ window.onload = function () {
         console.log(errors);
     })
 }
+
 let datarequestURL = "https://sdat-dev.github.io/resources/healthequity/data/videoresourcesdata.json";
 let datarequest = new XMLHttpRequest();
 //getting content Element to append grants information
