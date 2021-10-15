@@ -46,8 +46,8 @@ let buildPartnersContent = function(partners){
     for(var i=0; i< partners.length; i++){
         if(partners[i].Q12 == "")
             continue;
-        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/community-partners/'+ ((partners[i]["Q23_Name"] != '' && !partners[i]["Q23_Name"].includes(".docx"))? partners[i].ResponseId+'_'+ partners[i]["Q23_Name"] :'placeholder.jpg') + '"/>'+
-        '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].Q22 != ""? '<a class = "no-link-decoration" href = ' + partners[i].Q22 + '>' + partners[i].Q21 + '</a>': partners[i].Q21) +'</h2>'+
+        content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/community-partners/'+ partners[i].Logo + '"/>'+
+        '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].HomePageLink != ""? '<a class = "no-link-decoration" href = ' + partners[i].HomePageLink + '>' + partners[i].OrganizationName + '</a>': partners[i].OrganizationName) +'</h2>'+
         '<div class="display-flex"><div class = "col-sm-12 col-md-6 col-lg-6 poc dont-break-out"><span>Point Of Contact: </span><br>'+ getPointOfContact(partners[i]) + '</div>'+
         '<div class = "col-sm-12 col-md-6 col-lg-6 col-xl-6 address dont-break-out"><span>Address: </span><br>'+ getAddress(partners[i]) + '</div></div>'+
         buildmissionandvision(partners[i])+'</div>';
@@ -57,32 +57,32 @@ let buildPartnersContent = function(partners){
 
 let getAddress = function(partner){
     let address = "";
-    if(partner.Q25 != ""){
-        address += partner.Q25;
+    if(partner.AddressLine1 != ""){
+        address += partner.AddressLine1;
     }
-    if(partner.Q26 != "")
+    if(partner.AddressLine2 != "")
     {
-        address = address == ""? partner.Q26 : (address + "<br> " +  partner.Q26);
+        address = address == ""? partner.AddressLine2 : (address + "<br> " +  partner.AddressLine2);
     }
-    if(partner.Q27 != "")
+    if(partner.City != "")
     {
-        address = address == ""? partner.Q27 : (address + "<br>" +  partner.Q27 + ",");
+        address = address == ""? partner.City : (address + "<br>" +  partner.City + ",");
     }
-    if(partner.Q28 != "")
+    if(partner.State != "")
     {
-        address = address == ""? partner.Q28 : (address + " " +  partner.Q28);
+        address = address == ""? partner.State : (address + " " +  partner.State);
     }
-    if(partner.Q29 != "")
+    if(partner.ZipCode != "")
     {
-        address = address == ""? partner.Q29 : (address + " " +  partner.Q29);
+        address = address == ""? partner.ZipCode : (address + " " +  partner.ZipCode);
     }
     return address;
 }
 
 let getPointOfContact = function(partner){
     let pointofcontact = "";
-    pointofcontact += partner.Q12 + " " + partner.Q11+ ",<br> "+ partner.Q15 + '<br> <a class = "email-link" href = mailto:' + partner.Q13 + 
-    '>'+ partner.Q13+ '</a>'+ (partner.Q14 == ""? '' : ',<br>'+ formatPhone(partner.Q14)); 
+    pointofcontact +=(partner.Title== ""? partner.Title + " ":"")+ partner.FirstName + " " + partner.LastName+ ",<br> "+ partner.JobTitle + '<br> <a class = "email-link" href = mailto:' + partner.Email + 
+    '>'+ partner.Email+ '</a>'+ (partner.PhoneNumber == ""? '' : ',<br>'+ formatPhone(partner.PhoneNumber)); 
     return pointofcontact;
 }
 
@@ -95,7 +95,7 @@ let buildmissionandvision = function(partner){
                         '</p>'+
                         '<div class="collapse" id="missionandvision'+ counter +'">'+
                             '<div class="card card-body">'+
-                            formatText(partner.Q24) +
+                            formatText(partner.BriefSummary) +
                             '</div>'+
                         '</div>';
     counter++;
