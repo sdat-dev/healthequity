@@ -44,7 +44,7 @@ let buildPartnersContent = function(partners){
     
     let content = '';
     for(var i=0; i< partners.length; i++){
-        if(partners[i].Q12 == "")
+        if(partners[i].FirstName == "")
             continue;
         content +='<div class = "search-container partner-info"><img class = "partner-logo" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/community-partners/'+ partners[i].Logo + '"/>'+
         '<h2 class = "content-header-no-margin" style="font-size:30px;">'+ (partners[i].HomePageLink != ""? '<a class = "no-link-decoration" href = ' + partners[i].HomePageLink + '>' + partners[i].OrganizationName + '</a>': partners[i].OrganizationName) +'</h2>'+
