@@ -31,8 +31,8 @@ window.onload = function () {
 let buildPartnersContent = function(partners){
 
     partners.sort(function(a, b){
-        var nameA = a.Q21.toUpperCase(); 
-        var nameB = b.Q21.toUpperCase(); 
+        var nameA = a.OrganizationName.toUpperCase(); 
+        var nameB = b.OrganizationName.toUpperCase(); 
         if (nameA < nameB) {
             return -1;
         }
