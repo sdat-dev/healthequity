@@ -284,13 +284,13 @@ let generateOtherResearcherTitle = function(researcher){
 
 let generateLogoContent = function(expert){
     let onlineCVContent = (expert["CV"] == '')?'':
-    '<a href = "'+ expert["CV"] +'"><img src = "assets/images/cv.png"></a>'; 
+    '<a href = "'+ expert["CV"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/cv.png"></a>'; 
     let researchGateContent = (expert["ResearchGate"]== '')?'':
-    '<a href = "'+ expert["ResearchGate"] +'"><img src = "assets/images/research-gate-logo.png"></a>'; 
+    '<a href = "'+ expert["ResearchGate"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/research-gate-logo.png"></a>'; 
     let googleScholarContent = (expert["GoogleScholar"] == '')?'':
-    '<a href = "'+ expert["GoogleScholar"] +'"><img src = "assets/images/google-scholar-logo.png"></a>'; 
+    '<a href = "'+ expert["GoogleScholar"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/google-scholar-logo.png"></a>'; 
     let otherContent = (expert["Others"] == '')?'':
-    '<a href = "'+ expert["Others"] +'"><img src = "assets/images/link.png"></a>'; 
+    '<a href = "'+ expert["Others"] +'"><img src = "https://sdat-dev.github.io/resources/healthequity/assets/images/link.png"></a>'; 
     let linkContainer = '<div class = "display-flex icon-container">'+
     onlineCVContent + researchGateContent + googleScholarContent + otherContent + '</div>';
     return linkContainer;
