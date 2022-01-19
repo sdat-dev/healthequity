@@ -1,6 +1,6 @@
-let sidemenuItems = [{"item":"Home","link":"home.html"},{"item":"Call for Extended Abstracts","link":"callforextendedabstracts.html","subItems":[{"item":"Timeline","link":"timeline.html"},{"item":"About the Editors","link":"abouttheeditors.html"},{"item":"Topics of Interest","link":"topicsofinterest.html"},{"item":"Abstract Submission Guidelines","link":"abstractsubmissionguidelines.html"}]},{"item":"Funder Toolkit (NEW)","link":"fundertoolkit(new).html","subItems":[{"item":"Funding Opportunity (NEW)","link":"fundingopportunity(new).html"},{"item":"Proposal Preparation","link":"proposalpreparation.html"},{"item":"Library Resources","link":"libraryresources.html"},{"item":"Video Resources","link":"videoresources.html"},{"item":"Talk to a Program Officer","link":"talktoaprogramofficer.html"}]},{"item":"Resources","link":"resources.html","subItems":[{"item":"Papers and Publications","link":"papersandpublications.html"},{"item":"Research Data","link":"researchdata.html"},{"item":"Collaboration Space","link":"collaborationspace.html"}]},{"item":"Researchers and Partners","link":"researchersandpartners.html","subItems":[{"item":"Researchers","link":"researchers.html"},{"item":"Community Partners","link":"communitypartners.html"}]},{"item":"Past Events","link":"pastevents.html","subItems":[{"item":"Three Campus Conversation","link":"threecampusconversation.html"},{"item":"2021 Symposium","link":"2021symposium.html"}]},{"item":"Current Events","link":"currentevents.html","subItems":[{"item":"UAlbany-HANYS Monthly Series","link":"ualbany-hanysmonthlyseries.html"}]},{"item":"Questions","link":"questions.html"}]
+let sidemenuItems = [{"item":"Home","link":"home.html"},{"item":"Job Opportunity","link":"jobopportunity.html"},{"item":"Call for Extended Abstracts","link":"callforextendedabstracts.html","subItems":[{"item":"Timeline","link":"timeline.html"},{"item":"About the Editors","link":"abouttheeditors.html"},{"item":"Topics of Interest","link":"topicsofinterest.html"},{"item":"Abstract Submission Guidelines","link":"abstractsubmissionguidelines.html"}]},{"item":"Funder Toolkit (NEW)","link":"fundertoolkit(new).html","subItems":[{"item":"Funding Opportunity (NEW)","link":"fundingopportunity(new).html"},{"item":"Proposal Preparation","link":"proposalpreparation.html"},{"item":"Library Resources","link":"libraryresources.html"},{"item":"Video Resources","link":"videoresources.html"},{"item":"Talk to a Program Officer","link":"talktoaprogramofficer.html"}]},{"item":"Resources","link":"resources.html","subItems":[{"item":"Papers and Publications","link":"papersandpublications.html"},{"item":"Research Data","link":"researchdata.html"},{"item":"Collaboration Space","link":"collaborationspace.html"}]},{"item":"Researchers and Partners","link":"researchersandpartners.html","subItems":[{"item":"Researchers","link":"researchers.html"},{"item":"Community Partners","link":"communitypartners.html"}]},{"item":"Current Events","link":"currentevents.html","subItems":[{"item":"UAlbany-HANYS Monthly Series","link":"ualbany-hanysmonthlyseries.html"}]},{"item":"Past Events","link":"pastevents.html","subItems":[{"item":"Three Campus Conversation","link":"threecampusconversation.html"},{"item":"2021 Symposium","link":"2021symposium.html"}]},{"item":"Questions","link":"questions.html"}]
 //SideMenu Start
-//What evet written  before '//SideMenu Start' will be relace with sidemenuItems in automation scripts
+//What ever written  before '//SideMenu Start' will be relace with sidemenuItems in automation scripts
 
 let addsidemenu = function (page, markactive = true, extraindirection = false) {
     let sidemenu = document.getElementById('side-menu');
@@ -207,9 +207,9 @@ let getContent = function (webelements){
         }
         else if (type == 'img') {
             if (element.hasOwnProperty('style'))
-                content += '<img src="https://sdat-dev.github.io/resources/healthequity/assets/images/' + element.content + '" alt="" style="' + element.style + '">';
+                content += '<img src="assets/images/' + element.content + '" alt="" style="' + element.style + '">';
             else
-                content += '<img src="https://sdat-dev.github.io/resources/healthequity/assets/images/' + element.content + '" alt="" style="width: 100%;">';
+                content += '<img src="assets/images/' + element.content + '" alt="" style="width: 100%;">';
         }
         else if (type == 'iframe') {
             content += '<iframe ' + element.content + '></iframe>';
@@ -237,7 +237,7 @@ let getContent = function (webelements){
             content += '<div class = "col-xl-4 col-lg-4 col-md-4">' +
                 '<a target = "_blank" href = "' + element.source + '">' +
                 '<div class = "home-logo-container">' +
-                '<img class = "home-logo" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/' + element.logo + '">' +
+                '<img class = "home-logo" src = "assets/images/' + element.logo + '">' +
                 '<p>' + element.content + '</p>' +
                 '</div>' +
                 '</a>' +
@@ -248,7 +248,7 @@ let getContent = function (webelements){
         }
         else if (type == 'a' && element.hasOwnProperty("style") && element.logo != '') {
             content += '<a target = "_blank" href = "' + element.source + '">' +
-                '<img  img-fluid style="' + element.style + '" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/' + element.logo + '">' +
+                '<img  img-fluid style="' + element.style + '" src = "assets/images/' + element.logo + '">' +
                 '<p>' + element.content + '</p>' +
                 '</a>';
         }
@@ -276,7 +276,7 @@ let addheader = function (headers) {
         image = typeof headers[i].logo != 'undefined' && headers[i].logo != '' ? headers[i].logo : image;
         header1 = typeof headers[i].content != 'undefined' && headers[i].content != '' ? headers[i].content : header1;
         header2 = typeof headers[i].subcontent != 'undefined' && headers[i].subcontent != '' ? headers[i].subcontent : header2;
-        let source = 'https://sdat-dev.github.io/resources/healthequity/assets/images/headers/' + (typeof headers[i].source != 'undefined' && headers[i].source != '' ? headers[i].source + '/' : '');
+        let source = 'https://sdat-dev.github.io/healthequity-dev/assets/images/' + (typeof headers[i].source != 'undefined' && headers[i].source != '' ? headers[i].source + '/' : '');
         if (i == 0) {
             content += '<div class="carousel-item active">';
         }
@@ -297,6 +297,7 @@ let addheader = function (headers) {
                 '<div id = "landing-page-text-wrapper">' +
                 '<h1>' + header1 + '</h1>' +
                 '<p>' + header2 + '</p>' +
+                // '<button class="button-properties"><a href="/healthequity-dev/jobopportunity.html">Job Opening</a></button>' +
                 '</div>' +
                 '</div>';
         }

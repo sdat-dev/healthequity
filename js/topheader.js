@@ -91,6 +91,13 @@ let addTopHeader = function () {
                             '</li>'+
                             '<li class="appear"><a href="https://ualbanysports.com/">Athletics</a></li>'+
                         '</ul>'+
+                        '<ul>'+
+                            '<div class="view-content" style="width: 110%;position: static;margin-left: -80px;padding-top: 0.6em;line-height: 1.2em;padding-bottom: 0.6em;background-color: #edba32;text-align: center">'+
+                                '<a href="/healthequity-dev/jobopportunity.html">'+
+                                    '<span style="color: black;font-weight: 600;font-size: 1.0em;" class="alert-title">Call for UAlbany Social and Health Equity Leader! <span style="color: black;font-weight: 600;font-size: 1.0em;">Learn more&gt;</span></span>'+
+                                '</a>'+
+                            '</div>'+
+                        '</ul>'+
                     '</nav>'+
 
                 '</div>'+
@@ -236,8 +243,12 @@ let addTopHeader = function () {
                 'class="headerSearchBtn form-submit search-button btn btn-sm btn-success s3-m-3">'+
             '</form>'+
         '</div>'+
-
-        '</div>'+
+    '</div>'+
+    // '<div class="view-content" style="width: 110%;position: static;margin-left: -80px;padding-top: 0.6em;line-height: 1.2em;padding-bottom: 0.6em;background-color: #edba32;text-align: center">'+
+    //     '<a href="/healthequity-dev/jobopportunity.html">'+
+    //         '<span style="color: black;font-weight: 600;font-size: 1.0em;" class="alert-title">Call for UAlbany Social and Health Equity Leader! <span style="color: black;font-weight: 600;font-size: 1.0em;">Learn more&gt;</span></span>'+
+    //     '</a>'+
+    // '</div>'+
     '</div>'+
 '</div>'; 
 sidemenu.innerHTML = content;
