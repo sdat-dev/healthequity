@@ -1,6 +1,6 @@
 window.onload = function () {
-    let requestURL = "data/january8.json"; 
-    let datarequestURL = "data/sessiondata.json"; 
+    let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/january8.json"; 
+    let datarequestURL = "https://sdat-dev.github.io/resources/healthequity/data/sessiondata.json"; 
     let request =  axios.get(requestURL);
     let datarequest =  axios.get(datarequestURL);
     let maincontentContainer = document.getElementsByClassName('main-content')[0];

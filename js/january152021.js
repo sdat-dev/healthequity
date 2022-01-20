@@ -1,4 +1,4 @@
-let requestURL = "data/january152021.json";
+let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/january152021.json";
 let request = new XMLHttpRequest();
 //getting content Element to append grants information
 let maincontentContainer = document.getElementsByClassName('main-content')[0];

@@ -1,5 +1,5 @@
 window.onload = function () {
-    let requestURL = "data/talktoaprogramofficer.json";
+    let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/talktoaprogramofficer.json";
     let request = axios.get(requestURL);
     axios.all([request]).then(axios.spread((...responses) => {
         let proposalcontent =  responses[0].data;
@@ -78,7 +78,7 @@ window.onload = function () {
         console.log(errors);
     })
 }
-let datarequestURL = "data/talktoaprogramofficerdata.json";
+let datarequestURL = "https://sdat-dev.github.io/resources/healthequity/data/talktoaprogramofficerdata.json";
 let datarequest = new XMLHttpRequest();
 //getting content Element to append grants information
 let maincontentContainer = document.getElementsByClassName('main-content')[0];

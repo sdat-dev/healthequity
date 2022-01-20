@@ -1,4 +1,4 @@
-let requestURL = "data/fundingopportunity.json";
+let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/fundingopportunity.json";
 let request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json';

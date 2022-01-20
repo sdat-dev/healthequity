@@ -1,4 +1,4 @@
-let requestURL = "data/pastevent.json";
+let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/pastevent.json";
 let request = new XMLHttpRequest();
 //getting content Element to append grants information
 let maincontentContainer = document.getElementsByClassName('main-content')[0];
