@@ -31,7 +31,7 @@ request.onload = function(){
         }
         else if(type == 'img')
         {
-            content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
+            content += '<img src="https://sdat-dev.github.io/resources/healthequity/assets/images/'+ element.content + '" alt="" style="width: 100%;">';
         }
         else if(type == 'iframe')
         {

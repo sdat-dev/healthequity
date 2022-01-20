@@ -4,7 +4,7 @@ let addTopMenu = function(){
                             '<span class="helper">'+
                             '</span>'+
                             '<a href="https://www.albany.edu/">'+
-                                '<img class="ualbany-logo" src="assets/images/logo.png" />'+
+                                '<img class="ualbany-logo" src="https://sdat-dev.github.io/resources/healthequity/assets/images/logo.png" />'+
                             '</a>'+
                             '<div class="topnav-right" style="float: right; display:inline-block; margin-left:730px;">' +
                                 '<a href="https://www.albany.edu/myualbany">MYUALBANY</a>'+

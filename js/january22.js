@@ -30,7 +30,7 @@ window.onload = function () {
             }
             else if(type == 'img')
             {
-                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
+                content += '<img src="https://sdat-dev.github.io/resources/healthequity/assets/images/'+ element.content + '" alt="" style="width: 100%;">';
             }
             else if(type == 'iframe')
             {
@@ -135,7 +135,7 @@ let buildSessionContent =  function (sessions){
                 conent += '<div class= "col-lg-3 col-md-3 col-sm-3" id="'+ (panelist.FirstName.replace(/ /g, '')) +'">'+
                 '   <p class="text-center"><a href="'+ ((panelist.FirstName == ""|| panelist.LastName == "")? '#':'agenda/' + 
                 (panelist.FirstName.split(/\.|\ |\,|-/).join("") + panelist.LastName.split(/\.|\ |\,|-/).join("")).toLowerCase()+ '.html') +'">'+
-                '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="assets/images/Panelists/' + panelist.Photo + '" alt="panelist photo"></a></p>'  +
+                '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="https://sdat-dev.github.io/resources/healthequity/assets/images/Panelists/' + panelist.Photo + '" alt="panelist photo"></a></p>'  +
                 '   <p class="panelist-info dont-break-out"><span class="name">' +  panelist.FirstName + ' ' + panelist.LastName + '</span>' + (panelist.DegreeCredential == ''? "": ', ' + panelist.DegreeCredential) +
                 (panelist.JobTitle == ""? "" : '<br><span class="jobtitle">' + panelist.JobTitle + '</span>,')+
                 (panelist.Department == ""? "": '<br><span class="department">' + panelist.Department + '</span>,') + 
@@ -153,7 +153,7 @@ let buildSessionContent =  function (sessions){
                 conent += '<div class= "col-lg-3 col-md-3 col-sm-3" id="'+ (moderator.FirstName.replace(/ /g, '')) +'">'+
                 '   <p class="text-center"><a href="'+ ((moderator.FirstName == ""|| moderator.LastName == "")? '#':'agenda/' + 
                 (moderator.FirstName.split(/\.|\ |\,|-/).join("") + moderator.LastName.split(/\.|\ |\,|-/).join("")).toLowerCase()+ '.html') +'">'+
-                '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="assets/images/Panelists/' + moderator.Photo + '" alt="panelist photo"></a></p>'  +
+                '   <img class="img-fluid mx-auto d-block panelist-img img-thumbnail" src="https://sdat-dev.github.io/resources/healthequity/assets/images/Panelists/' + moderator.Photo + '" alt="panelist photo"></a></p>'  +
                 '   <p class="panelist-info dont-break-out"><span class="name">' +  moderator.FirstName + ' ' + moderator.LastName + '</span>' + (moderator.DegreeCredential == ''? "": ', ' + moderator.DegreeCredential) +
                 (moderator.JobTitle == ""? "" : '<br><span class="jobtitle">' + moderator.JobTitle + '</span>,')+
                 (moderator.Department == ""? "": '<br><span class="department">' + moderator.Department + '</span>,') + 

@@ -26,7 +26,7 @@ window.onload = function () {
             }
             else if(type == 'img')
             {
-                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
+                content += '<img src="https://sdat-dev.github.io/resources/healthequity/assets/images/'+ element.content + '" alt="" style="width: 100%;">';
             }
             else if(type == 'iframe')
             {
@@ -134,7 +134,7 @@ let buildAgencyVideos = function (distinctAgencies, videoresources) {
         else {
             tabContent += '<div class="tab-pane fade" id="pills-' + agencyId + '" role="tabpanel" aria-labelledby="pills-' + agencyId + '-tab">';
         }
-        tabContent += '<div class="sponsor-title-container"><h3 class="sponsor-title"><img class="logo" src="assets/sponsor_logos/' + agencyvideos[0].acronym.toLowerCase() + '.png">' + agencyvideos[0].agency.toString() + '</h3></div>';
+        tabContent += '<div class="sponsor-title-container"><h3 class="sponsor-title"><img class="logo" src="https://sdat-dev.github.io/resources/healthequity/assets/sponsor_logos/' + agencyvideos[0].acronym.toLowerCase() + '.png">' + agencyvideos[0].agency.toString() + '</h3></div>';
         tabContent += buildVideos(agencyvideos);
         tabContent += '</div>';
 
@@ -209,7 +209,7 @@ let buildVideoContent = function (videos) {
             youtubelink = youtubelink.substring(0, ampersandPosition);
         if (youtubelinks[i].title.includes("Channel")) {
             content += '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 video-padding-margin">' +
-                '   <div class="videoWrapper wide-screen"><img src="assets/sponsor_logos/' + youtubelinks[i].acronym.toLowerCase() + '.png""></img></div>' +
+                '   <div class="videoWrapper wide-screen"><img src="https://sdat-dev.github.io/resources/healthequity/assets/sponsor_logos/' + youtubelinks[i].acronym.toLowerCase() + '.png""></img></div>' +
                 '   <a target = "_blank" href="' + youtubelink + '"><h5 class="video-title">' + youtubelinks[i].title + '</h5></a>' +
                 '</div>';
         }

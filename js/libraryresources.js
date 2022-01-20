@@ -26,7 +26,7 @@ window.onload = function () {
             }
             else if(type == 'img')
             {
-                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
+                content += '<img src="https://sdat-dev.github.io/resources/healthequity/assets/images/'+ element.content + '" alt="" style="width: 100%;">';
             }
             else if(type == 'iframe')
             {
@@ -144,7 +144,7 @@ let buildAgencyLibResources = function(distinctAgencies, libraryresources){
         }
 
         if(agencyresources[0].acronym != 'General')
-            tabContent += '<h3 class="sponsor-title"><img class="logo" src="assets/sponsor_logos/'+ agencyresources[0].acronym.toLowerCase() +'.png">'+ agencyresources[0].agency.toString() +'</h3>';
+            tabContent += '<h3 class="sponsor-title"><img class="logo" src="https://sdat-dev.github.io/resources/healthequity/assets/sponsor_logos/'+ agencyresources[0].acronym.toLowerCase() +'.png">'+ agencyresources[0].agency.toString() +'</h3>';
         agencyresources.forEach(function(agencyresource) {
             tabContent += buildResourceInfo(agencyresource);
         });
@@ -161,7 +161,7 @@ let buildResourceInfo = function(resource){
     let content = '';
     content +=  '<div class="display-flex bookinfo search-container">' +
                     '<div class="col-xl-2 col-lg-3 ml-0 pl-0">'+
-                        '<img class="book-cover" src="assets/images/Book-Covers/'+ resource.image +'">'+
+                        '<img class="book-cover" src="https://sdat-dev.github.io/resources/healthequity/assets/images/Book-Covers/'+ resource.image +'">'+
                     '</div>'+
                     '<div class="col-xl-10 col-lg-9 p-0">' +
                         '<h4 class="booktitle"><a href="' + resource.link + '"';

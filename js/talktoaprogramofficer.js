@@ -26,7 +26,7 @@ window.onload = function () {
             }
             else if(type == 'img')
             {
-                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
+                content += '<img src="https://sdat-dev.github.io/resources/healthequity/assets/images/'+ element.content + '" alt="" style="width: 100%;">';
             }
             else if(type == 'iframe')
             {
@@ -143,7 +143,7 @@ let buildAgencyContacts = function(distinctAgencies, pointsofcontact){
         {
             tabContent +='<div class="tab-pane fade" id="pills-'+ agencyId +'" role="tabpanel" aria-labelledby="pills-'+ agencyId +'-tab">';
         }
-        tabContent += '<div class="sponsor-title-container"><h3 class="sponsor-title"><img class="logo" src="assets/sponsor_logos/'+ agencycontacts[0].acronym.toLowerCase() +'.png">'+ agencycontacts[0].agency.toString() +'</h3></div>';
+        tabContent += '<div class="sponsor-title-container"><h3 class="sponsor-title"><img class="logo" src="https://sdat-dev.github.io/resources/healthequity/assets/sponsor_logos/'+ agencycontacts[0].acronym.toLowerCase() +'.png">'+ agencycontacts[0].agency.toString() +'</h3></div>';
         tabContent += buildContacts(agencyId, agencycontacts);
         tabContent += '</div>';
 

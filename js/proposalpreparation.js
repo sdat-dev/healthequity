@@ -26,7 +26,7 @@ window.onload = function () {
             }
             else if(type == 'img')
             {
-                content += '<img src="assets/images/'+ element.content + '" alt="" style="width: 100%;">';
+                content += '<img src="https://sdat-dev.github.io/resources/healthequity/assets/images/'+ element.content + '" alt="" style="width: 100%;">';
             }
             else if(type == 'iframe')
             {
@@ -169,7 +169,7 @@ let buildAgencyTabContent = function (distinctAgencies, proposalGuidance, header
         let agencyAcronym = agencyAcronyms.filter(function (acronym) {
             return acronym.Name == agencyGuidance[i].agency;
         })
-        tabContent += '<div class="sponsor-title-container"><h3 class="sponsor-title"><img class="logo" src="assets/sponsor_logos/' + agencyAcronym[0].Acronym.toLowerCase() + '.png">' + agencyGuidance[0].agency.toString() + '</h3></div>';
+        tabContent += '<div class="sponsor-title-container"><h3 class="sponsor-title"><img class="logo" src="https://sdat-dev.github.io/resources/healthequity/assets/sponsor_logos/' + agencyAcronym[0].Acronym.toLowerCase() + '.png">' + agencyGuidance[0].agency.toString() + '</h3></div>';
         let accordionCounter = 1;
         let distinctHeaders = getDistinctAttributes(agencyGuidance, 'mainheader');
         let accordionElemContent = '';

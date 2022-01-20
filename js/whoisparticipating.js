@@ -32,9 +32,9 @@ request.onload = function () {
         }
         else if (type == 'img') {
             if (element.hasOwnProperty('style'))
-                content += '<img src="assets/images/' + element.content + '" alt="" style="' + element.style + '">';
+                content += '<img src="https://sdat-dev.github.io/resources/healthequity/assets/images/' + element.content + '" alt="" style="' + element.style + '">';
             else
-                content += '<img src="assets/images/' + element.content + '" alt="" style="width: 100%;">';
+                content += '<img src="https://sdat-dev.github.io/resources/healthequity/assets/images/' + element.content + '" alt="" style="width: 100%;">';
         }
         else if (type == 'iframe') {
             content += '<iframe ' + element.content + '></iframe>';
