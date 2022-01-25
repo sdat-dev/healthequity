@@ -1,4 +1,4 @@
-let requestURL = "data/topicsofinterest.json";
+let requestURL = "https://sdat-dev.github.io/resources/healthequity/data/topicsofinterest.json";
 let request = new XMLHttpRequest();
 //getting content Element to append grants information
 let maincontentContainer = document.getElementsByClassName('main-content')[0];
