@@ -231,7 +231,7 @@ let addTopHeader = function () {
             'data-block-plugin-id="block_content:f5fc99ed-9b0b-4fef-9f5a-708a4da0e836">'+
             '<div'+
                 'class="field field--name-body field--type-text-with-summary field--label-hidden field--item">'+
-                '<p><a href="/search-results">Search</a></p>'+
+                '<p><a href="https://www.albany.edu/search-results">Search</a></p>'+
             '</div>'+
         '</section>'+
 
