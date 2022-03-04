@@ -20,6 +20,7 @@ let addTopHeader = function () {
                     '</div>'+
                     '<nav id="top-nav" aria-label="MyUAlbany and Give Links">'+
                         '<ul>'+
+                            '<li><a title="Information about the University\'s response to COVID-19" href="https://www.albany.edu/covid-19">COVID-19</a></li>'+
                             '<li><a title="Link to Faculty and Staff Portal" href="https://www.albany.edu/myualbany">MYUALBANY</a></li>'+
                             '<li><a title="Donate to the University" href="https://www.alumni.albany.edu/s/1642/18-giving/landing.aspx?sid=1642&amp;gid=2&amp;pgid=2040&amp;appealcode=uahome">GIVE</a></li>'+
                         '</ul>'+
@@ -245,7 +246,7 @@ let addTopHeader = function () {
         '</div>'+
     '</div>'+
     // '<div class="view-content" style="width: 110%;position: static;margin-left: -80px;padding-top: 0.6em;line-height: 1.2em;padding-bottom: 0.6em;background-color: #edba32;text-align: center">'+
-    //     '<a href="/healthequity/jobopportunity.html">'+
+    //     '<a href="/researchinitiatives/healthequity/jobopportunity.html">'+
     //         '<span style="color: black;font-weight: 600;font-size: 1.0em;" class="alert-title">Call for UAlbany Social and Health Equity Leader! <span style="color: black;font-weight: 600;font-size: 1.0em;">Learn more&gt;</span></span>'+
     //     '</a>'+
     // '</div>'+
