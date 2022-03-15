@@ -62,7 +62,7 @@ request.onload = function () {
             content += '<div class = "col-xl-4 col-lg-4 col-md-4">' +
                 '<a target = "_blank" href = "' + element.source + '">' +
                 '<div class = "home-logo-container">' +
-                '<img class = "home-logo" src = "assets/images/' + element.logo + '">' +
+                '<img class = "home-logo" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/' + element.logo + '">' +
                 '<p>' + element.content + '</p>' +
                 '</div>' +
                 '</a>' +
@@ -73,7 +73,7 @@ request.onload = function () {
         }
         else if (type == 'a' && element.hasOwnProperty("style") && element.logo != '') {
             content += '<a target = "_blank" href = "' + element.source + '">' +
-                '<img  img-fluid style="' + element.style + '" src = "assets/images/' + element.logo + '">' +
+                '<img  img-fluid style="' + element.style + '" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/' + element.logo + '">' +
                 '<p>' + element.content + '</p>' +
                 '</a>';
         }

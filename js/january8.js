@@ -62,7 +62,7 @@ window.onload = function () {
                 content +='<div class = "col-xl-4 col-lg-6 col-md-12">'+
                             '<a target = "_blank" href = "'+ element.source +'">'+
                                 '<div class = "home-logo-container">' +
-                                    '<img class = "home-logo" src = "assets/images/' + element.logo+ '">'+
+                                    '<img class = "home-logo" src = "https://sdat-dev.github.io/resources/healthequity/assets/images/' + element.logo+ '">'+
                                     '<p>'+ element.content+'</p>' +
                                 '</div>'+
                             '</a>'+
