@@ -17,8 +17,4 @@ request.onload = function () {
     addfooter();
 }
 
-$('.carousel').carousel({
-    pause: "false",
-    interval: 2000
-
-});
+$('.carousel').caro
